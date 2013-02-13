@@ -1,0 +1,178 @@
+﻿body
+{
+    font-size: .85em;
+    font-family: "Segoe UI" , Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header, footer, nav, section
+{
+    display: block;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset
+{
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea
+{
+    min-height: 75px;
+}
+
+.editor-label
+{
+    margin: 1em 0 0 0;
+}
+
+.editor-field
+{
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #f00;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* TAB MENU   
+----------------------------------------------------------*/
+div#nav
+{
+    display: inline-block;
+    background: #434343;
+    width: 100%;
+}
+div#logon
+{
+    float: right;
+}
+
+a.menunav
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+    font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    font-size: 18px;
+}
+
+div.logon
+{
+padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+    font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    font-size: 12px;
+}
+
+div.logon a
+{
+    /* padding: 10px 20px; */
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+    font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    font-size: 12px;
+}
+
+div#logon
+{
+    float: right;
+}
+
+div#logoff
+{
+    float: right;
+}
+
+
+
+ul#menu
+{
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0 auto;
+    clear: both;
+    text-align: left;
+    float: left; /* width: 990px; */
+}
+
+ul#menu li
+{
+    display: inline;
+    list-style: none;
+}
+
+
+ul#menu li a:hover
+{
+    text-decoration: none;
+}
+
+ul#menu li a:active
+{
+    text-decoration: none;
+}
+
+ul#menu li.selected a
+{
+    color: #000;
+}
