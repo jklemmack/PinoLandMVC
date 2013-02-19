@@ -306,7 +306,10 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         internal override IEnumerable<Good> GetAvailableGoods(Household h)
         {
-            //Find all restaurants within 10 units where their is some quantity on hand (beginning inventory + production - sales so far)
+            //Find all restaurants within 10 units where their is some quantity 
+            // on hand (beginning inventory + production - sales so far)
+            //  -- Possible parallelism optimization - don't check qty here 
+            //      - check it when we consume later in  the algorithm
             var x = from goods in this.Food_Good
                     where goods.Location.DistanceTo(h.Location) <= 10
                     from rounds in goods.Food_Good_Round

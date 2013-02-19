@@ -14,9 +14,22 @@ namespace PinoLandMVC4
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "FullMapScaled",
+                url: "Tile/FullMap/{id}/{height}/{width}",
+                defaults: new { controller = "Tile", action = "GetFullMap" }
+            );
+
+            routes.MapRoute(
                 name: "Tiles",
-                url: "Tile/{z}/{x}/{y}",
+                url: "Tile/{id}/{z}/{x}/{y}",
                 defaults: new { controller = "Tile", action = "Get" }
+            );
+
+
+            routes.MapRoute(
+                name: "MarkerPoints",
+                url: "Tile/Points/{id}/{skip}/{take}",
+                defaults: new { controller = "Tile", action = "Points" }
             );
 
             routes.MapRoute(

@@ -12,7 +12,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
     /// http://www.dofactory.com/Patterns/PatternSingleton.aspx
     /// 
     /// </summary>
-    internal class Statistics
+    public class Statistics
     {
         private static object _lockObject = new object();
         private static Statistics _singleton = null;

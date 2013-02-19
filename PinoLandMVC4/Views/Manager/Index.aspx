@@ -40,16 +40,18 @@
                 <%: Html.DisplayFor(modelItem => item.Reference) %>
             </td>
             <td>
-                <%: Html.ActionLink("Edit", "Edit", new { id=item.EconomyId }) %>
-                |
-                <%: Html.ActionLink("Details", "Details", new { id=item.EconomyId }) %>
+                <%: Html.ActionLink("Edit", "Details", new { id=item.EconomyId }) %>
                 |
                 <%: Html.ActionLink("Delete", "Delete", new { id=item.EconomyId }) %>
+                |
+                <%: Html.ActionLink("Start Game", "StartGame", new { id = item.EconomyId })%>
+                |
+                <%: Html.ActionLink("Process Round", "ProcessRound", new { id = item.EconomyId })%>
             </td>
         </tr>
-        <% } %>
-        <p>
-            <%: Html.ActionLink("Create New Game", "Create") %></p>
+        <% } %></table>
+    <p>
+        <%: Html.ActionLink("Create New Game", "Create") %></p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>

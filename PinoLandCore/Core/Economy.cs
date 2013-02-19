@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -9,15 +10,28 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
     {
         private static object _lock = new object();
         private List<Profile_Age_Wealth> profileBins = null;
+        internal InitializeCallbacks _callbacks;
+
+        public struct GeoPosition
+        {
+            public float Latitude;
+            public float Longitude;
+        }
+
+        public class InitializeCallbacks
+        {
+            public Func<Household, Dictionary<Color, Profile>, GeoPosition> PositionHousehold;
+        }
+
 
         public static Economy CreateEconomy(string name)
         {
             Economy economy = new Economy();
             economy.Name = name;
             economy.DateCreated = DateTime.Now;
-
             return economy;
         }
+
 
         /// <summary>
         /// Create a new population profile that can be assigned to a location
@@ -25,11 +39,12 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="economy"></param>
         /// <param name="weights">An array of weights for each age and wealth.  
         /// The weights are ordered by the Age first, then each Wealth for that Age.  All sequences are in alphabetical order.  </param>
-        public Profile CreateProfile(string name, double[] weights)
+        public Profile CreateProfile(string name, int totalPopulation, double[] weights)
         {
             Profile profile = new Profile();
             profile.Name = name;
             profile.Economy = this;
+            profile.TotalPopulation = totalPopulation;
 
             if (weights.Length != this.Ages.Count * this.Wealths.Count)
                 throw new ArgumentOutOfRangeException("weights", string.Format("\"weights\" array must have {0} elements; it has {1}.", this.Ages.Count * this.Wealths.Count, weights.Length));
@@ -57,26 +72,55 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             this.Industries.Add(industry);
         }
 
-        public void Initialize()
+        public void Initialize(InitializeCallbacks callbacks)
         {
+            this._callbacks = callbacks;
             //Create the first round
             this.CurrentRound = Round.CreateRound(this, null);
 
             //Setup each industry
             foreach (Industry industry in this.Industries)
             {
+                Dictionary<Color, Profile> mapping = new Dictionary<Color, Profile>();
+                //mapping.Add(Color.Blue, this.Profiles.Single(p => string.Compare(p.Name, "Rural", true) == 0));
+                mapping.Add(Color.Red, this.Profiles.Single(p => string.Compare(p.Name, "Urban", true) == 0));
+                mapping.Add(Color.Yellow, this.Profiles.Single(p => string.Compare(p.Name, "Suburban", true) == 0));
+                mapping.Add(Color.FromArgb(0, 255, 0), this.Profiles.Single(p => string.Compare(p.Name, "Rural", true) == 0));
+
                 industry.InitializeIndustry();
+                foreach (Profile profile in this.Profiles)
+                {
+                    for (int i = 0; i < profile.TotalPopulation; i++)
+                    {
+                        Household h = new Household();
+                        h.Profile = profile;
+                        h.Identifier = string.Format("{0}:{1:D5}", profile.Name, i + 1);
+
+                        Profile_Age_Wealth paw = this.GetProfileAgeWealth(profile, Statistics.Instance.Sample());
+                        h.Age = paw.Age;
+                        h.Wealth = paw.Wealth;
+
+                        if (this._callbacks != null && this._callbacks.PositionHousehold != null)
+                        {
+                            Economy.GeoPosition pos = this._callbacks.PositionHousehold(h, mapping);
+                            h.Latitude = pos.Latitude;
+                            h.Longitude = pos.Longitude;
+
+                        }
+
+                    }
+                }
 
                 // Spin over the locations & make households
-                foreach (Location location in this.Locations)
-                {
-                    //Create base households
-                    location.InitializeHouseholds();
+                //foreach (Location location in this.Locations)
+                //{
+                //    //Create base households
+                //    location.InitializeHouseholds();
 
-                    //Now set industry-specific parameters for each household, as required.
-                    //foreach (Household household in location.Households)
-                    //    industry.GenerateHouseholdIndustryData(household);
-                }
+                //    //Now set industry-specific parameters for each household, as required.
+                //    //foreach (Household household in location.Households)
+                //    //    industry.GenerateHouseholdIndustryData(household);
+                //}
             }
 
         }
@@ -148,6 +192,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 double? value = industry.CalculateConsumerValue(household, good, round);
                 if (value != null && value.Value > 0)   //Has a value & its positive
                 {
+                    // Possible parallelism optimization - don't track winner here just yet...
                     double cost = industry.CalculateConsumerCost(household, good, round);
                     double surplus = value.Value - cost;
                     if (surplus > maxSurplus && surplus > 0)
@@ -160,6 +205,8 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             }
 
             //If we have a winning good, record the sale
+            // Possible parallelism optimization - single mutex here to check the winner & 
+            // record the sale.
             if (winningGood != null)
                 industry.RecordSale(household, winningGood, round, winningCost, maxSurplus);
 

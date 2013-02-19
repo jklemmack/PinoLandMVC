@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<Fuqua.CompetativeAnalysis.MarketGame.Economy>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<PinoLandMVC4.Helpers.PageModel<Fuqua.CompetativeAnalysis.MarketGame.Economy>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     Details
@@ -9,12 +9,13 @@
         <%: Model.Reference %></h2>
     <p>
         <%: Html.ActionLink("Back to List", "Index") %>
+        <%: Html.ActionLink("Start Game", "StartGame", new { id = Model.Data.EconomyId })%>
     </p>
     <div id="mainTabs">
         <ul>
             <li><a href="#tabOverview">Overview</a></li>
             <li><a href="#tabCompanies">Companies</a></li>
-            <li><a href="#tabAgeWealth">Age & Wealth</a></li>
+            <%--<li><a href="#tabAgeWealth">Age & Wealth</a></li>--%>
             <li><a href="#tabProfiles">Profiles</a></li>
             <li><a href="#tabLocations">Locations</a></li>
             <li><a href="#tabIndustries">Industries</a></li>
@@ -23,16 +24,17 @@
             <% %>
         </div>
         <div id="tabCompanies" index="2">
-            <% Html.RenderPartial("Parts/TeamList", Model.Companies); %>
+            <% Html.RenderPartial("Parts/TeamList", Model.Data.Companies); %>
         </div>
-        <div id="tabAgeWealth" index="3">
+        <%--        <div id="tabAgeWealth" index="3">
             <% Html.RenderPartial("Parts/AgeWealthList", Model); %></div>
+        --%>
         <div id="tabProfiles" index="4">
-            <% Html.RenderPartial("Parts/ProfileList", Model.Profiles); %></div>
+            <% Html.RenderPartial("Parts/ProfileList", Model.Data.Profiles); %></div>
         <div id="tabLocations" index="5">
-            <% Html.RenderPartial("Parts/LocationList", Model.Locations); %></div>
+            <% Html.RenderPartial("Parts/LocationList", Model.Data.Locations); %></div>
         <div id="tabIndustries" index="6">
-            <% Html.RenderPartial("Parts/IndustryList", Model.Industries); %>
+            <% Html.RenderPartial("Parts/IndustryList", Model.Data.Industries); %>
         </div>
     </div>
 </asp:Content>
@@ -81,12 +83,18 @@
             PageLoad();
         });
 
+        $(document).ready(function () {
+            $('#tabletwo').columnHover({ eachCell: true, hoverClass: 'betterhover' });
+        });
+
     </script>
-    <%--    <script language="javascript" type="text/javascript">
-    var economy = <%= ViewBag.Economy %>
-    </script>
-    --%>
+
     <style type="text/css">
+        td.betterhover, #tabletwo tbody tr:hover
+        {
+            background: LightCyan;
+        }
+        
         .ui-tabs-vertical
         {
             width: 55em;

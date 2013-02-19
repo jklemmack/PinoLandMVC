@@ -8,6 +8,12 @@ namespace PinoLandMVC4.Models
 {
     public class StudentModels
     {
+
+    }
+
+    public class MapModel
+    {
+        
     }
 
     public class NewsModel

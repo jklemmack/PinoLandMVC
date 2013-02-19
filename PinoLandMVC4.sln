@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinoLandMVC4", "PinoLandMVC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCore", "PinoLandCore\GameCore.csproj", "{BE6F1C78-5260-4D8E-81F2-0BB83CE43204}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinoLandServerLib", "..\PinoLand\PinoLandServer\PinoLandServerLib\PinoLandServerLib.csproj", "{0F47AD69-7FB5-4E3F-AE0D-1C5DC299801E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{BE6F1C78-5260-4D8E-81F2-0BB83CE43204}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE6F1C78-5260-4D8E-81F2-0BB83CE43204}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE6F1C78-5260-4D8E-81F2-0BB83CE43204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F47AD69-7FB5-4E3F-AE0D-1C5DC299801E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F47AD69-7FB5-4E3F-AE0D-1C5DC299801E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F47AD69-7FB5-4E3F-AE0D-1C5DC299801E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F47AD69-7FB5-4E3F-AE0D-1C5DC299801E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

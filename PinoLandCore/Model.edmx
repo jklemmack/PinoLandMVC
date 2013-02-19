@@ -188,14 +188,6 @@
             <End Role="Age" EntitySet="Age" />
             <End Role="Household" EntitySet="Household" />
           </AssociationSet>
-          <AssociationSet Name="FK_Household_Household" Association="Fuqua.CompetativeAnalysis.Store.FK_Household_Household">
-            <End Role="Economy" EntitySet="Economy" />
-            <End Role="Household" EntitySet="Household" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Household_Location" Association="Fuqua.CompetativeAnalysis.Store.FK_Household_Location">
-            <End Role="Location" EntitySet="Location" />
-            <End Role="Household" EntitySet="Household" />
-          </AssociationSet>
           <AssociationSet Name="FK_Household_Profile" Association="Fuqua.CompetativeAnalysis.Store.FK_Household_Profile">
             <End Role="Profile" EntitySet="Profile" />
             <End Role="Household" EntitySet="Household" />
@@ -226,6 +218,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Profile_Age_Wealth_Age" Association="Fuqua.CompetativeAnalysis.Store.FK_Profile_Age_Wealth_Age">
             <End Role="Age" EntitySet="Age" />
+            <End Role="Profile_Age_Wealth" EntitySet="Profile_Age_Wealth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_Age_Wealth_Economy" Association="Fuqua.CompetativeAnalysis.Store.FK_Profile_Age_Wealth_Economy">
+            <End Role="Economy" EntitySet="Economy" />
             <End Role="Profile_Age_Wealth" EntitySet="Profile_Age_Wealth" />
           </AssociationSet>
           <AssociationSet Name="FK_Profile_Age_Wealth_Profile" Association="Fuqua.CompetativeAnalysis.Store.FK_Profile_Age_Wealth_Profile">
@@ -483,9 +479,11 @@
           <Property Name="HouseholdId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EconomyId" Type="int" Nullable="false" />
           <Property Name="Identifier" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" />
           <Property Name="AgeId" Type="int" Nullable="false" />
           <Property Name="WealthId" Type="int" Nullable="false" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Longitude" Type="float" />
           <Property Name="ProfileId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="IM_Role">
@@ -551,6 +549,7 @@
           <Property Name="ProfileId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EconomyId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="TotalPopulation" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Profile_Age_Wealth">
           <Key>
@@ -1126,32 +1125,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Household_Household">
-          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
-          <End Role="Household" Type="Fuqua.CompetativeAnalysis.Store.Household" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Economy">
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Household">
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Household_Location">
-          <End Role="Location" Type="Fuqua.CompetativeAnalysis.Store.Location" Multiplicity="1" />
-          <End Role="Household" Type="Fuqua.CompetativeAnalysis.Store.Household" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="LocationId" />
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Household">
-              <PropertyRef Name="LocationId" />
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Household_Profile">
           <End Role="Profile" Type="Fuqua.CompetativeAnalysis.Store.Profile" Multiplicity="1" />
           <End Role="Household" Type="Fuqua.CompetativeAnalysis.Store.Household" Multiplicity="*" />
@@ -1256,6 +1229,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Profile_Age_Wealth_Economy">
+          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
+          <End Role="Profile_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Profile_Age_Wealth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Economy">
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Profile_Age_Wealth">
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Profile_Age_Wealth_Profile">
           <End Role="Profile" Type="Fuqua.CompetativeAnalysis.Store.Profile" Multiplicity="1" />
           <End Role="Profile_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Profile_Age_Wealth" Multiplicity="*" />
@@ -1346,7 +1331,6 @@
 					<EntitySet Name="Households" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Household" />
 					<EntitySet Name="Industries" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Industry" />
 					<EntitySet Name="Locations" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Location" />
-					<EntitySet Name="Profiles" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile" />
 					<EntitySet Name="Rounds" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Round" />
 					<EntitySet Name="Wealths" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Wealth" />
 					<AssociationSet Name="FK_Age_Economy" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Age_Economy">
@@ -1397,25 +1381,13 @@
 						<End Role="Location" EntitySet="Locations" />
 						<End Role="Household" EntitySet="Households" />
 					</AssociationSet>
-					<AssociationSet Name="FK_Household_Profile" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile">
-						<End Role="Profile" EntitySet="Profiles" />
-						<End Role="Household" EntitySet="Households" />
-					</AssociationSet>
 					<AssociationSet Name="FK_Household_Wealth" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Wealth">
 						<End Role="Wealth" EntitySet="Wealths" />
 						<End Role="Household" EntitySet="Households" />
 					</AssociationSet>
-					<AssociationSet Name="FK_Location_Profile" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile">
-						<End Role="Profile" EntitySet="Profiles" />
-						<End Role="Location" EntitySet="Locations" />
-					</AssociationSet>
 					<AssociationSet Name="FK_Round_Round" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round">
 						<End Role="CurrentRound" EntitySet="Rounds" />
 						<End Role="PreviousRound" EntitySet="Rounds" />
-					</AssociationSet>
-					<AssociationSet Name="FK_Profile_Economy" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy">
-						<End Role="Economy" EntitySet="Economies" />
-						<End Role="Profile" EntitySet="Profiles" />
 					</AssociationSet>
 					<EntitySet Name="Food_Industry_Good_Type" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" />
 					<AssociationSet Name="FK_Food_Good_Company" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Company">
@@ -1471,10 +1443,6 @@
 					<EntitySet Name="Profile_Age_Wealth" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth" />
 					<AssociationSet Name="FK_Profile_Age_Wealth_Age" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Age">
 						<End Role="Age" EntitySet="Ages" />
-						<End Role="Profile_Age_Wealth" EntitySet="Profile_Age_Wealth" />
-					</AssociationSet>
-					<AssociationSet Name="FK_Profile_Age_Wealth_Profile" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile">
-						<End Role="Profile" EntitySet="Profiles" />
 						<End Role="Profile_Age_Wealth" EntitySet="Profile_Age_Wealth" />
 					</AssociationSet>
 					<AssociationSet Name="FK_Profile_Age_Wealth_Wealth" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth">
@@ -1567,6 +1535,27 @@
             <End Role="Food_Industry" EntitySet="Industries" />
             <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
           </AssociationSet>
+          <EntitySet Name="Profiles" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile" />
+          <AssociationSet Name="FK_Profile_Economy" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy">
+            <End Role="Economy" EntitySet="Economies" />
+            <End Role="Profile" EntitySet="Profiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Profile" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_Age_Wealth_Profile" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Profile_Age_Wealth" EntitySet="Profile_Age_Wealth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Household_Profile" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile">
+            <End Role="Profile" EntitySet="Profiles" />
+            <End Role="Household" EntitySet="Households" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_Age_Wealth_Economy" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy">
+            <End Role="Economy" EntitySet="Economies" />
+            <End Role="Profile_Age_Wealth" EntitySet="Profile_Age_Wealth" />
+          </AssociationSet>
 				</EntityContainer>
 				<EntityType Name="Age">
 					<Key>
@@ -1639,10 +1628,11 @@
 					<NavigationProperty Name="Industries" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Industry_Economy" FromRole="Economy" ToRole="Industry" />
 					<NavigationProperty Name="Locations" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Economy" FromRole="Economy" ToRole="Location" />
 					<NavigationProperty Name="Wealths" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Wealth_Economy" FromRole="Economy" ToRole="Wealth" />
-					<NavigationProperty Name="Profiles" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy" FromRole="Economy" ToRole="Profile" />
 					<NavigationProperty Name="Food_Industry" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Economy" FromRole="Economy" ToRole="Food_Industry" />
 					<Property Name="Reference" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
           <NavigationProperty Name="Food_Industry_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy" FromRole="Economy" ToRole="Food_Industry_Age_Wealth" />
+          <NavigationProperty Name="Profiles" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy" FromRole="Economy" ToRole="Profile" />
+          <NavigationProperty Name="Profile_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy" FromRole="Economy" ToRole="Profile_Age_Wealth" />
 				</EntityType>
 				<EntityType Name="Good">
 					<Key>
@@ -1667,14 +1657,16 @@
 					<Property Name="LocationId" Type="Int32" Nullable="false" />
 					<Property Name="AgeId" Type="Int32" Nullable="false" />
 					<Property Name="WealthId" Type="Int32" Nullable="false" />
-					<Property Name="ProfileId" Type="Int32" Nullable="false" />
 					<NavigationProperty Name="Age" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Age" FromRole="Household" ToRole="Age" />
 					<NavigationProperty Name="Economy" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household" FromRole="Household" ToRole="Economy" />
 					<NavigationProperty Name="Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Location" FromRole="Household" ToRole="Location" />
-					<NavigationProperty Name="Profile" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile" FromRole="Household" ToRole="Profile" />
 					<NavigationProperty Name="Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Wealth" FromRole="Household" ToRole="Wealth" />
 					<NavigationProperty Name="Food_Household_Company_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Household" FromRole="Household" ToRole="Food_Household_Company_Round" />
 					<NavigationProperty Name="Food_Industry_Household_Company_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Household" FromRole="Household" ToRole="Food_Industry_Household_Company_Round" />
+          <Property Type="Double" Name="Latitude" />
+          <Property Type="Double" Name="Longitude" />
+          <Property Type="Int32" Name="ProfileId" Nullable="false" />
+          <NavigationProperty Name="Profile" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile" FromRole="Household" ToRole="Profile" />
 				</EntityType>
 				<EntityType Name="Industry">
 					<Key>
@@ -1701,25 +1693,12 @@
 					<Property Name="ProfileId" Type="Int32" Nullable="false" />
 					<NavigationProperty Name="Economy" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Economy" FromRole="Location" ToRole="Economy" />
 					<NavigationProperty Name="Households" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Location" FromRole="Location" ToRole="Household" />
-					<NavigationProperty Name="Profile" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile" FromRole="Location" ToRole="Profile" />
 					<Property Type="Int32" Name="TotalPopulation" Nullable="false" />
 					<NavigationProperty Name="Food_Good" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Location" FromRole="Location" ToRole="Food_Good" />
           <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Interactive" Nullable="false" />
           <NavigationProperty Name="vw_LocationPoints" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation" FromRole="Location" ToRole="vw_LocationPoints" />
-				</EntityType>
-				<EntityType Name="Profile">
-					<Key>
-						<PropertyRef Name="ProfileId" />
-						<PropertyRef Name="EconomyId" />
-					</Key>
-					<Property Name="ProfileId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-					<Property Name="EconomyId" Type="Int32" Nullable="false" />
-					<Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-					<NavigationProperty Name="Households" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile" FromRole="Profile" ToRole="Household" />
-					<NavigationProperty Name="Locations" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile" FromRole="Profile" ToRole="Location" />
-					<NavigationProperty Name="Economy" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy" FromRole="Profile" ToRole="Economy" />
-					<NavigationProperty Name="Profile_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile" FromRole="Profile" ToRole="Profile_Age_Wealth" />
+          <NavigationProperty Name="Profile" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile" FromRole="Location" ToRole="Profile" />
 				</EntityType>
 				<EntityType Name="Round">
 					<Key>
@@ -1912,20 +1891,6 @@
 						</Dependent>
 					</ReferentialConstraint>
 				</Association>
-				<Association Name="FK_Household_Profile">
-					<End Role="Profile" Type="Fuqua.CompetativeAnalysis.MarketGame.Profile" Multiplicity="1" />
-					<End Role="Household" Type="Fuqua.CompetativeAnalysis.MarketGame.Household" Multiplicity="*" />
-					<ReferentialConstraint>
-						<Principal Role="Profile">
-							<PropertyRef Name="ProfileId" />
-							<PropertyRef Name="EconomyId" />
-						</Principal>
-						<Dependent Role="Household">
-							<PropertyRef Name="ProfileId" />
-							<PropertyRef Name="EconomyId" />
-						</Dependent>
-					</ReferentialConstraint>
-				</Association>
 				<Association Name="FK_Household_Wealth">
 					<End Role="Wealth" Type="Fuqua.CompetativeAnalysis.MarketGame.Wealth" Multiplicity="1" />
 					<End Role="Household" Type="Fuqua.CompetativeAnalysis.MarketGame.Household" Multiplicity="*" />
@@ -1936,20 +1901,6 @@
 						</Principal>
 						<Dependent Role="Household">
 							<PropertyRef Name="WealthId" />
-							<PropertyRef Name="EconomyId" />
-						</Dependent>
-					</ReferentialConstraint>
-				</Association>
-				<Association Name="FK_Location_Profile">
-					<End Role="Profile" Type="Fuqua.CompetativeAnalysis.MarketGame.Profile" Multiplicity="1" />
-					<End Role="Location" Type="Fuqua.CompetativeAnalysis.MarketGame.Location" Multiplicity="*" />
-					<ReferentialConstraint>
-						<Principal Role="Profile">
-							<PropertyRef Name="ProfileId" />
-							<PropertyRef Name="EconomyId" />
-						</Principal>
-						<Dependent Role="Location">
-							<PropertyRef Name="ProfileId" />
 							<PropertyRef Name="EconomyId" />
 						</Dependent>
 					</ReferentialConstraint>
@@ -1965,18 +1916,6 @@
 						</Principal>
 						<Dependent Role="PreviousRound">
 							<PropertyRef Name="PreviousRoundId" />
-							<PropertyRef Name="EconomyId" />
-						</Dependent>
-					</ReferentialConstraint>
-				</Association>
-				<Association Name="FK_Profile_Economy">
-					<End Type="Fuqua.CompetativeAnalysis.MarketGame.Economy" Role="Economy" Multiplicity="1" />
-					<End Type="Fuqua.CompetativeAnalysis.MarketGame.Profile" Role="Profile" Multiplicity="*" />
-					<ReferentialConstraint>
-						<Principal Role="Economy">
-							<PropertyRef Name="EconomyId" />
-						</Principal>
-						<Dependent Role="Profile">
 							<PropertyRef Name="EconomyId" />
 						</Dependent>
 					</ReferentialConstraint>
@@ -2263,8 +2202,9 @@
 					<Property Type="Int32" Name="WealthId" Nullable="false" />
 					<Property Name="Probability" Nullable="false" Type="Double" />
 					<NavigationProperty Name="Age" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Age" FromRole="Profile_Age_Wealth" ToRole="Age" />
-					<NavigationProperty Name="Profile" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile" FromRole="Profile_Age_Wealth" ToRole="Profile" />
 					<NavigationProperty Name="Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth" FromRole="Profile_Age_Wealth" ToRole="Wealth" />
+          <NavigationProperty Name="Profile" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile" FromRole="Profile_Age_Wealth" ToRole="Profile" />
+          <NavigationProperty Name="Economy" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy" FromRole="Profile_Age_Wealth" ToRole="Economy" />
 				</EntityType>
 				<Association Name="FK_Profile_Age_Wealth_Age">
 					<End Type="Fuqua.CompetativeAnalysis.MarketGame.Age" Role="Age" Multiplicity="1" />
@@ -2276,20 +2216,6 @@
 						</Principal>
 						<Dependent Role="Profile_Age_Wealth">
 							<PropertyRef Name="AgeId" />
-							<PropertyRef Name="EconomyId" />
-						</Dependent>
-					</ReferentialConstraint>
-				</Association>
-				<Association Name="FK_Profile_Age_Wealth_Profile">
-					<End Type="Fuqua.CompetativeAnalysis.MarketGame.Profile" Role="Profile" Multiplicity="1" />
-					<End Type="Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth" Role="Profile_Age_Wealth" Multiplicity="*" />
-					<ReferentialConstraint>
-						<Principal Role="Profile">
-							<PropertyRef Name="ProfileId" />
-							<PropertyRef Name="EconomyId" />
-						</Principal>
-						<Dependent Role="Profile_Age_Wealth">
-							<PropertyRef Name="ProfileId" />
 							<PropertyRef Name="EconomyId" />
 						</Dependent>
 					</ReferentialConstraint>
@@ -2652,6 +2578,90 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="ProfileId" />
+            <PropertyRef Name="EconomyId" />
+          </Key>
+          <Property Type="Int32" Name="ProfileId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EconomyId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TotalPopulation" Nullable="false" >
+            <Documentation>
+              <Summary>The total number of households that will use this profile.</Summary>
+            </Documentation>
+          </Property>
+          <NavigationProperty Name="Economy" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy" FromRole="Profile" ToRole="Economy" />
+          <NavigationProperty Name="Locations" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile" FromRole="Profile" ToRole="Location" />
+          <NavigationProperty Name="Profile_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile" FromRole="Profile" ToRole="Profile_Age_Wealth" />
+          <NavigationProperty Name="Households" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile" FromRole="Profile" ToRole="Household" />
+        </EntityType>
+        <Association Name="FK_Profile_Economy">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Economy" Role="Economy" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Profile" Role="Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Economy">
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Profile">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Profile" Role="Profile" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Location" Role="Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ProfileId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="ProfileId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_Age_Wealth_Profile">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Profile" Role="Profile" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth" Role="Profile_Age_Wealth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ProfileId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Profile_Age_Wealth">
+              <PropertyRef Name="ProfileId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Household_Profile">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Profile" Role="Profile" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Household" Role="Household" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="ProfileId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Household">
+              <PropertyRef Name="ProfileId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_Age_Wealth_Economy">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Economy" Role="Economy" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth" Role="Profile_Age_Wealth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Economy">
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Profile_Age_Wealth">
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
 			</Schema>
 		</edmx:ConceptualModels>
 		<!-- C-S mapping content -->
@@ -2732,13 +2742,15 @@
 					<EntitySetMapping Name="Households">
 						<EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Household">
 							<MappingFragment StoreEntitySet="Household">
-								<ScalarProperty Name="HouseholdId" ColumnName="HouseholdId" />
+								<ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="HouseholdId" ColumnName="HouseholdId" />
 								<ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
 								<ScalarProperty Name="Identifier" ColumnName="Identifier" />
 								<ScalarProperty Name="LocationId" ColumnName="LocationId" />
 								<ScalarProperty Name="AgeId" ColumnName="AgeId" />
 								<ScalarProperty Name="WealthId" ColumnName="WealthId" />
-								<ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
 							</MappingFragment>
 						</EntityTypeMapping>
 					</EntitySetMapping>
@@ -2784,15 +2796,6 @@
 								<ScalarProperty Name="CenterX" ColumnName="CenterX" />
 								<ScalarProperty Name="CenterY" ColumnName="CenterY" />
 								<ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-							</MappingFragment>
-						</EntityTypeMapping>
-					</EntitySetMapping>
-					<EntitySetMapping Name="Profiles">
-						<EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Profile">
-							<MappingFragment StoreEntitySet="Profile">
-								<ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-								<ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
-								<ScalarProperty Name="Name" ColumnName="Name" />
 							</MappingFragment>
 						</EntityTypeMapping>
 					</EntitySetMapping>
@@ -2985,6 +2988,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Profile">
+              <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="TotalPopulation" ColumnName="TotalPopulation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
 				</EntityContainerMapping>
 			</Mapping>
 		</edmx:Mappings>
@@ -3006,724 +3019,659 @@
 		<!-- Diagram content (shape and connector positions) -->
 		<Diagrams>
 			<Diagram Name="Model" ZoomLevel="74">
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Age" Width="1.5" PointX="11.125" PointY="59.5" Height="2.5571907552083246" IsExpanded="true" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company" Width="1.5" PointX="11.125" PointY="63.625" Height="2.9417936197916674" IsExpanded="true" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company_Round" Width="1.875" PointX="13.625" PointY="74.875" Height="3.7109993489583246" IsExpanded="true" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Economy" Width="1.5" PointX="3" PointY="66" Height="3.7109993489583246" IsExpanded="true" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Good" Width="1.5" PointX="11.125" PointY="73.75" Height="1.980286458333353" IsExpanded="true" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Household" Width="1.75" PointX="13.375" PointY="64.625" Height="3.7109993489583246" IsExpanded="true" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Industry" Width="1.5" PointX="8.125" PointY="70.375" Height="2.1725878906250102" IsExpanded="true" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Location" Width="1.5" PointX="8.125" PointY="63.25" Height="3.7109993489583317" IsExpanded="true" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile" Width="2.125" PointX="5.25" PointY="63.875" Height="2.3648893229166674" IsExpanded="true" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Round" Width="1.5" PointX="0.75" PointY="66" Height="3.7109993489583246" IsExpanded="true" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Wealth" Width="1.5" PointX="11.125" PointY="76.875" Height="2.5571907552083246" IsExpanded="true" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Age" Width="1.5" PointX="11.625" PointY="115.75" Height="2.7494921874999818" IsExpanded="true" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company" Width="1.5" PointX="11.25" PointY="102.625" Height="2.9417936197916674" IsExpanded="true" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company_Round" Width="1.875" PointX="17.125" PointY="114.375" Height="3.7109993489583246" IsExpanded="true" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Economy" Width="1.5" PointX="3" PointY="104.875" Height="4.0956022135416674" IsExpanded="true" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Good" Width="1.5" PointX="11.5" PointY="112.75" Height="1.980286458333353" IsExpanded="true" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Household" Width="1.75" PointX="13.75" PointY="103.5" Height="4.0956022135416674" IsExpanded="true" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Industry" Width="1.5" PointX="7.75" PointY="109.375" Height="2.1725878906250102" IsExpanded="true" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Location" Width="1.5" PointX="8.5" PointY="102.25" Height="3.7109993489583246" IsExpanded="true" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Round" Width="1.5" PointX="0.75" PointY="105" Height="3.7109993489583246" IsExpanded="true" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Wealth" Width="1.5" PointX="11.625" PointY="119.25" Height="2.7494921874999818" IsExpanded="true" />
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Age_Economy" ManuallyRouted="false">
-					<ConnectorPoint PointX="3.75" PointY="66" />
-					<ConnectorPoint PointX="3.75" PointY="60.87474609375" />
-					<ConnectorPoint PointX="11.125" PointY="60.87474609375" />
+					<ConnectorPoint PointX="4.5" PointY="107.79152506510417" />
+					<ConnectorPoint PointX="5.416666666666667" PointY="107.79152506510417" />
+					<ConnectorPoint PointX="5.583333333333333" PointY="107.79152506510417" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="107.79152506510417" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="107.79152506510417" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="107.79152506510417" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="107.79152506510417" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="107.79152506510417" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="107.79152506510417" />
+          <ConnectorPoint PointX="11.510414666666666" PointY="107.79152506510417" />
+          <ConnectorPoint PointX="11.677081333333334" PointY="107.79152506510417" />
+          <ConnectorPoint PointX="13.09375" PointY="107.79152506510417" />
+          <ConnectorPoint PointX="13.09375" PointY="115.75" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Age" ManuallyRouted="false">
-					<ConnectorPoint PointX="12.625" PointY="60.09375" />
-					<ConnectorPoint PointX="14.041666666666666" PointY="60.09375" />
-					<ConnectorPoint PointX="14.208333333333334" PointY="60.09375" />
-					<ConnectorPoint PointX="15.03125" PointY="60.09375" />
-					<ConnectorPoint PointX="15.03125" PointY="64.625" />
+					<ConnectorPoint PointX="13.109375" PointY="115.75" />
+					<ConnectorPoint PointX="13.109375" PointY="106.61244791666667" />
+					<ConnectorPoint PointX="13.354166666666666" PointY="106.61244791666667" />
+          <ConnectorPoint PointX="13.583333333333334" PointY="106.61244791666667" />
+          <ConnectorPoint PointX="13.75" PointY="106.61244791666667" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Economy" ManuallyRouted="false">
-					<ConnectorPoint PointX="4.5" PointY="69.576650390624991" />
-					<ConnectorPoint PointX="5.2291654166666666" PointY="69.576650390624991" />
-					<ConnectorPoint PointX="5.3958320833333326" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="5.583333333333333" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="7.510416666666667" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="9.7916666666666661" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="9.9583333333333339" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="11.385414666666666" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="11.552081333333334" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="12.0781265" PointY="69.576650390624991" />
-          <ConnectorPoint PointX="12.0781265" PointY="66.566793619791667" />
+					<ConnectorPoint PointX="4.5" PointY="107.09500970703124" />
+					<ConnectorPoint PointX="5.416666666666667" PointY="107.09500970703124" />
+					<ConnectorPoint PointX="5.583333333333333" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="11.510414666666666" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="11.677081333333334" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="12" PointY="107.09500970703124" />
+          <ConnectorPoint PointX="12" PointY="105.56679361979167" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Round_Company" ManuallyRouted="false">
-					<ConnectorPoint PointX="12.625" PointY="66.565638773637815" />
-					<ConnectorPoint PointX="12.878574434901122" PointY="66.81921320853894" />
-          <ConnectorPoint PointX="12.996425565098878" PointY="66.93706433873669" />
-          <ConnectorPoint PointX="13" PointY="66.940638773637815" />
-          <ConnectorPoint PointX="13" PointY="76.730499674479162" />
-          <ConnectorPoint PointX="13.291666666666666" PointY="76.730499674479162" />
-          <ConnectorPoint PointX="13.458333333333334" PointY="76.730499674479162" />
-          <ConnectorPoint PointX="13.625" PointY="76.730499674479162" />
+					<ConnectorPoint PointX="12.75" PointY="104.09589680989583" />
+					<ConnectorPoint PointX="13.5" PointY="104.09589680989583" />
+          <ConnectorPoint PointX="13.5" PointY="107.84560221354167" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="107.84560221354167" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="107.84560221354167" />
+          <ConnectorPoint PointX="19.072916666666668" PointY="107.84560221354167" />
+          <ConnectorPoint PointX="19.239583333333332" PointY="107.84560221354167" />
+          <ConnectorPoint PointX="19.25" PointY="107.84560221354167" />
+          <ConnectorPoint PointX="19.25" PointY="114" />
+          <ConnectorPoint PointX="19.239583333333332" PointY="114" />
+          <ConnectorPoint PointX="19.072916666666668" PointY="114" />
+          <ConnectorPoint PointX="18.0625" PointY="114" />
+          <ConnectorPoint PointX="18.0625" PointY="114.375" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Round_Round" ManuallyRouted="false">
-					<ConnectorPoint PointX="1.5" PointY="69.710999348958325" />
-					<ConnectorPoint PointX="1.5" PointY="75.958893229166677" />
-					<ConnectorPoint PointX="3.1744777916666664" PointY="75.958893229166677" />
-					<ConnectorPoint PointX="3.3411444583333334" PointY="75.958893229166677" />
-					<ConnectorPoint PointX="3.9869822916666666" PointY="75.958893229166677" />
-					<ConnectorPoint PointX="4.1536489583333331" PointY="75.958893229166677" />
-					<ConnectorPoint PointX="5.7916641666666671" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="5.9583308333333331" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="6.229166666666667" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="6.395833333333333" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="6.6979191666666669" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="6.8645858333333329" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="7.510416666666667" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="8.3385441666666669" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="8.5052108333333347" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="10.541666666666666" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="10.708333333333334" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="10.791666666666666" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="10.958333333333334" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="11.791666666666666" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="11.958333333333334" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="12.854166666666666" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="13.145833333333334" PointY="75.958893229166677" />
-          <ConnectorPoint PointX="13.625" PointY="75.958893229166677" />
+					<ConnectorPoint PointX="1.5" PointY="108.71099934895833" />
+					<ConnectorPoint PointX="1.5" PointY="115.5" />
+					<ConnectorPoint PointX="3.5651032916666665" PointY="115.5" />
+					<ConnectorPoint PointX="3.7317699583333335" PointY="115.5" />
+					<ConnectorPoint PointX="3.8697924166666664" PointY="115.5" />
+					<ConnectorPoint PointX="4.0364590833333329" PointY="115.5" />
+					<ConnectorPoint PointX="4.4947891666666671" PointY="115.5" />
+          <ConnectorPoint PointX="4.9427108333333329" PointY="115.5" />
+          <ConnectorPoint PointX="5.479166666666667" PointY="115.5" />
+          <ConnectorPoint PointX="5.645833333333333" PointY="115.5" />
+          <ConnectorPoint PointX="9.0416666666666661" PointY="115.5" />
+          <ConnectorPoint PointX="9.2083333333333339" PointY="115.5" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="115.5" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="115.5" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="115.5" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="115.5" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="115.5" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="115.5" />
+          <ConnectorPoint PointX="11.010416666666666" PointY="115.5" />
+          <ConnectorPoint PointX="11.177083333333334" PointY="115.5" />
+          <ConnectorPoint PointX="12.994791666666666" PointY="115.5" />
+          <ConnectorPoint PointX="13.192708333333334" PointY="115.5" />
+          <ConnectorPoint PointX="13.625" PointY="115.5" />
+          <ConnectorPoint PointX="13.625" PointY="116.99949218749998" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="116.99949218749998" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="116.99949218749998" />
+          <ConnectorPoint PointX="14.791666666666666" PointY="116.99949218749998" />
+          <ConnectorPoint PointX="14.958333333333334" PointY="116.99949218749998" />
+          <ConnectorPoint PointX="15.947916666666666" PointY="116.99949218749998" />
+          <ConnectorPoint PointX="16.114583333333332" PointY="116.99949218749998" />
+          <ConnectorPoint PointX="16.75" PointY="116.99949218749998" />
+          <ConnectorPoint PointX="16.75" PointY="116.23049967447916" />
+          <ConnectorPoint PointX="17.125" PointY="116.23049967447916" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round" ManuallyRouted="false">
-					<ConnectorPoint PointX="2.25" PointY="68.366248593098959" />
-					<ConnectorPoint PointX="2.6666666666666665" PointY="68.366248593098959" />
-          <ConnectorPoint PointX="2.8333333333333335" PointY="68.366248593098959" />
-          <ConnectorPoint PointX="3" PointY="68.366248593098959" />
+					<ConnectorPoint PointX="2.25" PointY="106.85549967447916" />
+					<ConnectorPoint PointX="3" PointY="106.85549967447916" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household" ManuallyRouted="false">
-					<ConnectorPoint PointX="4.5" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="5.2291654166666666" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="5.3958320833333326" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="7.510416666666667" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="7.833333333333333" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="11.385414666666666" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="11.552081333333334" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="11.994793166666666" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="12.161459833333334" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="12.854166666666666" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="13.239583333333334" PointY="67.042999674479162" />
-					<ConnectorPoint PointX="13.375" PointY="67.042999674479162" />
+					<ConnectorPoint PointX="4.5" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="5.416666666666667" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="5.583333333333333" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="5.916666666666667" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="6.083333333333333" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="7.3619822916666662" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="7.5286489583333323" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="9.5729166666666661" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="9.7395833333333339" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="10.072916666666666" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="10.239583333333334" PointY="107.40780596028645" />
+					<ConnectorPoint PointX="11.510414666666666" PointY="107.40780596028645" />
+          <ConnectorPoint PointX="11.677081333333334" PointY="107.40780596028645" />
+          <ConnectorPoint PointX="13.026041666666666" PointY="107.40780596028645" />
+          <ConnectorPoint PointX="13.192708333333334" PointY="107.40780596028645" />
+          <ConnectorPoint PointX="13.354166666666666" PointY="107.40780596028645" />
+          <ConnectorPoint PointX="13.583333333333334" PointY="107.40780596028645" />
+          <ConnectorPoint PointX="13.75" PointY="107.40780596028645" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Industry_Economy" ManuallyRouted="false">
-					<ConnectorPoint PointX="3.57812625" PointY="69.90330078125" />
-					<ConnectorPoint PointX="3.57812625" PointY="71.4612939453125" />
-					<ConnectorPoint PointX="3.9869822916666666" PointY="71.4612939453125" />
-					<ConnectorPoint PointX="4.1536489583333331" PointY="71.4612939453125" />
-					<ConnectorPoint PointX="5.416666666666667" PointY="71.4612939453125" />
-					<ConnectorPoint PointX="5.583333333333333" PointY="71.4612939453125" />
-					<ConnectorPoint PointX="7.510416666666667" PointY="71.4612939453125" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="71.4612939453125" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="71.4612939453125" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="71.4612939453125" />
-          <ConnectorPoint PointX="8.125" PointY="71.4612939453125" />
+					<ConnectorPoint PointX="4.5" PointY="108.41231613932291" />
+					<ConnectorPoint PointX="5.416666666666667" PointY="108.41231613932291" />
+					<ConnectorPoint PointX="5.583333333333333" PointY="108.41231613932291" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="108.41231613932291" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="108.41231613932291" />
+          <ConnectorPoint PointX="8.125" PointY="108.41231613932291" />
+          <ConnectorPoint PointX="8.125" PointY="109.375" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Economy" ManuallyRouted="false">
-					<ConnectorPoint PointX="4.5" PointY="66.5073681640625" />
-					<ConnectorPoint PointX="5.229166666666667" PointY="66.5073681640625" />
-          <ConnectorPoint PointX="5.5208358333333338" PointY="66.5073681640625" />
-          <ConnectorPoint PointX="7.510416666666667" PointY="66.5073681640625" />
-          <ConnectorPoint PointX="7.7274477898637786" PointY="66.5073681640625" />
-          <ConnectorPoint PointX="8.125" PointY="66.5073681640625" />
+					<ConnectorPoint PointX="4.5" PointY="105.66534505208334" />
+					<ConnectorPoint PointX="5.416666666666667" PointY="105.66534505208334" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="105.66534505208334" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="105.66534505208334" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="105.66534505208334" />
+          <ConnectorPoint PointX="6.7330719791666667" PointY="105.66534505208334" />
+          <ConnectorPoint PointX="6.8997386458333327" PointY="105.66534505208334" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="105.66534505208334" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="105.66534505208334" />
+          <ConnectorPoint PointX="8.5" PointY="105.66534505208334" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Wealth_Economy" ManuallyRouted="false">
-					<ConnectorPoint PointX="4.5" PointY="67.951650390624991" />
-					<ConnectorPoint PointX="5.2291654166666666" PointY="67.951650390624991" />
-          <ConnectorPoint PointX="5.3958320833333326" PointY="67.951650390624991" />
-          <ConnectorPoint PointX="5.5" PointY="67.951650390624991" />
-          <ConnectorPoint PointX="5.5" PointY="73.375" />
-          <ConnectorPoint PointX="5.7916641666666671" PointY="73.375" />
-          <ConnectorPoint PointX="5.9583308333333331" PointY="73.375" />
-          <ConnectorPoint PointX="6.229166666666667" PointY="73.375" />
-          <ConnectorPoint PointX="6.395833333333333" PointY="73.375" />
-          <ConnectorPoint PointX="6.6979191666666669" PointY="73.375" />
-          <ConnectorPoint PointX="6.8645858333333329" PointY="73.375" />
-          <ConnectorPoint PointX="7.510416666666667" PointY="73.375" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="73.375" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="73.375" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="73.375" />
-          <ConnectorPoint PointX="8.3385441666666669" PointY="73.375" />
-          <ConnectorPoint PointX="8.5052108333333347" PointY="73.375" />
-          <ConnectorPoint PointX="9.1979191666666669" PointY="73.375" />
-          <ConnectorPoint PointX="9.3645858333333347" PointY="73.375" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="73.375" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="73.375" />
-          <ConnectorPoint PointX="10.541666666666666" PointY="73.375" />
-          <ConnectorPoint PointX="10.708333333333334" PointY="73.375" />
-          <ConnectorPoint PointX="10.875" PointY="73.375" />
-          <ConnectorPoint PointX="10.875" PointY="76.5" />
-          <ConnectorPoint PointX="11.843748" PointY="76.5" />
-          <ConnectorPoint PointX="11.843748" PointY="76.875" />
+					<ConnectorPoint PointX="3.95312575" PointY="108.97060221354167" />
+					<ConnectorPoint PointX="3.95312575" PointY="122.23020507812498" />
+          <ConnectorPoint PointX="11.25" PointY="122.23020507812498" />
+          <ConnectorPoint PointX="11.25" PointY="120.62474609374999" />
+          <ConnectorPoint PointX="11.625" PointY="120.62474609374999" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Good_Good" ManuallyRouted="false">
-					<ConnectorPoint PointX="9.2812525" PointY="72.54758789062501" />
-					<ConnectorPoint PointX="9.2812525" PointY="74.740143229166677" />
-					<ConnectorPoint PointX="10.041666666666666" PointY="74.740143229166677" />
-					<ConnectorPoint PointX="10.208333333333334" PointY="74.740143229166677" />
-					<ConnectorPoint PointX="10.541666666666666" PointY="74.740143229166677" />
-					<ConnectorPoint PointX="10.708333333333334" PointY="74.740143229166677" />
-					<ConnectorPoint PointX="10.791666666666666" PointY="74.740143229166677" />
-          <ConnectorPoint PointX="10.958333333333334" PointY="74.740143229166677" />
-          <ConnectorPoint PointX="11.125" PointY="74.740143229166677" />
+					<ConnectorPoint PointX="8.9062525" PointY="111.54758789062501" />
+					<ConnectorPoint PointX="8.9062525" PointY="113.74014322916668" />
+					<ConnectorPoint PointX="9.5729166666666661" PointY="113.74014322916668" />
+					<ConnectorPoint PointX="9.7395833333333339" PointY="113.74014322916668" />
+					<ConnectorPoint PointX="10.072916666666666" PointY="113.74014322916668" />
+					<ConnectorPoint PointX="10.239583333333334" PointY="113.74014322916668" />
+					<ConnectorPoint PointX="10.416666666666666" PointY="113.74014322916668" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="113.74014322916668" />
+          <ConnectorPoint PointX="11.010416666666666" PointY="113.74014322916668" />
+          <ConnectorPoint PointX="11.177083333333334" PointY="113.74014322916668" />
+          <ConnectorPoint PointX="11.5" PointY="113.74014322916668" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Location" ManuallyRouted="false">
-					<ConnectorPoint PointX="9.625" PointY="66.795146484375" />
-					<ConnectorPoint PointX="11.385414666666666" PointY="66.795146484375" />
-					<ConnectorPoint PointX="11.552081333333334" PointY="66.795146484375" />
-					<ConnectorPoint PointX="11.994793166666666" PointY="66.795146484375" />
-					<ConnectorPoint PointX="12.161459833333334" PointY="66.795146484375" />
-          <ConnectorPoint PointX="12.771174377403847" PointY="66.795146484375" />
-          <ConnectorPoint PointX="13.239583333333334" PointY="66.795146484375" />
-          <ConnectorPoint PointX="13.375" PointY="66.795146484375" />
-				</AssociationConnector>
-				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile" ManuallyRouted="false">
-					<ConnectorPoint PointX="7.375" PointY="66.238253707532053" />
-					<ConnectorPoint PointX="7.5348244349011217" PointY="66.398078142433178" />
-					<ConnectorPoint PointX="7.6526755650988791" PointY="66.515929272630927" />
-					<ConnectorPoint PointX="7.75" PointY="66.613253707532053" />
-					<ConnectorPoint PointX="7.75" PointY="68.710999348958325" />
-					<ConnectorPoint PointX="9.7916666666666661" PointY="68.710999348958325" />
-					<ConnectorPoint PointX="9.9583333333333339" PointY="68.710999348958325" />
-          <ConnectorPoint PointX="11.385414666666666" PointY="68.710999348958325" />
-          <ConnectorPoint PointX="11.552081333333334" PointY="68.710999348958325" />
-          <ConnectorPoint PointX="11.994793166666666" PointY="68.710999348958325" />
-          <ConnectorPoint PointX="12.161459833333334" PointY="68.710999348958325" />
-          <ConnectorPoint PointX="12.729166666666666" PointY="68.710999348958325" />
-          <ConnectorPoint PointX="12.958333333333334" PointY="68.710999348958325" />
-          <ConnectorPoint PointX="13" PointY="68.710999348958325" />
-          <ConnectorPoint PointX="13.00357443490112" PointY="68.7074249140572" />
-          <ConnectorPoint PointX="13.215175565098878" PointY="68.49582378385945" />
-          <ConnectorPoint PointX="13.375" PointY="68.335999348958325" />
+					<ConnectorPoint PointX="10" PointY="105.795146484375" />
+					<ConnectorPoint PointX="10.072916666666666" PointY="105.795146484375" />
+					<ConnectorPoint PointX="10.239583333333334" PointY="105.795146484375" />
+					<ConnectorPoint PointX="11.510414666666666" PointY="105.795146484375" />
+					<ConnectorPoint PointX="11.677081333333334" PointY="105.795146484375" />
+          <ConnectorPoint PointX="11.916666666666666" PointY="105.795146484375" />
+          <ConnectorPoint PointX="12.083333333333334" PointY="105.795146484375" />
+          <ConnectorPoint PointX="13.354166666666666" PointY="105.795146484375" />
+          <ConnectorPoint PointX="13.583333333333334" PointY="105.795146484375" />
+          <ConnectorPoint PointX="13.75" PointY="105.795146484375" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Wealth" ManuallyRouted="false">
-					<ConnectorPoint PointX="12.625" PointY="76.9373066923077" />
-					<ConnectorPoint PointX="12.87857443490112" PointY="76.683732257406575" />
-					<ConnectorPoint PointX="13.058925565098878" PointY="76.503381127208826" />
-					<ConnectorPoint PointX="13.0625" PointY="76.4998066923077" />
-					<ConnectorPoint PointX="13.0625" PointY="65.6788212421875" />
-          <ConnectorPoint PointX="13.072916666666666" PointY="65.6788212421875" />
-          <ConnectorPoint PointX="13.239583333333334" PointY="65.6788212421875" />
-          <ConnectorPoint PointX="13.375" PointY="65.6788212421875" />
-				</AssociationConnector>
-				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile" ManuallyRouted="false">
-					<ConnectorPoint PointX="7.375" PointY="65.025374353766026" />
-					<ConnectorPoint PointX="7.510416666666667" PointY="65.025374353766026" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="65.025374353766026" />
-          <ConnectorPoint PointX="8.125" PointY="65.025374353766026" />
+					<ConnectorPoint PointX="13.125" PointY="120.62474609374999" />
+					<ConnectorPoint PointX="13.78125" PointY="120.62474609374999" />
+					<ConnectorPoint PointX="13.78125" PointY="107.59560221354167" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round" ManuallyRouted="false">
-					<ConnectorPoint PointX="1.1676923076923076" PointY="66" />
-					<ConnectorPoint PointX="1.1676923076923076" PointY="65.75" />
-					<ConnectorPoint PointX="1.5" PointY="65.75" />
-					<ConnectorPoint PointX="1.5" PointY="66" />
+					<ConnectorPoint PointX="1.5" PointY="105" />
+					<ConnectorPoint PointX="1.5" PointY="104.75" />
+					<ConnectorPoint PointX="1.8323076923076922" PointY="104.75" />
+					<ConnectorPoint PointX="1.8323076923076922" PointY="105" />
 				</AssociationConnector>
-				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy" >
-					<ConnectorPoint PointX="4.5" PointY="66.77518391927083" />
-					<ConnectorPoint PointX="5.229166666666667" PointY="66.77518391927083" />
-          <ConnectorPoint PointX="5.395833333333333" PointY="66.77518391927083" />
-          <ConnectorPoint PointX="5.4375025" PointY="66.77518391927083" />
-          <ConnectorPoint PointX="5.4375025" PointY="66.239889322916667" />
-				</AssociationConnector>
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" Width="2.25" PointX="7.25" PointY="76.5" Height="3.1340950520833246" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" Width="2.125" PointX="5.25" PointY="80.375" Height="4.287903645833353" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" Width="2.25" PointX="10.375" PointY="70.75" Height="2.1725878906249818" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" Width="2.25" PointX="8" PointY="116.5" Height="3.1340950520833246" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" Width="2.125" PointX="4.5" PointY="117.5" Height="4.4802050781249818" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" Width="2.25" PointX="10.75" PointY="109.75" Height="2.1725878906249818" />
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Company" >
-					<ConnectorPoint PointX="11.468748" PointY="66.566793619791667" />
-					<ConnectorPoint PointX="11.468748" PointY="70.5" />
-					<ConnectorPoint PointX="10.125" PointY="70.5" />
-          <ConnectorPoint PointX="10.125" PointY="78.067047526041662" />
-          <ConnectorPoint PointX="9.5" PointY="78.067047526041662" />
+					<ConnectorPoint PointX="11.593748" PointY="105.56679361979167" />
+					<ConnectorPoint PointX="11.593748" PointY="109.5" />
+          <ConnectorPoint PointX="10.5" PointY="109.5" />
+          <ConnectorPoint PointX="10.5" PointY="118.06704752604166" />
+          <ConnectorPoint PointX="10.25" PointY="118.06704752604166" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Economy" >
-					<ConnectorPoint PointX="4.070315625" PointY="69.90330078125" />
-					<ConnectorPoint PointX="4.070315625" PointY="82.615102539062491" />
-					<ConnectorPoint PointX="5.25" PointY="82.615102539062491" />
+					<ConnectorPoint PointX="3.648436625" PointY="108.97060221354167" />
+					<ConnectorPoint PointX="3.648436625" PointY="119.74010253906249" />
+					<ConnectorPoint PointX="3.8697924166666664" PointY="119.74010253906249" />
+          <ConnectorPoint PointX="4.0364590833333329" PointY="119.74010253906249" />
+          <ConnectorPoint PointX="4.5" PointY="119.74010253906249" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Good_Type" >
-					<ConnectorPoint PointX="10.625" PointY="72.922587890624982" />
-					<ConnectorPoint PointX="10.625" PointY="76.65625" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="76.65625" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="76.65625" />
-          <ConnectorPoint PointX="9.5" PointY="76.65625" />
+					<ConnectorPoint PointX="11.09375" PointY="111.92258789062498" />
+					<ConnectorPoint PointX="11.09375" PointY="118.87474609374999" />
+          <ConnectorPoint PointX="10.25" PointY="118.87474609374999" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Location" >
-					<ConnectorPoint PointX="8.125" PointY="63.53125" />
-					<ConnectorPoint PointX="7.59375" PointY="63.53125" />
-          <ConnectorPoint PointX="7.59375" PointY="76.5" />
+					<ConnectorPoint PointX="9.65625" PointY="105.96099934895833" />
+					<ConnectorPoint PointX="9.65625" PointY="116.5" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Good_Type_Food_Industry" >
-					<ConnectorPoint PointX="5.8749975" PointY="80.375" />
-					<ConnectorPoint PointX="5.8749975" PointY="72.70383789062501" />
-					<ConnectorPoint PointX="7.510416666666667" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="8.7916666666666661" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="8.9583333333333339" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="9.1979191666666669" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="9.3645858333333347" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="9.7916666666666661" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="9.9583333333333339" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="72.70383789062501" />
-          <ConnectorPoint PointX="10.375" PointY="72.70383789062501" />
+					<ConnectorPoint PointX="4.71875" PointY="117.5" />
+					<ConnectorPoint PointX="4.71875" PointY="111.766337890625" />
+					<ConnectorPoint PointX="7.3619822916666662" PointY="111.766337890625" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="111.766337890625" />
+          <ConnectorPoint PointX="8.4166666666666661" PointY="111.766337890625" />
+          <ConnectorPoint PointX="8.5833333333333339" PointY="111.766337890625" />
+          <ConnectorPoint PointX="8.8229191666666669" PointY="111.766337890625" />
+          <ConnectorPoint PointX="8.9895858333333347" PointY="111.766337890625" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="111.766337890625" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="111.766337890625" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="111.766337890625" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="111.766337890625" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="111.766337890625" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="111.766337890625" />
+          <ConnectorPoint PointX="10.75" PointY="111.766337890625" />
 				</AssociationConnector>
 				<InheritanceConnector EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" ManuallyRouted="false">
-					<ConnectorPoint PointX="8.875" PointY="72.54758789062501" />
-					<ConnectorPoint PointX="8.875" PointY="72.92258789062501" />
-					<ConnectorPoint PointX="8.5052108333333347" PointY="72.92258789062501" />
-					<ConnectorPoint PointX="8.3385441666666669" PointY="72.92258789062501" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="72.92258789062501" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="72.92258789062501" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="72.92258789062501" />
-          <ConnectorPoint PointX="7.510416666666667" PointY="72.92258789062501" />
-          <ConnectorPoint PointX="6.3125" PointY="72.92258789062501" />
-          <ConnectorPoint PointX="6.3125" PointY="80.375" />
+					<ConnectorPoint PointX="8.5" PointY="111.54758789062501" />
+					<ConnectorPoint PointX="8.5" PointY="111.92258789062501" />
+					<ConnectorPoint PointX="7.5286489583333323" PointY="111.92258789062501" />
+					<ConnectorPoint PointX="7.3619822916666662" PointY="111.92258789062501" />
+          <ConnectorPoint PointX="5.5625" PointY="111.92258789062501" />
+          <ConnectorPoint PointX="5.5625" PointY="117.5" />
 				</InheritanceConnector>
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Household_Company_Round" Width="2.5" PointX="19.875" PointY="61.375" Height="2.5571907552083388" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Household_Company_Round" Width="2.5" PointX="20.5" PointY="103.125" Height="2.5571907552083246" />
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Company" ManuallyRouted="false" >
-					<ConnectorPoint PointX="11.875" PointY="63.625" />
-					<ConnectorPoint PointX="11.875" PointY="62.653595377604169" />
-					<ConnectorPoint PointX="12.166666166666667" PointY="62.653595377604169" />
-          <ConnectorPoint PointX="12.333332833333335" PointY="62.653595377604169" />
-          <ConnectorPoint PointX="13.125" PointY="62.653595377604169" />
-          <ConnectorPoint PointX="13.125" PointY="63.625" />
-          <ConnectorPoint PointX="13.166158854166676" PointY="63.625" />
-          <ConnectorPoint PointX="13.332825520833344" PointY="63.625" />
-          <ConnectorPoint PointX="14.947916666666666" PointY="63.625" />
-          <ConnectorPoint PointX="15.114583333333334" PointY="63.625" />
-          <ConnectorPoint PointX="16.041666666666668" PointY="63.625" />
-          <ConnectorPoint PointX="16.208333333333332" PointY="63.625" />
-          <ConnectorPoint PointX="18.791666666666668" PointY="63.625" />
-          <ConnectorPoint PointX="18.958333333333332" PointY="63.625" />
-          <ConnectorPoint PointX="19.5" PointY="63.625" />
-          <ConnectorPoint PointX="19.5" PointY="62.653595377604169" />
-          <ConnectorPoint PointX="19.875" PointY="62.653595377604169" />
+					<ConnectorPoint PointX="12.078127" PointY="102.625" />
+					<ConnectorPoint PointX="12.078127" PointY="102.375" />
+					<ConnectorPoint PointX="13.166666666666666" PointY="102.375" />
+          <ConnectorPoint PointX="13.333333333333334" PointY="102.375" />
+          <ConnectorPoint PointX="13.5" PointY="102.375" />
+          <ConnectorPoint PointX="13.5" PointY="103.25" />
+          <ConnectorPoint PointX="15.322916666666666" PointY="103.25" />
+          <ConnectorPoint PointX="15.489583333333334" PointY="103.25" />
+          <ConnectorPoint PointX="16.875" PointY="103.25" />
+          <ConnectorPoint PointX="16.875" PointY="105.63401367187501" />
+          <ConnectorPoint PointX="19.072916666666668" PointY="105.63401367187501" />
+          <ConnectorPoint PointX="19.239583333333332" PointY="105.63401367187501" />
+          <ConnectorPoint PointX="20.125" PointY="105.63401367187501" />
+          <ConnectorPoint PointX="20.125" PointY="104.40359537760416" />
+          <ConnectorPoint PointX="20.5" PointY="104.40359537760416" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Household" ManuallyRouted="false" >
-					<ConnectorPoint PointX="15.0625025" PointY="64.625" />
-					<ConnectorPoint PointX="15.0625025" PointY="63.71875" />
-          <ConnectorPoint PointX="16.041666666666668" PointY="63.71875" />
-          <ConnectorPoint PointX="16.208333333333332" PointY="63.71875" />
-          <ConnectorPoint PointX="18.791666666666668" PointY="63.71875" />
-          <ConnectorPoint PointX="18.958333333333332" PointY="63.71875" />
-          <ConnectorPoint PointX="19.875" PointY="63.71875" />
+					<ConnectorPoint PointX="15.5" PointY="105.47776367187501" />
+					<ConnectorPoint PointX="16.791666666666668" PointY="105.47776367187501" />
+          <ConnectorPoint PointX="16.958333333333332" PointY="105.47776367187501" />
+          <ConnectorPoint PointX="19.072916666666668" PointY="105.47776367187501" />
+          <ConnectorPoint PointX="19.239583333333332" PointY="105.47776367187501" />
+          <ConnectorPoint PointX="20.041666666666668" PointY="105.47776367187501" />
+          <ConnectorPoint PointX="20.208333333333332" PointY="105.47776367187501" />
+          <ConnectorPoint PointX="20.5" PointY="105.47776367187501" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Round" ManuallyRouted="false" >
-					<ConnectorPoint PointX="1.5" PointY="66" />
-					<ConnectorPoint PointX="1.5" PointY="62.903595377604169" />
-					<ConnectorPoint PointX="3.6666666666666665" PointY="62.903595377604169" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="62.903595377604169" />
-          <ConnectorPoint PointX="11.416667166666665" PointY="62.903595377604169" />
-          <ConnectorPoint PointX="11.583333833333333" PointY="62.903595377604169" />
-          <ConnectorPoint PointX="11.791666666666666" PointY="62.903595377604169" />
-          <ConnectorPoint PointX="11.958333333333334" PointY="62.903595377604169" />
-          <ConnectorPoint PointX="12.166666166666667" PointY="62.903595377604169" />
-          <ConnectorPoint PointX="12.333332833333335" PointY="62.903595377604169" />
-          <ConnectorPoint PointX="12.875" PointY="62.903595377604169" />
-          <ConnectorPoint PointX="12.875" PointY="63.5625" />
-          <ConnectorPoint PointX="12.916666666666666" PointY="63.5625" />
-          <ConnectorPoint PointX="13.395325520833344" PointY="63.5625" />
-          <ConnectorPoint PointX="14.947916666666666" PointY="63.5625" />
-          <ConnectorPoint PointX="15.114583333333334" PointY="63.5625" />
-          <ConnectorPoint PointX="16.041666666666668" PointY="63.5625" />
-          <ConnectorPoint PointX="16.208333333333332" PointY="63.5625" />
-          <ConnectorPoint PointX="18.791666666666668" PointY="63.5625" />
-          <ConnectorPoint PointX="18.958333333333332" PointY="63.5625" />
-          <ConnectorPoint PointX="19.25" PointY="63.5625" />
-          <ConnectorPoint PointX="19.25" PointY="61.983045688802079" />
-          <ConnectorPoint PointX="19.875" PointY="61.983045688802079" />
+					<ConnectorPoint PointX="2.25" PointY="105.89649783723958" />
+					<ConnectorPoint PointX="2.75" PointY="105.89649783723958" />
+					<ConnectorPoint PointX="2.75" PointY="104.625" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="104.625" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="104.625" />
+          <ConnectorPoint PointX="6" PointY="104.625" />
+          <ConnectorPoint PointX="6" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="11.510414666666666" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="11.677081333333334" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="13.026041666666666" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="13.192708333333334" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="19.072916666666668" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="19.239583333333332" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="21.75" PointY="107.86122721354167" />
+          <ConnectorPoint PointX="21.75" PointY="105.68219075520833" />
 				</AssociationConnector>
 				<InheritanceConnector EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" ManuallyRouted="false">
-					<ConnectorPoint PointX="11.875" PointY="75.730286458333353" />
-					<ConnectorPoint PointX="11.875" PointY="76.125" />
-					<ConnectorPoint PointX="10.958333333333334" PointY="76.125" />
-					<ConnectorPoint PointX="10.791666666666666" PointY="76.125" />
-					<ConnectorPoint PointX="10.708333333333334" PointY="76.125" />
-					<ConnectorPoint PointX="10.541666666666666" PointY="76.125" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="76.125" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="76.125" />
-          <ConnectorPoint PointX="8.734377" PointY="76.125" />
-          <ConnectorPoint PointX="8.734377" PointY="76.5" />
+					<ConnectorPoint PointX="12.25" PointY="114.73028645833335" />
+					<ConnectorPoint PointX="12.25" PointY="115.10528645833335" />
+					<ConnectorPoint PointX="11.177083333333334" PointY="115.10528645833335" />
+					<ConnectorPoint PointX="11.010416666666666" PointY="115.10528645833335" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="115.10528645833335" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="115.10528645833335" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="115.10528645833335" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="115.10528645833335" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="115.10528645833335" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="115.10528645833335" />
+          <ConnectorPoint PointX="9.125" PointY="115.10528645833335" />
+          <ConnectorPoint PointX="9.125" PointY="116.5" />
 				</InheritanceConnector>
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good_Round" Width="2.25" PointX="16.375" PointY="63.875" Height="5.63401367187501" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good_Round" Width="2.25" PointX="17.125" PointY="99.75" Height="5.63401367187501" />
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Company" ManuallyRouted="false" >
-					<ConnectorPoint PointX="12.625" PointY="64.21875" />
-					<ConnectorPoint PointX="12.854166666666666" PointY="64.21875" />
-					<ConnectorPoint PointX="13.020833333333334" PointY="64.21875" />
-          <ConnectorPoint PointX="13.072916666666666" PointY="64.21875" />
-          <ConnectorPoint PointX="13.239583333333334" PointY="64.21875" />
-          <ConnectorPoint PointX="14.088539666666666" PointY="64.21875" />
-          <ConnectorPoint PointX="14.255206333333334" PointY="64.21875" />
-          <ConnectorPoint PointX="14.947916666666666" PointY="64.21875" />
-          <ConnectorPoint PointX="15.145835833333335" PointY="64.21875" />
-          <ConnectorPoint PointX="15.260416666666666" PointY="64.21875" />
-          <ConnectorPoint PointX="15.427083333333334" PointY="64.21875" />
-          <ConnectorPoint PointX="16.041666666666668" PointY="64.21875" />
-          <ConnectorPoint PointX="16.208333333333332" PointY="64.21875" />
-          <ConnectorPoint PointX="16.375" PointY="64.21875" />
+					<ConnectorPoint PointX="12.75" PointY="102.875" />
+					<ConnectorPoint PointX="13.416666666666666" PointY="102.875" />
+					<ConnectorPoint PointX="13.583333333333334" PointY="102.875" />
+          <ConnectorPoint PointX="15.322916666666666" PointY="102.875" />
+          <ConnectorPoint PointX="15.489583333333334" PointY="102.875" />
+          <ConnectorPoint PointX="17.125" PointY="102.875" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Food_Good" ManuallyRouted="false" >
-					<ConnectorPoint PointX="7.90625" PointY="76.5" />
-					<ConnectorPoint PointX="7.90625" PointY="69.43455078125" />
-					<ConnectorPoint PointX="9.7916666666666661" PointY="69.43455078125" />
-          <ConnectorPoint PointX="9.9583333333333339" PointY="69.43455078125" />
-          <ConnectorPoint PointX="11.385414666666666" PointY="69.43455078125" />
-          <ConnectorPoint PointX="11.552081333333334" PointY="69.43455078125" />
-          <ConnectorPoint PointX="11.994793166666666" PointY="69.43455078125" />
-          <ConnectorPoint PointX="12.161459833333334" PointY="69.43455078125" />
-          <ConnectorPoint PointX="12.729166666666666" PointY="69.43455078125" />
-          <ConnectorPoint PointX="13.239583333333334" PointY="69.43455078125" />
-          <ConnectorPoint PointX="15.260416666666666" PointY="69.43455078125" />
-          <ConnectorPoint PointX="15.427083333333334" PointY="69.43455078125" />
-          <ConnectorPoint PointX="15.979166666666666" PointY="69.43455078125" />
-          <ConnectorPoint PointX="16.145833333333332" PointY="69.43455078125" />
-          <ConnectorPoint PointX="16.375" PointY="69.43455078125" />
+					<ConnectorPoint PointX="10.25" PointY="118.68711664062499" />
+					<ConnectorPoint PointX="11.010416666666666" PointY="118.68711664062499" />
+					<ConnectorPoint PointX="11.177083333333334" PointY="118.68711664062499" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="118.68711664062499" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="118.68711664062499" />
+          <ConnectorPoint PointX="14.791666666666666" PointY="118.68711664062499" />
+          <ConnectorPoint PointX="14.958333333333334" PointY="118.68711664062499" />
+          <ConnectorPoint PointX="15.947916666666666" PointY="118.68711664062499" />
+          <ConnectorPoint PointX="16.114583333333332" PointY="118.68711664062499" />
+          <ConnectorPoint PointX="19.15625" PointY="118.68711664062499" />
+          <ConnectorPoint PointX="19.15625" PointY="105.38401367187501" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Round" >
-					<ConnectorPoint PointX="1.9062519999999998" PointY="69.710999348958325" />
-					<ConnectorPoint PointX="1.9062519999999998" PointY="69.960999348958325" />
-					<ConnectorPoint PointX="2.0260451666666666" PointY="69.960999348958325" />
-					<ConnectorPoint PointX="2.1927118333333335" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="2.6666666666666665" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="2.8333333333333335" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="5.583333333333333" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="7.510416666666667" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="9.7916666666666661" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="9.9583333333333339" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="11.385414666666666" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="11.552081333333334" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="12.875" PointY="69.960999348958325" />
-          <ConnectorPoint PointX="12.875" PointY="68.585999348958325" />
-          <ConnectorPoint PointX="12.916666666666666" PointY="68.585999348958325" />
-          <ConnectorPoint PointX="13.239583333333334" PointY="68.585999348958325" />
-          <ConnectorPoint PointX="15.260416666666666" PointY="68.585999348958325" />
-          <ConnectorPoint PointX="15.427083333333334" PointY="68.585999348958325" />
-          <ConnectorPoint PointX="16" PointY="68.585999348958325" />
-          <ConnectorPoint PointX="16" PointY="66.826650390624991" />
-          <ConnectorPoint PointX="16.041666666666668" PointY="66.826650390624991" />
-          <ConnectorPoint PointX="16.208333333333332" PointY="66.826650390624991" />
-          <ConnectorPoint PointX="16.375" PointY="66.826650390624991" />
+					<ConnectorPoint PointX="1.5" PointY="105" />
+					<ConnectorPoint PointX="1.5" PointY="102" />
+					<ConnectorPoint PointX="10.072916666666666" PointY="102" />
+					<ConnectorPoint PointX="10.239583333333334" PointY="102" />
+          <ConnectorPoint PointX="11.260416666666666" PointY="102" />
+          <ConnectorPoint PointX="11.427083333333334" PointY="102" />
+          <ConnectorPoint PointX="13.25" PointY="102" />
+          <ConnectorPoint PointX="13.25" PointY="102.74949218750001" />
+          <ConnectorPoint PointX="13.416666666666666" PointY="102.74949218750001" />
+          <ConnectorPoint PointX="13.583333333333334" PointY="102.74949218750001" />
+          <ConnectorPoint PointX="15.322916666666666" PointY="102.74949218750001" />
+          <ConnectorPoint PointX="15.489583333333334" PointY="102.74949218750001" />
+          <ConnectorPoint PointX="16.75" PointY="102.74949218750001" />
+          <ConnectorPoint PointX="16.75" PointY="101.281248" />
+          <ConnectorPoint PointX="17.125" PointY="101.281248" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.Food_GoodFood_Industry">
-					<ConnectorPoint PointX="8.4375005" PointY="79.634095052083325" />
-					<ConnectorPoint PointX="8.4375005" PointY="82.615102539062491" />
-          <ConnectorPoint PointX="7.375" PointY="82.615102539062491" />
+					<ConnectorPoint PointX="8" PointY="118.56704752604166" />
+					<ConnectorPoint PointX="6.625" PointY="118.56704752604166" />
 				</AssociationConnector>
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth" Width="2" PointX="19.375" PointY="69.125" Height="2.7494921874999818" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth" Width="2" PointX="13.875" PointY="114" Height="2.7494921874999818" />
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Age" >
-					<ConnectorPoint PointX="12.249999500000001" PointY="62.249492187499996" />
-					<ConnectorPoint PointX="12.249999500000001" PointY="63.375" />
-          <ConnectorPoint PointX="12.791666666666663" PointY="63.375" />
-          <ConnectorPoint PointX="13.083333333333334" PointY="63.375" />
-          <ConnectorPoint PointX="13.15625" PointY="63.375" />
-          <ConnectorPoint PointX="13.15625" PointY="69.625" />
-          <ConnectorPoint PointX="15.260416666666666" PointY="69.625" />
-          <ConnectorPoint PointX="15.427083333333334" PointY="69.625" />
-          <ConnectorPoint PointX="16.125" PointY="69.625" />
-          <ConnectorPoint PointX="16.125" PointY="70.324189210163254" />
-          <ConnectorPoint PointX="17.416666666666668" PointY="70.324189210163254" />
-          <ConnectorPoint PointX="17.583333333333332" PointY="70.324189210163254" />
-          <ConnectorPoint PointX="19.375" PointY="70.324189210163254" />
-				</AssociationConnector>
-				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile" >
-					<ConnectorPoint PointX="5.31249875" PointY="66.239889322916667" />
-					<ConnectorPoint PointX="5.31249875" PointY="69.71875" />
-					<ConnectorPoint PointX="5.416666666666667" PointY="69.71875" />
-					<ConnectorPoint PointX="5.583333333333333" PointY="69.71875" />
-					<ConnectorPoint PointX="7.510416666666667" PointY="69.71875" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="69.71875" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="69.71875" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="69.71875" />
-          <ConnectorPoint PointX="9.7916666666666661" PointY="69.71875" />
-          <ConnectorPoint PointX="9.9583333333333339" PointY="69.71875" />
-          <ConnectorPoint PointX="11.385414666666666" PointY="69.71875" />
-          <ConnectorPoint PointX="11.552081333333334" PointY="69.71875" />
-          <ConnectorPoint PointX="12.729166666666666" PointY="69.71875" />
-          <ConnectorPoint PointX="13.145833333333334" PointY="69.71875" />
-          <ConnectorPoint PointX="15.260416666666666" PointY="69.71875" />
-          <ConnectorPoint PointX="15.427083333333334" PointY="69.71875" />
-          <ConnectorPoint PointX="16.041666666666668" PointY="69.71875" />
-          <ConnectorPoint PointX="16.208333333333332" PointY="69.71875" />
-          <ConnectorPoint PointX="17.416666666666668" PointY="69.71875" />
-          <ConnectorPoint PointX="17.583333333333332" PointY="69.71875" />
-          <ConnectorPoint PointX="19.375" PointY="69.71875" />
+					<ConnectorPoint PointX="13.125" PointY="116.24974609374999" />
+					<ConnectorPoint PointX="13.541666666666666" PointY="116.24974609374999" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="116.24974609374999" />
+          <ConnectorPoint PointX="13.875" PointY="116.24974609374999" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth" ManuallyRouted="false" >
-					<ConnectorPoint PointX="12.625" PointY="79.13258318196614" />
-					<ConnectorPoint PointX="19.635414166666667" PointY="79.13258318196614" />
-					<ConnectorPoint PointX="19.802080833333331" PointY="79.13258318196614" />
-          <ConnectorPoint PointX="20.041666666666668" PointY="79.13258318196614" />
-          <ConnectorPoint PointX="20.208333333333332" PointY="79.13258318196614" />
-          <ConnectorPoint PointX="21.15625" PointY="79.13258318196614" />
-          <ConnectorPoint PointX="21.15625" PointY="71.682190755208325" />
+					<ConnectorPoint PointX="13.125" PointY="119.906120546875" />
+					<ConnectorPoint PointX="13.697916666666666" PointY="119.906120546875" />
+					<ConnectorPoint PointX="13.864583333333334" PointY="119.906120546875" />
+          <ConnectorPoint PointX="14.875" PointY="119.906120546875" />
+          <ConnectorPoint PointX="14.875" PointY="116.74949218749998" />
 				</AssociationConnector>
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company" Width="2.125" PointX="13.375" PointY="69.875" Height="3.5186979166666674" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company" Width="2.125" PointX="16.875" PointY="110" Height="3.5186979166666674" />
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Company" >
-					<ConnectorPoint PointX="12.625" PointY="63.9374975" />
-					<ConnectorPoint PointX="12.854166666666666" PointY="63.9374975" />
-					<ConnectorPoint PointX="13.020833333333334" PointY="63.9374975" />
-          <ConnectorPoint PointX="13.072916666666666" PointY="63.9374975" />
-          <ConnectorPoint PointX="13.239583333333334" PointY="63.9374975" />
-          <ConnectorPoint PointX="14.088539666666666" PointY="63.9374975" />
-          <ConnectorPoint PointX="14.255206333333334" PointY="63.9374975" />
-          <ConnectorPoint PointX="14.947916666666666" PointY="63.9374975" />
-          <ConnectorPoint PointX="15.145835833333335" PointY="63.9374975" />
-          <ConnectorPoint PointX="15.34375" PointY="63.9374975" />
-          <ConnectorPoint PointX="15.34375" PointY="69.875" />
+					<ConnectorPoint PointX="12.75" PointY="104.86259721484376" />
+					<ConnectorPoint PointX="13.4375" PointY="104.86259721484376" />
+					<ConnectorPoint PointX="13.4375" PointY="107.87685221354167" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="107.87685221354167" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="107.87685221354167" />
+          <ConnectorPoint PointX="17.9375" PointY="107.87685221354167" />
+          <ConnectorPoint PointX="17.9375" PointY="110" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Food_Industry" >
-					<ConnectorPoint PointX="6.7812525" PointY="80.375" />
-					<ConnectorPoint PointX="6.7812525" PointY="73.180043945312491" />
-					<ConnectorPoint PointX="7.510416666666667" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="8.3385441666666669" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="8.5052108333333347" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="9.1979191666666669" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="9.3645858333333347" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="10.541666666666666" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="10.708333333333334" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="12.854166666666666" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="13.145833333333334" PointY="73.180043945312491" />
-          <ConnectorPoint PointX="13.375" PointY="73.180043945312491" />
+					<ConnectorPoint PointX="4.8593775" PointY="117.5" />
+					<ConnectorPoint PointX="4.8593775" PointY="112.64290001302084" />
+					<ConnectorPoint PointX="5.479166666666667" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="5.645833333333333" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="8.8229191666666669" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="8.9895858333333347" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="11.010416666666666" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="11.177083333333334" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="12.994791666666666" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="13.192708333333334" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="15.947916666666666" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="16.114583333333332" PointY="112.64290001302084" />
+          <ConnectorPoint PointX="16.875" PointY="112.64290001302084" />
 				</AssociationConnector>
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round" Width="2.375" PointX="16.25" PointY="70.875" Height="3.710999348958353" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round" Width="2.375" PointX="21.125" PointY="108.125" Height="3.710999348958353" />
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round_Company_Round" >
-					<ConnectorPoint PointX="15.5" PointY="76.730499674479162" />
-					<ConnectorPoint PointX="17.4375" PointY="76.730499674479162" />
-					<ConnectorPoint PointX="17.4375" PointY="74.585999348958353" />
+					<ConnectorPoint PointX="19" PointY="116.23049967447916" />
+					<ConnectorPoint PointX="19.072916666666668" PointY="116.23049967447916" />
+					<ConnectorPoint PointX="19.239583333333332" PointY="116.23049967447916" />
+          <ConnectorPoint PointX="22.3125" PointY="116.23049967447916" />
+          <ConnectorPoint PointX="22.3125" PointY="111.83599934895835" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round_Food_Industry_Company" >
-					<ConnectorPoint PointX="15.5" PointY="72.134348958333334" />
-					<ConnectorPoint PointX="16.25" PointY="72.134348958333334" />
+					<ConnectorPoint PointX="19" PointY="110.91799967447918" />
+					<ConnectorPoint PointX="19.072916666666668" PointY="110.91799967447918" />
+          <ConnectorPoint PointX="19.333333333333332" PointY="110.91799967447918" />
+          <ConnectorPoint PointX="21.125" PointY="110.91799967447918" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round_Round" >
-					<ConnectorPoint PointX="1.0937475" PointY="69.710999348958325" />
-					<ConnectorPoint PointX="1.0937475" PointY="73.59375" />
-					<ConnectorPoint PointX="1.4166666666666667" PointY="73.59375" />
-					<ConnectorPoint PointX="1.5833333333333333" PointY="73.59375" />
-          <ConnectorPoint PointX="3.1744777916666664" PointY="73.59375" />
-          <ConnectorPoint PointX="3.3411444583333334" PointY="73.59375" />
-          <ConnectorPoint PointX="3.9869822916666666" PointY="73.59375" />
-          <ConnectorPoint PointX="4.1536489583333331" PointY="73.59375" />
-          <ConnectorPoint PointX="5.7916641666666671" PointY="73.59375" />
-          <ConnectorPoint PointX="5.9583308333333331" PointY="73.59375" />
-          <ConnectorPoint PointX="6.229166666666667" PointY="73.59375" />
-          <ConnectorPoint PointX="6.395833333333333" PointY="73.59375" />
-          <ConnectorPoint PointX="6.6979191666666669" PointY="73.59375" />
-          <ConnectorPoint PointX="6.8645858333333329" PointY="73.59375" />
-          <ConnectorPoint PointX="7.510416666666667" PointY="73.59375" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="73.59375" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="73.59375" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="73.59375" />
-          <ConnectorPoint PointX="8.3385441666666669" PointY="73.59375" />
-          <ConnectorPoint PointX="8.5052108333333347" PointY="73.59375" />
-          <ConnectorPoint PointX="9.1979191666666669" PointY="73.59375" />
-          <ConnectorPoint PointX="9.3645858333333347" PointY="73.59375" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="73.59375" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="73.59375" />
-          <ConnectorPoint PointX="10.541666666666666" PointY="73.59375" />
-          <ConnectorPoint PointX="10.708333333333334" PointY="73.59375" />
-          <ConnectorPoint PointX="10.791666666666666" PointY="73.59375" />
-          <ConnectorPoint PointX="10.958333333333334" PointY="73.59375" />
-          <ConnectorPoint PointX="12.854166666666666" PointY="73.59375" />
-          <ConnectorPoint PointX="13.145833333333334" PointY="73.59375" />
-          <ConnectorPoint PointX="16.25" PointY="73.59375" />
+					<ConnectorPoint PointX="1.9062525" PointY="108.71099934895833" />
+					<ConnectorPoint PointX="1.9062525" PointY="109.11030110677083" />
+					<ConnectorPoint PointX="3.2096324791666668" PointY="109.11030110677083" />
+					<ConnectorPoint PointX="3.3762991458333338" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="3.5651032916666665" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="3.7317699583333335" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="3.8697924166666664" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="4.0364590833333329" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="8.0416666666666661" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="8.2083333333333339" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="11.510414666666666" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="11.677081333333334" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="13.010416666666666" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="13.192708333333334" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="15.760416666666666" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="15.927083333333334" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="17.854166666666668" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="18.020833333333332" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="19.072916666666668" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="19.333333333333332" PointY="109.11030110677083" />
+          <ConnectorPoint PointX="21.125" PointY="109.11030110677083" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round" ManuallyRouted="false" >
-					<ConnectorPoint PointX="2.1093785" PointY="69.710999348958325" />
-					<ConnectorPoint PointX="2.1093785" PointY="70.136749674479162" />
-					<ConnectorPoint PointX="3.1744777916666664" PointY="70.136749674479162" />
-					<ConnectorPoint PointX="3.3411444583333334" PointY="70.136749674479162" />
-					<ConnectorPoint PointX="3.4947929166666665" PointY="70.136749674479162" />
-					<ConnectorPoint PointX="3.6614595833333334" PointY="70.136749674479162" />
-					<ConnectorPoint PointX="3.9869822916666666" PointY="70.136749674479162" />
-					<ConnectorPoint PointX="4.1536489583333331" PointY="70.136749674479162" />
-					<ConnectorPoint PointX="5.416666666666667" PointY="70.136749674479162" />
-					<ConnectorPoint PointX="5.583333333333333" PointY="70.136749674479162" />
-					<ConnectorPoint PointX="7.510416666666667" PointY="70.136749674479162" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="70.136749674479162" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="70.136749674479162" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="70.136749674479162" />
-          <ConnectorPoint PointX="9.7916666666666661" PointY="70.136749674479162" />
-          <ConnectorPoint PointX="9.9583333333333339" PointY="70.136749674479162" />
-          <ConnectorPoint PointX="11.385414666666666" PointY="70.136749674479162" />
-          <ConnectorPoint PointX="11.552081333333334" PointY="70.136749674479162" />
-          <ConnectorPoint PointX="12.854166666666666" PointY="70.136749674479162" />
-          <ConnectorPoint PointX="13.145833333333334" PointY="70.136749674479162" />
-          <ConnectorPoint PointX="13.375" PointY="70.136749674479162" />
+					<ConnectorPoint PointX="1.0937474999999999" PointY="108.71099934895833" />
+					<ConnectorPoint PointX="1.0937474999999999" PointY="112.53579502604168" />
+					<ConnectorPoint PointX="1.4166666666666667" PointY="112.53579502604168" />
+					<ConnectorPoint PointX="1.5833333333333333" PointY="112.53579502604168" />
+					<ConnectorPoint PointX="3.2096324791666668" PointY="112.53579502604168" />
+					<ConnectorPoint PointX="3.3762991458333338" PointY="112.53579502604168" />
+					<ConnectorPoint PointX="3.5651032916666665" PointY="112.53579502604168" />
+					<ConnectorPoint PointX="3.7317699583333335" PointY="112.53579502604168" />
+					<ConnectorPoint PointX="3.8697924166666664" PointY="112.53579502604168" />
+					<ConnectorPoint PointX="4.0364590833333329" PointY="112.53579502604168" />
+					<ConnectorPoint PointX="4.4947891666666671" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="4.8020833333333321" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="5.479166666666667" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="5.645833333333333" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="8.8229191666666669" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="8.9895858333333347" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="11.010416666666666" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="11.177083333333334" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="12.994791666666666" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="13.192708333333334" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="15.947916666666666" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="16.114583333333332" PointY="112.53579502604168" />
+          <ConnectorPoint PointX="16.875" PointY="112.53579502604168" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Food_Industry_Company_Round" >
-					<ConnectorPoint PointX="17.5" PointY="70.875" />
-					<ConnectorPoint PointX="17.5" PointY="69.50901367187501" />
+					<ConnectorPoint PointX="23.28125" PointY="108.125" />
+					<ConnectorPoint PointX="23.28125" PointY="102.22569824218751" />
+          <ConnectorPoint PointX="19.375" PointY="102.22569824218751" />
 				</AssociationConnector>
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_Role" Width="1.5" PointX="11.125" PointY="56.25" Height="1.595683593749996" />
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_User" Width="1.5" PointX="13.375" PointY="60.75" Height="2.7494921875000102" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_Role" Width="1.5" PointX="11.5" PointY="99.25" Height="1.5956835937499818" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_User" Width="1.5" PointX="13.75" PointY="99.75" Height="2.7494921875000102" />
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.Company_User" >
-					<ConnectorPoint PointX="12.625000000000002" PointY="63.625" />
-					<ConnectorPoint PointX="12.81607443490112" PointY="63.433925565098882" />
-					<ConnectorPoint PointX="12.933925565098878" PointY="63.316074434901118" />
-          <ConnectorPoint PointX="13" PointY="63.25" />
-          <ConnectorPoint PointX="13" PointY="63.87449218750001" />
-          <ConnectorPoint PointX="13.375" PointY="63.49949218750001" />
+					<ConnectorPoint PointX="11.34375" PointY="102.625" />
+					<ConnectorPoint PointX="11.34375" PointY="101.45409179687499" />
+					<ConnectorPoint PointX="13.75" PointY="101.45409179687499" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.IM_User_Role" >
-					<ConnectorPoint PointX="12.625" PointY="57.047841796875" />
-					<ConnectorPoint PointX="14.125" PointY="57.047841796875" />
-          <ConnectorPoint PointX="14.125" PointY="60.75" />
+					<ConnectorPoint PointX="13" PointY="100.29784179687499" />
+					<ConnectorPoint PointX="13.75" PointY="100.29784179687499" />
 				</AssociationConnector>
-				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round" Width="3" PointX="19.375" PointY="65" Height="3.3263964843750102" />
+				<EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round" Width="3" PointX="19.375" PointY="98" Height="3.3263964843750102" />
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Household" >
-					<ConnectorPoint PointX="14.171873" PointY="64.625" />
-					<ConnectorPoint PointX="14.171873" PointY="63.8125" />
-					<ConnectorPoint PointX="14.947916666666666" PointY="63.8125" />
-					<ConnectorPoint PointX="15.145835833333335" PointY="63.8125" />
-          <ConnectorPoint PointX="16.041666666666668" PointY="63.8125" />
-          <ConnectorPoint PointX="16.208333333333332" PointY="63.8125" />
-          <ConnectorPoint PointX="18.791666666666668" PointY="63.8125" />
-          <ConnectorPoint PointX="18.958333333333332" PointY="63.8125" />
-          <ConnectorPoint PointX="19" PointY="63.8125" />
-          <ConnectorPoint PointX="19" PointY="66.6631982421875" />
-          <ConnectorPoint PointX="19.375" PointY="66.6631982421875" />
+					<ConnectorPoint PointX="15.40625" PointY="103.5" />
+					<ConnectorPoint PointX="15.40625" PointY="98.84375" />
+					<ConnectorPoint PointX="19.375" PointY="98.84375" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Food_Good" >
-					<ConnectorPoint PointX="8.4218775" PointY="76.5" />
-					<ConnectorPoint PointX="8.4218775" PointY="72.79758789062501" />
-					<ConnectorPoint PointX="8.7916666666666661" PointY="72.79758789062501" />
-          <ConnectorPoint PointX="8.9583333333333339" PointY="72.79758789062501" />
-          <ConnectorPoint PointX="9.1979191666666669" PointY="72.79758789062501" />
-          <ConnectorPoint PointX="9.3645858333333347" PointY="72.79758789062501" />
-          <ConnectorPoint PointX="9.875" PointY="72.79758789062501" />
-          <ConnectorPoint PointX="9.875" PointY="68.601624348958325" />
-          <ConnectorPoint PointX="11.385414666666666" PointY="68.601624348958325" />
-          <ConnectorPoint PointX="11.552081333333334" PointY="68.601624348958325" />
-          <ConnectorPoint PointX="11.994793166666666" PointY="68.601624348958325" />
-          <ConnectorPoint PointX="12.161459833333334" PointY="68.601624348958325" />
-          <ConnectorPoint PointX="12.854166666666666" PointY="68.601624348958325" />
-          <ConnectorPoint PointX="13.239583333333334" PointY="68.601624348958325" />
-          <ConnectorPoint PointX="15.260416666666666" PointY="68.601624348958325" />
-          <ConnectorPoint PointX="15.427083333333334" PointY="68.601624348958325" />
-          <ConnectorPoint PointX="16.125" PointY="68.601624348958325" />
-          <ConnectorPoint PointX="16.125" PointY="63.375" />
-          <ConnectorPoint PointX="18.875" PointY="63.375" />
-          <ConnectorPoint PointX="18.875" PointY="67.52604936328126" />
-          <ConnectorPoint PointX="19.375" PointY="67.52604936328126" />
+					<ConnectorPoint PointX="10.15625" PointY="116.5" />
+					<ConnectorPoint PointX="10.15625" PointY="98.277340625000008" />
+					<ConnectorPoint PointX="19.375" PointY="98.277340625000008" />
 				</AssociationConnector>
 				<AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Round" >
-					<ConnectorPoint PointX="2.25" PointY="67.15187229654947" />
-					<ConnectorPoint PointX="2.75" PointY="67.15187229654947" />
-          <ConnectorPoint PointX="2.75" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="3.1744777916666664" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="3.3411444583333334" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="3.4947929166666665" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="3.6614595833333334" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="3.9869822916666666" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="4.1536489583333331" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="5.583333333333333" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="7.510416666666667" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="9.7916666666666661" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="9.9583333333333339" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="11.385414666666666" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="11.552081333333334" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="12.8125" PointY="70.153300781249982" />
-          <ConnectorPoint PointX="12.8125" PointY="68.617249348958325" />
-          <ConnectorPoint PointX="12.854166666666666" PointY="68.617249348958325" />
-          <ConnectorPoint PointX="13.239583333333334" PointY="68.617249348958325" />
-          <ConnectorPoint PointX="15.260416666666666" PointY="68.617249348958325" />
-          <ConnectorPoint PointX="15.427083333333334" PointY="68.617249348958325" />
-          <ConnectorPoint PointX="16.0625" PointY="68.617249348958325" />
-          <ConnectorPoint PointX="16.0625" PointY="69.75901367187501" />
-          <ConnectorPoint PointX="17.416666666666668" PointY="69.75901367187501" />
-          <ConnectorPoint PointX="17.583333333333332" PointY="69.75901367187501" />
-          <ConnectorPoint PointX="19.125" PointY="69.75901367187501" />
-          <ConnectorPoint PointX="19.125" PointY="68.57639648437501" />
-          <ConnectorPoint PointX="20.875" PointY="68.57639648437501" />
-          <ConnectorPoint PointX="20.875" PointY="68.32639648437501" />
+					<ConnectorPoint PointX="1.0937474999999999" PointY="105" />
+					<ConnectorPoint PointX="1.0937474999999999" PointY="98.61718625" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="98.61718625" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="98.61718625" />
+          <ConnectorPoint PointX="19.375" PointY="98.61718625" />
 				</AssociationConnector>
-        <EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPoints" Width="1.75" PointX="5.625" PointY="67.125" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPoints" Width="1.75" PointX="5" PointY="109.375" Height="2.1725878906249818" />
         <AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation">
-          <ConnectorPoint PointX="7.375" PointY="67.917999674479162" />
-          <ConnectorPoint PointX="7.510416666666667" PointY="67.917999674479162" />
-          <ConnectorPoint PointX="7.833333333333333" PointY="67.917999674479162" />
-          <ConnectorPoint PointX="8.875" PointY="67.917999674479162" />
-          <ConnectorPoint PointX="8.875" PointY="66.960999348958325" />
+          <ConnectorPoint PointX="5.5" PointY="109.375" />
+          <ConnectorPoint PointX="5.5" PointY="102.46875" />
+          <ConnectorPoint PointX="8.5" PointY="102.46875" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth" Width="1.5" PointX="19.375" PointY="75.375" Height="2.7494921875000102" />
+        <EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth" Width="2.25" PointX="13.875" PointY="109.25" Height="3.134095052083353" />
         <AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age" >
-          <ConnectorPoint PointX="11.500000499999999" PointY="62.249492187499996" />
-          <ConnectorPoint PointX="11.500000499999999" PointY="63.359375" />
-          <ConnectorPoint PointX="11.791666666666666" PointY="63.359375" />
-          <ConnectorPoint PointX="11.958333333333334" PointY="63.359375" />
-          <ConnectorPoint PointX="12.9375" PointY="63.359375" />
-          <ConnectorPoint PointX="12.9375" PointY="78.835999348958325" />
-          <ConnectorPoint PointX="13.291666666666666" PointY="78.835999348958325" />
-          <ConnectorPoint PointX="13.458333333333334" PointY="78.835999348958325" />
-          <ConnectorPoint PointX="18.791666666666668" PointY="78.835999348958325" />
-          <ConnectorPoint PointX="18.958333333333332" PointY="78.835999348958325" />
-          <ConnectorPoint PointX="19" PointY="78.835999348958325" />
-          <ConnectorPoint PointX="19" PointY="77.270107549479178" />
-          <ConnectorPoint PointX="19.375" PointY="77.270107549479178" />
+          <ConnectorPoint PointX="13.078125" PointY="115.75" />
+          <ConnectorPoint PointX="13.078125" PointY="109.46875" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="109.46875" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="109.46875" />
+          <ConnectorPoint PointX="13.875" PointY="109.46875" />
         </AssociationConnector>
         <AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy" >
-          <ConnectorPoint PointX="3.257811125" PointY="69.90330078125" />
-          <ConnectorPoint PointX="3.257811125" PointY="76.25" />
-          <ConnectorPoint PointX="3.9869822916666666" PointY="76.25" />
-          <ConnectorPoint PointX="4.1536489583333331" PointY="76.25" />
-          <ConnectorPoint PointX="5.7916641666666671" PointY="76.25" />
-          <ConnectorPoint PointX="5.9583308333333331" PointY="76.25" />
-          <ConnectorPoint PointX="6.229166666666667" PointY="76.25" />
-          <ConnectorPoint PointX="6.395833333333333" PointY="76.25" />
-          <ConnectorPoint PointX="6.6979191666666669" PointY="76.25" />
-          <ConnectorPoint PointX="6.8645858333333329" PointY="76.25" />
-          <ConnectorPoint PointX="7.510416666666667" PointY="76.25" />
-          <ConnectorPoint PointX="7.677083333333333" PointY="76.25" />
-          <ConnectorPoint PointX="7.822916666666667" PointY="76.25" />
-          <ConnectorPoint PointX="7.989583333333333" PointY="76.25" />
-          <ConnectorPoint PointX="8.3385441666666669" PointY="76.25" />
-          <ConnectorPoint PointX="8.5052108333333347" PointY="76.25" />
-          <ConnectorPoint PointX="8.6510436666666664" PointY="76.25" />
-          <ConnectorPoint PointX="8.8177103333333342" PointY="76.25" />
-          <ConnectorPoint PointX="10.041666666666666" PointY="76.25" />
-          <ConnectorPoint PointX="10.208333333333334" PointY="76.25" />
-          <ConnectorPoint PointX="10.541666666666666" PointY="76.25" />
-          <ConnectorPoint PointX="10.708333333333334" PointY="76.25" />
-          <ConnectorPoint PointX="10.791666666666666" PointY="76.25" />
-          <ConnectorPoint PointX="10.958333333333334" PointY="76.25" />
-          <ConnectorPoint PointX="12.854166666666666" PointY="76.25" />
-          <ConnectorPoint PointX="13.145833333333334" PointY="76.25" />
-          <ConnectorPoint PointX="13.375" PointY="76.25" />
-          <ConnectorPoint PointX="13.375" PointY="78.960999348958325" />
-          <ConnectorPoint PointX="18.875" PointY="78.960999348958325" />
-          <ConnectorPoint PointX="18.875" PointY="76.2913017747396" />
-          <ConnectorPoint PointX="19.375" PointY="76.2913017747396" />
+          <ConnectorPoint PointX="4.5" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="8.0416666666666661" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="8.2083333333333339" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="11.510414666666666" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="11.677081333333334" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="13.010416666666666" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="13.192708333333334" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="15.84375" PointY="108.72271167643228" />
+          <ConnectorPoint PointX="15.84375" PointY="109.25" />
         </AssociationConnector>
         <AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth" >
-          <ConnectorPoint PointX="12.625" PointY="79.409790184733055" />
-          <ConnectorPoint PointX="19.635414166666667" PointY="79.409790184733055" />
-          <ConnectorPoint PointX="19.802080833333331" PointY="79.409790184733055" />
-          <ConnectorPoint PointX="20.125" PointY="79.409790184733055" />
-          <ConnectorPoint PointX="20.125" PointY="78.509095052083339" />
+          <ConnectorPoint PointX="13.125" PointY="121.34337164062498" />
+          <ConnectorPoint PointX="16.03125" PointY="121.34337164062498" />
+          <ConnectorPoint PointX="16.03125" PointY="112.38409505208335" />
         </AssociationConnector>
         <AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry" >
-          <ConnectorPoint PointX="7.375" PointY="81.463798769531252" />
-          <ConnectorPoint PointX="8.3541671666666666" PointY="81.463798769531252" />
-          <ConnectorPoint PointX="8.5208338333333344" PointY="81.463798769531252" />
-          <ConnectorPoint PointX="19.7187475" PointY="81.463798769531252" />
-          <ConnectorPoint PointX="19.7187475" PointY="78.509095052083339" />
+          <ConnectorPoint PointX="4.5781225" PointY="117.5" />
+          <ConnectorPoint PointX="4.5781225" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="4.635416666666667" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="4.802083333333333" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="5.479166666666667" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="5.645833333333333" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="8.8229191666666669" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="8.9895858333333347" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="11.010416666666666" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="11.177083333333334" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="12.994791666666666" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="13.192708333333334" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="112.18459147135417" />
+          <ConnectorPoint PointX="13.875" PointY="112.18459147135417" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile" Width="1.5" PointX="6.25" PointY="102.75" Height="2.557190755208353" />
+        <AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy" >
+          <ConnectorPoint PointX="4.5" PointY="105.09109537760418" />
+          <ConnectorPoint PointX="5.416666666666667" PointY="105.09109537760418" />
+          <ConnectorPoint PointX="5.583333333333333" PointY="105.09109537760418" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="105.09109537760418" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="105.09109537760418" />
+          <ConnectorPoint PointX="6.25" PointY="105.09109537760418" />
+        </AssociationConnector>
+        <AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile" >
+          <ConnectorPoint PointX="7.75" PointY="104.02859537760418" />
+          <ConnectorPoint PointX="8.5" PointY="104.02859537760418" />
+        </AssociationConnector>
+        <AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile" >
+          <ConnectorPoint PointX="7.4453156249999992" PointY="105.30719075520835" />
+          <ConnectorPoint PointX="7.4453156249999992" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="11.010416666666666" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="11.177083333333334" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="12.166666666666666" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="12.333333333333334" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="12.994791666666666" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="13.192708333333334" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="114.95889322916668" />
+          <ConnectorPoint PointX="13.875" PointY="114.95889322916668" />
+        </AssociationConnector>
+        <AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile" >
+          <ConnectorPoint PointX="6.8164053125" PointY="105.30719075520835" />
+          <ConnectorPoint PointX="6.8164053125" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="7.3619822916666662" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="7.5286489583333323" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="11.510414666666666" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="11.677081333333334" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="11.916666666666666" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="12.083333333333334" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="13.354166666666666" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="13.583333333333334" PointY="106.24224934895833" />
+          <ConnectorPoint PointX="13.75" PointY="106.24224934895833" />
+        </AssociationConnector>
+        <AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy" >
+          <ConnectorPoint PointX="3.2929658125000003" PointY="108.97060221354167" />
+          <ConnectorPoint PointX="3.2929658125000003" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="3.5651032916666665" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="3.7317699583333335" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="3.8697924166666664" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="4.0364590833333329" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="4.4947891666666671" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="4.9427108333333329" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="5.479166666666667" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="5.645833333333333" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="9.0416666666666661" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="9.2083333333333339" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="9.5729166666666661" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="9.7395833333333339" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="10.072916666666666" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="10.239583333333334" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="10.416666666666666" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="10.583333333333334" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="11.010416666666666" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="11.177083333333334" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="12.994791666666666" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="13.192708333333334" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="13.697916666666666" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="13.864583333333334" PointY="115.30264322916668" />
+          <ConnectorPoint PointX="13.875" PointY="115.30264322916668" />
         </AssociationConnector>
 			</Diagram>
 		</Diagrams>

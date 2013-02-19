@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML">
+      <HintPath>..\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -43,15 +47,21 @@
       <HintPath>..\..\..\..\..\Downloads\morelinq-1.0-beta\MoreLinq.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -122,6 +132,7 @@
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -133,21 +144,31 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TileController.cs" />
     <Compile Include="Helpers\ContextHelper.cs" />
-    <Compile Include="Helpers\DisplayHelper.cs" />
+    <Compile Include="Helpers\EntityDataReaderExtensions.cs" />
+    <Compile Include="Helpers\ExcelHelper.cs" />
     <Compile Include="Helpers\Html.cs" />
-    <Compile Include="Helpers\Serialization.cs" />
+    <Compile Include="Helpers\OpenXMLDataTableHelper.cs" />
     <Compile Include="Helpers\TableHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\TabQueue.cs" />
     <Compile Include="Helpers\TileSystem.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\MapModel.cs" />
+    <Compile Include="Models\ModelHelpers\Team.cs" />
     <Compile Include="Models\StudentModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\PinoLandMembershipProvider.cs" />
     <Compile Include="Providers\PinoLandRoleProvider.cs" />
+    <Compile Include="Service References\RoundProcessor\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Views\Account\AccountController.cs" />
     <Compile Include="Models\EconomyModel.cs" />
+    <Compile Include="Workflow\WorkflowActivities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\layers.png" />
@@ -156,6 +177,9 @@
     <Content Include="Content\Images\popup-close.png" />
     <Content Include="Content\Images\zoom-in.png" />
     <Content Include="Content\Images\zoom-out.png" />
+    <Content Include="Content\MarkerCluster.css" />
+    <Content Include="Content\MarkerCluster.Default.css" />
+    <Content Include="Content\MarkerCluster.Default.ie.css" />
     <Content Include="Content\PinoLand1000x1000.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -260,15 +284,26 @@
     <Content Include="Scripts\leaflet-src.js" />
     <Content Include="Content\leaflet.css" />
     <Content Include="Scripts\leaflet.js" />
+    <Content Include="Scripts\leaflet.markercluster.js" />
+    <Content Include="Scripts\images\marker-icon.png" />
+    <Content Include="Scripts\images\marker-shadow.png" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\Site\Economy.js" />
     <Content Include="Scripts\Site\Industry.js" />
     <Content Include="Scripts\_references.js" />
+    <None Include="Service References\RoundProcessor\ProcessRoundWorkflow.disco" />
+    <None Include="Service References\RoundProcessor\configuration91.svcinfo" />
+    <None Include="Service References\RoundProcessor\configuration.svcinfo" />
+    <None Include="Service References\RoundProcessor\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Views\Account\LogOn.aspx" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Manager\Create.aspx" />
     <Content Include="Views\Manager\Details.aspx" />
+    <Content Include="Views\Manager\Edit\Locations.aspx" />
     <Content Include="Views\Manager\Parts\AgeWealthList.ascx" />
     <Content Include="Views\Manager\Parts\CompanyList.ascx" />
     <Content Include="Views\Manager\Parts\IndustryOverview.ascx" />
@@ -276,7 +311,6 @@
     <Content Include="Views\Manager\Parts\IndustryList.ascx" />
     <Content Include="Views\Manager\Parts\EconomyOverview.ascx" />
     <Content Include="Views\Manager\Parts\LocationList.ascx" />
-    <Content Include="Views\Manager\Parts\Partial1.ascx" />
     <Content Include="Views\Manager\Parts\ProfileList.ascx" />
     <Content Include="Views\Manager\Parts\ProfileOverview.ascx" />
     <Content Include="Views\Manager\Parts\TeamOverview.ascx" />
@@ -289,7 +323,9 @@
     <Content Include="Views\Student\Parts\SmallMap.ascx" />
     <Content Include="Views\Student\ReportViewer.aspx" />
     <Content Include="Views\Tile\Index.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -298,6 +334,13 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.aspx" />
+    <Content Include="Workflow\PinoLandGame.xamlx">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Service References\RoundProcessor\ProcessRoundWorkflow.wsdl" />
+    <None Include="Service References\RoundProcessor\ProcessRoundWorkflow.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,7 +359,18 @@
     <Content Include="Views\Shared\Site.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Team File.xlsx" />
+    <Content Include="Workflow\ProcessRoundWorkflow.xamlx">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Content>
     <None Include="Scripts\jquery-1.9.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\RoundProcessor\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

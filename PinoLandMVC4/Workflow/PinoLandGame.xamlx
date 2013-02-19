@@ -1,0 +1,82 @@
+﻿<WorkflowService mc:Ignorable="sads sap" ConfigurationName="PinoLandGame" sap:VirtualizedContainerService.HintSize="1101,700" Name="PinoLandGame" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:p="http://tempuri.org/"
+ xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:pw="clr-namespace:PinoLandMVC4.Workflow;assembly=PinoLandMVC4"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:s1="clr-namespace:System;assembly=System"
+ xmlns:s2="clr-namespace:System;assembly=System.Xml"
+ xmlns:s3="clr-namespace:System;assembly=System.Core"
+ xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System"
+ xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel"
+ xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core"
+ xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:sl="clr-namespace:System.Linq;assembly=System.Core"
+ xmlns:st="clr-namespace:System.Text;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p1:Sequence DisplayName="Sequential Service" sad:XamlDebuggerXmlReader.FileName="C:\Users\Johann\Documents\Visual Studio 2010\Projects\PinoLandMVC4\PinoLandMVC4\Workflow\PinoLandGame.xamlx" sap:VirtualizedContainerService.HintSize="1071,670" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+    <p1:Sequence.Variables>
+      <p1:Variable x:TypeArguments="CorrelationHandle" Name="handle" />
+      <p1:Variable x:TypeArguments="x:Int32" Name="data" />
+    </p1:Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <p1:Sequence DisplayName="Create Game" sap:VirtualizedContainerService.HintSize="1049,51">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Receive x:Name="__ReferenceID0" CanCreateInstance="True" DisplayName="ReceiveRequest" sap:VirtualizedContainerService.HintSize="255,90" OperationName="CreateGame" ServiceContractName="p:IService">
+        <Receive.CorrelationInitializers>
+          <RequestReplyCorrelationInitializer CorrelationHandle="[handle]" />
+        </Receive.CorrelationInitializers>
+        <ReceiveMessageContent>
+          <p1:OutArgument x:TypeArguments="x:Int32">[data]</p1:OutArgument>
+        </ReceiveMessageContent>
+      </Receive>
+      <SendReply Request="{x:Reference __ReferenceID0}" DisplayName="SendResponse" sap:VirtualizedContainerService.HintSize="255,90">
+        <SendMessageContent>
+          <p1:InArgument x:TypeArguments="x:String">[data.ToString()]</p1:InArgument>
+        </SendMessageContent>
+      </SendReply>
+    </p1:Sequence>
+    <p1:Sequence DisplayName="Start Game" sap:VirtualizedContainerService.HintSize="1049,51">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </p1:Sequence>
+    <p1:Pick sap:VirtualizedContainerService.HintSize="1049,364">
+      <p1:PickBranch DisplayName="Branch2" sap:VirtualizedContainerService.HintSize="285,318">
+        <p1:PickBranch.Trigger>
+          <Receive sap:VirtualizedContainerService.HintSize="255,90" OperationName="TeamInput" />
+        </p1:PickBranch.Trigger>
+      </p1:PickBranch>
+      <p1:PickBranch sap:VirtualizedContainerService.HintSize="285,318">
+        <p1:PickBranch.Trigger>
+          <Receive sap:VirtualizedContainerService.HintSize="255,90" OperationName="ProcessRound" />
+        </p1:PickBranch.Trigger>
+        <pw:ProcessRoundActivity EconomyId="{x:Null}" sap:VirtualizedContainerService.HintSize="200,22" />
+      </p1:PickBranch>
+      <p1:PickBranch DisplayName="Branch1" sap:VirtualizedContainerService.HintSize="285,318">
+        <p1:PickBranch.Trigger>
+          <Receive sap:VirtualizedContainerService.HintSize="255,90" OperationName="EndGame" />
+        </p1:PickBranch.Trigger>
+      </p1:PickBranch>
+    </p1:Pick>
+  </p1:Sequence>
+</WorkflowService>

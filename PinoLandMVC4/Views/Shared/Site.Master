@@ -18,8 +18,8 @@
     <div id="nav">
         <ul id="menu">
             <li><a href="#" class="menunav">Home</a></li>
-            <li><a href="#" class="menunav">Maps</a></li>
-            <li><a href="#" class="menunav">Reports</a></li>
+<%--            <li><a href="#" class="menunav">Maps</a></li>
+            <li><a href="#" class="menunav">Reports</a></li>--%>
             <li>
                 <%= Html.RoleActionLink("Manager", "Manager", new Dictionary<string, object> { { "class", "menunav" } }, "Index", "Manager") %></li>
         </ul>

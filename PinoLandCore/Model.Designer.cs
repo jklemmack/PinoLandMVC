@@ -31,11 +31,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Wealth_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Wealth), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Good_Good", "Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Industry), "Good", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Good), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Location", "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Location), "Household", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Household), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Household", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Household), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Wealth", "Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Wealth), "Household", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Household), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Location_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Location), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Round_Round", "CurrentRound", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), "PreviousRound", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Company), "Food_Good", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Good), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Food_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Food_Industry_Good_Type", "Food_Industry_Good_Type", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type), "Food_Good", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Good), true)]
@@ -49,7 +46,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Round_Round", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), "Food_Good_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Good_Round), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "Food_GoodFood_Industry", "Food_Good", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Good), "Food_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Age", "Age", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Age), "Profile_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Profile_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Wealth", "Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Wealth), "Profile_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Company), "Food_Industry_Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Food_Industry", "Food_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry), "Food_Industry_Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company), true)]
@@ -68,6 +64,11 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Food_Industry_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Wealth", "Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Wealth), "Food_Industry_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Food_Industry", "Food_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry), "Food_Industry_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Location_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Location), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Profile_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Household", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Household), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Profile_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth), true)]
 
 #endregion
 
@@ -246,22 +247,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             }
         }
         private ObjectSet<Location> _Locations;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Profile> Profiles
-        {
-            get
-            {
-                if ((_Profiles == null))
-                {
-                    _Profiles = base.CreateObjectSet<Profile>("Profiles");
-                }
-                return _Profiles;
-            }
-        }
-        private ObjectSet<Profile> _Profiles;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -470,6 +455,22 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             }
         }
         private ObjectSet<Food_Industry_Age_Wealth> _Food_Industry_Age_Wealth;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Profile> Profiles
+        {
+            get
+            {
+                if ((_Profiles == null))
+                {
+                    _Profiles = base.CreateObjectSet<Profile>("Profiles");
+                }
+                return _Profiles;
+            }
+        }
+        private ObjectSet<Profile> _Profiles;
 
         #endregion
 
@@ -537,14 +538,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         public void AddToLocations(Location location)
         {
             base.AddObject("Locations", location);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Profiles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToProfiles(Profile profile)
-        {
-            base.AddObject("Profiles", profile);
         }
     
         /// <summary>
@@ -649,6 +642,14 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         public void AddToFood_Industry_Age_Wealth(Food_Industry_Age_Wealth food_Industry_Age_Wealth)
         {
             base.AddObject("Food_Industry_Age_Wealth", food_Industry_Age_Wealth);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Profiles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToProfiles(Profile profile)
+        {
+            base.AddObject("Profiles", profile);
         }
 
         #endregion
@@ -2078,28 +2079,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Economy", "Profile")]
-        public EntityCollection<Profile> Profiles
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy", "Profile");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy", "Profile", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Economy", "Food_Industry")]
         public EntityCollection<Food_Industry> Food_Industry
         {
@@ -2134,6 +2113,50 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy", "Food_Industry_Age_Wealth", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Economy", "Profile")]
+        public EntityCollection<Profile> Profiles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy", "Profile");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy", "Profile", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Economy", "Profile_Age_Wealth")]
+        public EntityCollection<Profile_Age_Wealth> Profile_Age_Wealth
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Profile_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy", "Profile_Age_Wealth");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy", "Profile_Age_Wealth", value);
                 }
             }
         }
@@ -6211,6 +6234,54 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Latitude
+        {
+            get
+            {
+                return _Latitude;
+            }
+            set
+            {
+                OnLatitudeChanging(value);
+                ReportPropertyChanging("Latitude");
+                _Latitude = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Latitude");
+                OnLatitudeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Latitude;
+        partial void OnLatitudeChanging(Nullable<global::System.Double> value);
+        partial void OnLatitudeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Longitude
+        {
+            get
+            {
+                return _Longitude;
+            }
+            set
+            {
+                OnLongitudeChanging(value);
+                ReportPropertyChanging("Longitude");
+                _Longitude = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Longitude");
+                OnLongitudeChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Longitude;
+        partial void OnLongitudeChanging(Nullable<global::System.Double> value);
+        partial void OnLongitudeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 ProfileId
@@ -6357,44 +6428,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Profile", "Profile")]
-        public Profile Profile
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Profile").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Profile").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Profile> ProfileReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Profile");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Profile", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Wealth", "Wealth")]
         public Wealth Wealth
         {
@@ -6467,6 +6500,44 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Household_Company_Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Household", "Food_Industry_Household_Company_Round", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Profile", "Profile")]
+        public Profile Profile
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Profile").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Profile").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Profile> ProfileReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Profile");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Profile", value);
                 }
             }
         }
@@ -7372,44 +7443,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Location_Profile", "Profile")]
-        public Profile Profile
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Profile").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Profile").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Profile> ProfileReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Profile");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Profile", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Location", "Food_Good")]
         public EntityCollection<Food_Good> Food_Good
         {
@@ -7447,6 +7480,44 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Location_Profile", "Profile")]
+        public Profile Profile
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Profile").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Profile").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Profile> ProfileReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Profile");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Profile", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -7468,12 +7539,14 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="profileId">Initial value of the ProfileId property.</param>
         /// <param name="economyId">Initial value of the EconomyId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Profile CreateProfile(global::System.Int32 profileId, global::System.Int32 economyId, global::System.String name)
+        /// <param name="totalPopulation">Initial value of the TotalPopulation property.</param>
+        public static Profile CreateProfile(global::System.Int32 profileId, global::System.Int32 economyId, global::System.String name, global::System.Int32 totalPopulation)
         {
             Profile profile = new Profile();
             profile.ProfileId = profileId;
             profile.EconomyId = economyId;
             profile.Name = name;
+            profile.TotalPopulation = totalPopulation;
             return profile;
         }
 
@@ -7558,55 +7631,35 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
+    
+        /// <summary>
+        /// The total number of households that will use this profile.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TotalPopulation
+        {
+            get
+            {
+                return _TotalPopulation;
+            }
+            set
+            {
+                OnTotalPopulationChanging(value);
+                ReportPropertyChanging("TotalPopulation");
+                _TotalPopulation = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalPopulation");
+                OnTotalPopulationChanged();
+            }
+        }
+        private global::System.Int32 _TotalPopulation;
+        partial void OnTotalPopulationChanging(global::System.Int32 value);
+        partial void OnTotalPopulationChanged();
 
         #endregion
 
     
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Profile", "Household")]
-        public EntityCollection<Household> Households
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Household");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Household", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Location_Profile", "Location")]
-        public EntityCollection<Location> Locations
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Location");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Location", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -7652,6 +7705,28 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Location_Profile", "Location")]
+        public EntityCollection<Location> Locations
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile", "Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Profile", "Profile_Age_Wealth")]
         public EntityCollection<Profile_Age_Wealth> Profile_Age_Wealth
         {
@@ -7664,6 +7739,28 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile", "Profile_Age_Wealth", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Profile", "Household")]
+        public EntityCollection<Household> Households
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Household");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Household", value);
                 }
             }
         }
@@ -7886,6 +7983,44 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Wealth", "Wealth")]
+        public Wealth Wealth
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth", "Wealth").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth", "Wealth").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Wealth> WealthReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth", "Wealth");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth", "Wealth", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Profile", "Profile")]
         public Profile Profile
         {
@@ -7924,16 +8059,16 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Wealth", "Wealth")]
-        public Wealth Wealth
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Economy", "Economy")]
+        public Economy Economy
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth", "Wealth").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy", "Economy").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth", "Wealth").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy", "Economy").Value = value;
             }
         }
         /// <summary>
@@ -7941,17 +8076,17 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Wealth> WealthReference
+        public EntityReference<Economy> EconomyReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth", "Wealth");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy", "Economy");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth", "Wealth", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy", "Economy", value);
                 }
             }
         }

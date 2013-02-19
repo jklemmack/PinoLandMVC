@@ -11,6 +11,9 @@ using System.Web;
 using System.Web.Mvc;
 
 using Microsoft.MapPoint;
+using MG = Fuqua.CompetativeAnalysis.MarketGame;
+using PinoLandMVC4.Models;
+
 
 namespace PinoLandMVC4.Controllers
 {
@@ -20,13 +23,7 @@ namespace PinoLandMVC4.Controllers
         static Dictionary<int, PinolandBounds> PINOLAND_BOUNDS;
         static Dictionary<int, Rectangle> PINOLAND_RECTS;
 
-        public struct PinolandBounds
-        {
-            public int left;
-            public int right;
-            public int top;
-            public int bottom;
-        }
+        
 
         static TileController()
         {
@@ -47,7 +44,7 @@ namespace PinoLandMVC4.Controllers
         }
 
         [HttpGet]
-        public FileResult Get(int z, int x, int y)
+        public FileResult Get(int id, int z, int x, int y)
         {
             try
             {
@@ -97,15 +94,14 @@ namespace PinoLandMVC4.Controllers
                 var ms = new MemoryStream();
                 tile.Save(ms, ImageFormat.Png);
 
-                string fileName = string.Format("~/Content/Tiles/map.{0}.{1}.{2}.png", x, y, z);
-                using (FileStream fs = new FileStream(Server.MapPath(fileName), FileMode.Create))
-                {
-                    fs.Write(ms.ToArray(), 0, (int)ms.Length);
-                }
+                //string fileName = string.Format("~/Content/Tiles/map.{0}.{1}.{2}.png", x, y, z);
+                //using (FileStream fs = new FileStream(Server.MapPath(fileName), FileMode.Create))
+                //{
+                //    fs.Write(ms.ToArray(), 0, (int)ms.Length);
+                //}
 
                 ms.Position = 0;
-                byte[] bytes = ms.ToArray();
-                return File(bytes, "image/png");
+                return File(ms.ToArray(), "image/png");
             }
             catch (Exception ex)
             {
@@ -114,9 +110,44 @@ namespace PinoLandMVC4.Controllers
             return null;
         }
 
+        [HttpGet]
+        public FileResult GetFullMap(int id, int height, int width)
+        {
+            Image pinolandImage = Image.FromFile(Server.MapPath("~/Content/PinoLand1000x1000.png"));
+            Image targetImage = new Bitmap(width, height);
+
+            Graphics g = Graphics.FromImage(targetImage);
+            //g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.
+            //g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+
+            lock (pinolandImage)
+                g.DrawImage(pinolandImage, new Rectangle(0, 0, width, height));
+
+            var ms = new MemoryStream();
+            targetImage.Save(ms, ImageFormat.Png);
+
+            ms.Position = 0;
+            return File(ms.ToArray(), "image/png");
+        }
+
         public ActionResult Index()
         {
             return View(LLBOUNDS);
+        }
+
+        [HttpGet]
+        public dynamic Points(int id, int skip, int take)
+        {
+
+            using (MG.GameDataObjectContext context = ContextHelper.GetObjectContext())
+            {
+                var points = context.Households.Where(h => h.EconomyId == id)
+                    .OrderBy(h => h.HouseholdId)
+                    .Skip(skip).Take(take)
+                    .Select(h => new { Lat = (float)h.Latitude, Lng = (float)h.Longitude, Id = h.Identifier }).ToList();
+                return Json(points, JsonRequestBehavior.AllowGet);
+
+            }
         }
     }
 }
