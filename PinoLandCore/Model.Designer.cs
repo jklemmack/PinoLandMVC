@@ -69,6 +69,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Profile_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Household", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Household), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Profile_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Round_Round_State", "Round_State", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round_State), "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), true)]
 
 #endregion
 
@@ -471,6 +472,22 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             }
         }
         private ObjectSet<Profile> _Profiles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Round_State> Round_State
+        {
+            get
+            {
+                if ((_Round_State == null))
+                {
+                    _Round_State = base.CreateObjectSet<Round_State>("Round_State");
+                }
+                return _Round_State;
+            }
+        }
+        private ObjectSet<Round_State> _Round_State;
 
         #endregion
 
@@ -651,6 +668,14 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         {
             base.AddObject("Profiles", profile);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Round_State EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRound_State(Round_State round_State)
+        {
+            base.AddObject("Round_State", round_State);
+        }
 
         #endregion
 
@@ -762,6 +787,25 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
     
             return base.ExecuteFunction("SetLocationShape", locationIdParameter, lng1Parameter, lat1Parameter, lng2Parameter, lat2Parameter, lng3Parameter, lat3Parameter, lng4Parameter, lat4Parameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="economyId">No Metadata Documentation available.</param>
+        public ObjectResult<GetCurrentActions_Result> GetCurrentActions(Nullable<global::System.Int32> economyId)
+        {
+            ObjectParameter economyIdParameter;
+            if (economyId.HasValue)
+            {
+                economyIdParameter = new ObjectParameter("EconomyId", economyId);
+            }
+            else
+            {
+                economyIdParameter = new ObjectParameter("EconomyId", typeof(global::System.Int32));
+            }
+    
+            return base.ExecuteFunction<GetCurrentActions_Result>("GetCurrentActions", economyIdParameter);
+        }
 
         #endregion
 
@@ -802,7 +846,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -821,7 +865,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnAgeIdChanging(value);
                     ReportPropertyChanging("AgeId");
-                    _AgeId = StructuralObject.SetValidValue(value);
+                    _AgeId = StructuralObject.SetValidValue(value, "AgeId");
                     ReportPropertyChanged("AgeId");
                     OnAgeIdChanged();
                 }
@@ -848,7 +892,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -873,7 +917,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -897,7 +941,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnProbabilityChanging(value);
                 ReportPropertyChanging("Probability");
-                _Probability = StructuralObject.SetValidValue(value);
+                _Probability = StructuralObject.SetValidValue(value, "Probability");
                 ReportPropertyChanged("Probability");
                 OnProbabilityChanged();
             }
@@ -921,7 +965,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnDisplayOrderChanging(value);
                 ReportPropertyChanging("DisplayOrder");
-                _DisplayOrder = StructuralObject.SetValidValue(value);
+                _DisplayOrder = StructuralObject.SetValidValue(value, "DisplayOrder");
                 ReportPropertyChanged("DisplayOrder");
                 OnDisplayOrderChanged();
             }
@@ -932,7 +976,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -1070,7 +1113,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1089,7 +1132,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnCompanyIdChanging(value);
                     ReportPropertyChanging("CompanyId");
-                    _CompanyId = StructuralObject.SetValidValue(value);
+                    _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
                     ReportPropertyChanged("CompanyId");
                     OnCompanyIdChanged();
                 }
@@ -1116,7 +1159,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -1141,7 +1184,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -1152,7 +1195,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -1362,7 +1404,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1381,7 +1423,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnRoundIdChanging(value);
                     ReportPropertyChanging("RoundId");
-                    _RoundId = StructuralObject.SetValidValue(value);
+                    _RoundId = StructuralObject.SetValidValue(value, "RoundId");
                     ReportPropertyChanged("RoundId");
                     OnRoundIdChanged();
                 }
@@ -1408,7 +1450,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnCompanyIdChanging(value);
                     ReportPropertyChanging("CompanyId");
-                    _CompanyId = StructuralObject.SetValidValue(value);
+                    _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
                     ReportPropertyChanged("CompanyId");
                     OnCompanyIdChanged();
                 }
@@ -1435,7 +1477,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -1460,7 +1502,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnStartingCashChanging(value);
                 ReportPropertyChanging("StartingCash");
-                _StartingCash = StructuralObject.SetValidValue(value);
+                _StartingCash = StructuralObject.SetValidValue(value, "StartingCash");
                 ReportPropertyChanged("StartingCash");
                 OnStartingCashChanged();
             }
@@ -1484,7 +1526,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnEndingCashChanging(value);
                 ReportPropertyChanging("EndingCash");
-                _EndingCash = StructuralObject.SetValidValue(value);
+                _EndingCash = StructuralObject.SetValidValue(value, "EndingCash");
                 ReportPropertyChanged("EndingCash");
                 OnEndingCashChanged();
             }
@@ -1508,7 +1550,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnRevenueChanging(value);
                 ReportPropertyChanging("Revenue");
-                _Revenue = StructuralObject.SetValidValue(value);
+                _Revenue = StructuralObject.SetValidValue(value, "Revenue");
                 ReportPropertyChanged("Revenue");
                 OnRevenueChanged();
             }
@@ -1532,7 +1574,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnExpensesChanging(value);
                 ReportPropertyChanging("Expenses");
-                _Expenses = StructuralObject.SetValidValue(value);
+                _Expenses = StructuralObject.SetValidValue(value, "Expenses");
                 ReportPropertyChanged("Expenses");
                 OnExpensesChanged();
             }
@@ -1556,7 +1598,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnFinanceActivityChanging(value);
                 ReportPropertyChanging("FinanceActivity");
-                _FinanceActivity = StructuralObject.SetValidValue(value);
+                _FinanceActivity = StructuralObject.SetValidValue(value, "FinanceActivity");
                 ReportPropertyChanged("FinanceActivity");
                 OnFinanceActivityChanged();
             }
@@ -1580,7 +1622,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnSubmittedChanging(value);
                 ReportPropertyChanging("Submitted");
-                _Submitted = StructuralObject.SetValidValue(value);
+                _Submitted = StructuralObject.SetValidValue(value, "Submitted");
                 ReportPropertyChanged("Submitted");
                 OnSubmittedChanged();
             }
@@ -1604,7 +1646,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnSubmittedTimestampChanging(value);
                 ReportPropertyChanging("SubmittedTimestamp");
-                _SubmittedTimestamp = StructuralObject.SetValidValue(value);
+                _SubmittedTimestamp = StructuralObject.SetValidValue(value, "SubmittedTimestamp");
                 ReportPropertyChanged("SubmittedTimestamp");
                 OnSubmittedTimestampChanged();
             }
@@ -1628,7 +1670,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnLastModifiedTimestampChanging(value);
                 ReportPropertyChanging("LastModifiedTimestamp");
-                _LastModifiedTimestamp = StructuralObject.SetValidValue(value);
+                _LastModifiedTimestamp = StructuralObject.SetValidValue(value, "LastModifiedTimestamp");
                 ReportPropertyChanged("LastModifiedTimestamp");
                 OnLastModifiedTimestampChanged();
             }
@@ -1639,7 +1681,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -1773,7 +1814,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1792,7 +1833,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -1817,7 +1858,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -1841,7 +1882,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnDateCreatedChanging(value);
                 ReportPropertyChanging("DateCreated");
-                _DateCreated = StructuralObject.SetValidValue(value);
+                _DateCreated = StructuralObject.SetValidValue(value, "DateCreated");
                 ReportPropertyChanged("DateCreated");
                 OnDateCreatedChanged();
             }
@@ -1865,7 +1906,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCurrentRoundIdChanging(value);
                 ReportPropertyChanging("CurrentRoundId");
-                _CurrentRoundId = StructuralObject.SetValidValue(value);
+                _CurrentRoundId = StructuralObject.SetValidValue(value, "CurrentRoundId");
                 ReportPropertyChanged("CurrentRoundId");
                 OnCurrentRoundIdChanged();
             }
@@ -1889,7 +1930,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnReferenceChanging(value);
                 ReportPropertyChanging("Reference");
-                _Reference = StructuralObject.SetValidValue(value, false);
+                _Reference = StructuralObject.SetValidValue(value, false, "Reference");
                 ReportPropertyChanged("Reference");
                 OnReferenceChanged();
             }
@@ -1900,7 +1941,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -2183,11 +2223,10 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="economyId">Initial value of the EconomyId property.</param>
         /// <param name="identifier">Initial value of the Identifier property.</param>
         /// <param name="companyId">Initial value of the CompanyId property.</param>
-        /// <param name="locationId">Initial value of the LocationId property.</param>
         /// <param name="typeId">Initial value of the TypeId property.</param>
         /// <param name="latitude">Initial value of the Latitude property.</param>
         /// <param name="longitude">Initial value of the Longitude property.</param>
-        public static Food_Good CreateFood_Good(global::System.Int32 industryId, global::System.Int32 goodId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 companyId, global::System.Int32 locationId, global::System.Int32 typeId, global::System.Double latitude, global::System.Double longitude)
+        public static Food_Good CreateFood_Good(global::System.Int32 industryId, global::System.Int32 goodId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 companyId, global::System.Int32 typeId, global::System.Double latitude, global::System.Double longitude)
         {
             Food_Good food_Good = new Food_Good();
             food_Good.IndustryId = industryId;
@@ -2195,7 +2234,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             food_Good.EconomyId = economyId;
             food_Good.Identifier = identifier;
             food_Good.CompanyId = companyId;
-            food_Good.LocationId = locationId;
             food_Good.TypeId = typeId;
             food_Good.Latitude = latitude;
             food_Good.Longitude = longitude;
@@ -2204,7 +2242,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2221,7 +2259,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCompanyIdChanging(value);
                 ReportPropertyChanging("CompanyId");
-                _CompanyId = StructuralObject.SetValidValue(value);
+                _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
                 ReportPropertyChanged("CompanyId");
                 OnCompanyIdChanged();
             }
@@ -2233,9 +2271,9 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 LocationId
+        public Nullable<global::System.Int32> LocationId
         {
             get
             {
@@ -2245,13 +2283,13 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnLocationIdChanging(value);
                 ReportPropertyChanging("LocationId");
-                _LocationId = StructuralObject.SetValidValue(value);
+                _LocationId = StructuralObject.SetValidValue(value, "LocationId");
                 ReportPropertyChanged("LocationId");
                 OnLocationIdChanged();
             }
         }
-        private global::System.Int32 _LocationId;
-        partial void OnLocationIdChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _LocationId;
+        partial void OnLocationIdChanging(Nullable<global::System.Int32> value);
         partial void OnLocationIdChanged();
     
         /// <summary>
@@ -2269,7 +2307,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnTypeIdChanging(value);
                 ReportPropertyChanging("TypeId");
-                _TypeId = StructuralObject.SetValidValue(value);
+                _TypeId = StructuralObject.SetValidValue(value, "TypeId");
                 ReportPropertyChanged("TypeId");
                 OnTypeIdChanged();
             }
@@ -2293,7 +2331,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnLatitudeChanging(value);
                 ReportPropertyChanging("Latitude");
-                _Latitude = StructuralObject.SetValidValue(value);
+                _Latitude = StructuralObject.SetValidValue(value, "Latitude");
                 ReportPropertyChanged("Latitude");
                 OnLatitudeChanged();
             }
@@ -2317,7 +2355,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnLongitudeChanging(value);
                 ReportPropertyChanging("Longitude");
-                _Longitude = StructuralObject.SetValidValue(value);
+                _Longitude = StructuralObject.SetValidValue(value, "Longitude");
                 ReportPropertyChanged("Longitude");
                 OnLongitudeChanged();
             }
@@ -2328,7 +2366,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -2592,7 +2629,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2611,7 +2648,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnIndustryIdChanging(value);
                     ReportPropertyChanging("IndustryId");
-                    _IndustryId = StructuralObject.SetValidValue(value);
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
                     ReportPropertyChanged("IndustryId");
                     OnIndustryIdChanged();
                 }
@@ -2638,7 +2675,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnGoodIdChanging(value);
                     ReportPropertyChanging("GoodId");
-                    _GoodId = StructuralObject.SetValidValue(value);
+                    _GoodId = StructuralObject.SetValidValue(value, "GoodId");
                     ReportPropertyChanged("GoodId");
                     OnGoodIdChanged();
                 }
@@ -2665,7 +2702,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnRoundIdChanging(value);
                     ReportPropertyChanging("RoundId");
-                    _RoundId = StructuralObject.SetValidValue(value);
+                    _RoundId = StructuralObject.SetValidValue(value, "RoundId");
                     ReportPropertyChanged("RoundId");
                     OnRoundIdChanged();
                 }
@@ -2692,7 +2729,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -2717,7 +2754,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCompanyIdChanging(value);
                 ReportPropertyChanging("CompanyId");
-                _CompanyId = StructuralObject.SetValidValue(value);
+                _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
                 ReportPropertyChanged("CompanyId");
                 OnCompanyIdChanged();
             }
@@ -2741,7 +2778,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCapacityStartChanging(value);
                 ReportPropertyChanging("CapacityStart");
-                _CapacityStart = StructuralObject.SetValidValue(value);
+                _CapacityStart = StructuralObject.SetValidValue(value, "CapacityStart");
                 ReportPropertyChanged("CapacityStart");
                 OnCapacityStartChanged();
             }
@@ -2765,7 +2802,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCapacityNewChanging(value);
                 ReportPropertyChanging("CapacityNew");
-                _CapacityNew = StructuralObject.SetValidValue(value);
+                _CapacityNew = StructuralObject.SetValidValue(value, "CapacityNew");
                 ReportPropertyChanged("CapacityNew");
                 OnCapacityNewChanged();
             }
@@ -2789,7 +2826,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCapacitySoldChanging(value);
                 ReportPropertyChanging("CapacitySold");
-                _CapacitySold = StructuralObject.SetValidValue(value);
+                _CapacitySold = StructuralObject.SetValidValue(value, "CapacitySold");
                 ReportPropertyChanged("CapacitySold");
                 OnCapacitySoldChanged();
             }
@@ -2813,7 +2850,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCapacityDecayChanging(value);
                 ReportPropertyChanging("CapacityDecay");
-                _CapacityDecay = StructuralObject.SetValidValue(value);
+                _CapacityDecay = StructuralObject.SetValidValue(value, "CapacityDecay");
                 ReportPropertyChanged("CapacityDecay");
                 OnCapacityDecayChanged();
             }
@@ -2837,7 +2874,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCapacityEndChanging(value);
                 ReportPropertyChanging("CapacityEnd");
-                _CapacityEnd = StructuralObject.SetValidValue(value);
+                _CapacityEnd = StructuralObject.SetValidValue(value, "CapacityEnd");
                 ReportPropertyChanged("CapacityEnd");
                 OnCapacityEndChanged();
             }
@@ -2861,7 +2898,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnPriceChanging(value);
                 ReportPropertyChanging("Price");
-                _Price = StructuralObject.SetValidValue(value);
+                _Price = StructuralObject.SetValidValue(value, "Price");
                 ReportPropertyChanged("Price");
                 OnPriceChanged();
             }
@@ -2885,7 +2922,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnActualSalesChanging(value);
                 ReportPropertyChanging("ActualSales");
-                _ActualSales = StructuralObject.SetValidValue(value);
+                _ActualSales = StructuralObject.SetValidValue(value, "ActualSales");
                 ReportPropertyChanged("ActualSales");
                 OnActualSalesChanged();
             }
@@ -2909,7 +2946,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCostOfProductionChanging(value);
                 ReportPropertyChanging("CostOfProduction");
-                _CostOfProduction = StructuralObject.SetValidValue(value);
+                _CostOfProduction = StructuralObject.SetValidValue(value, "CostOfProduction");
                 ReportPropertyChanged("CostOfProduction");
                 OnCostOfProductionChanged();
             }
@@ -2933,7 +2970,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCostOfCapacityChanging(value);
                 ReportPropertyChanging("CostOfCapacity");
-                _CostOfCapacity = StructuralObject.SetValidValue(value);
+                _CostOfCapacity = StructuralObject.SetValidValue(value, "CostOfCapacity");
                 ReportPropertyChanged("CostOfCapacity");
                 OnCostOfCapacityChanged();
             }
@@ -2957,7 +2994,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnProductionChanging(value);
                 ReportPropertyChanging("Production");
-                _Production = StructuralObject.SetValidValue(value);
+                _Production = StructuralObject.SetValidValue(value, "Production");
                 ReportPropertyChanged("Production");
                 OnProductionChanged();
             }
@@ -2981,7 +3018,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnInventoryStartChanging(value);
                 ReportPropertyChanging("InventoryStart");
-                _InventoryStart = StructuralObject.SetValidValue(value);
+                _InventoryStart = StructuralObject.SetValidValue(value, "InventoryStart");
                 ReportPropertyChanged("InventoryStart");
                 OnInventoryStartChanged();
             }
@@ -3005,7 +3042,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnInventoryEndChanging(value);
                 ReportPropertyChanging("InventoryEnd");
-                _InventoryEnd = StructuralObject.SetValidValue(value);
+                _InventoryEnd = StructuralObject.SetValidValue(value, "InventoryEnd");
                 ReportPropertyChanged("InventoryEnd");
                 OnInventoryEndChanged();
             }
@@ -3029,7 +3066,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCostOfMaintenanceChanging(value);
                 ReportPropertyChanging("CostOfMaintenance");
-                _CostOfMaintenance = StructuralObject.SetValidValue(value);
+                _CostOfMaintenance = StructuralObject.SetValidValue(value, "CostOfMaintenance");
                 ReportPropertyChanged("CostOfMaintenance");
                 OnCostOfMaintenanceChanged();
             }
@@ -3053,7 +3090,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCostOfInventoryChanging(value);
                 ReportPropertyChanging("CostOfInventory");
-                _CostOfInventory = StructuralObject.SetValidValue(value);
+                _CostOfInventory = StructuralObject.SetValidValue(value, "CostOfInventory");
                 ReportPropertyChanged("CostOfInventory");
                 OnCostOfInventoryChanged();
             }
@@ -3077,7 +3114,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnIsRolloverChanging(value);
                 ReportPropertyChanging("IsRollover");
-                _IsRollover = StructuralObject.SetValidValue(value);
+                _IsRollover = StructuralObject.SetValidValue(value, "IsRollover");
                 ReportPropertyChanged("IsRollover");
                 OnIsRolloverChanged();
             }
@@ -3088,7 +3125,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -3278,7 +3314,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3297,7 +3333,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnRoundIdChanging(value);
                     ReportPropertyChanging("RoundId");
-                    _RoundId = StructuralObject.SetValidValue(value);
+                    _RoundId = StructuralObject.SetValidValue(value, "RoundId");
                     ReportPropertyChanged("RoundId");
                     OnRoundIdChanged();
                 }
@@ -3324,7 +3360,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnHouseholdIdChanging(value);
                     ReportPropertyChanging("HouseholdId");
-                    _HouseholdId = StructuralObject.SetValidValue(value);
+                    _HouseholdId = StructuralObject.SetValidValue(value, "HouseholdId");
                     ReportPropertyChanged("HouseholdId");
                     OnHouseholdIdChanged();
                 }
@@ -3351,7 +3387,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnCompanyIdChanging(value);
                     ReportPropertyChanging("CompanyId");
-                    _CompanyId = StructuralObject.SetValidValue(value);
+                    _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
                     ReportPropertyChanged("CompanyId");
                     OnCompanyIdChanged();
                 }
@@ -3378,7 +3414,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -3403,7 +3439,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnReputationChanging(value);
                 ReportPropertyChanging("Reputation");
-                _Reputation = StructuralObject.SetValidValue(value);
+                _Reputation = StructuralObject.SetValidValue(value, "Reputation");
                 ReportPropertyChanged("Reputation");
                 OnReputationChanged();
             }
@@ -3414,7 +3450,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -3592,7 +3627,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// Entry Cost Mean
@@ -3612,7 +3647,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnEntryCostMeanChanging(value);
                 ReportPropertyChanging("EntryCostMean");
-                _EntryCostMean = StructuralObject.SetValidValue(value);
+                _EntryCostMean = StructuralObject.SetValidValue(value, "EntryCostMean");
                 ReportPropertyChanged("EntryCostMean");
                 OnEntryCostMeanChanged();
             }
@@ -3636,7 +3671,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnEntryCostStdDevChanging(value);
                 ReportPropertyChanging("EntryCostStdDev");
-                _EntryCostStdDev = StructuralObject.SetValidValue(value);
+                _EntryCostStdDev = StructuralObject.SetValidValue(value, "EntryCostStdDev");
                 ReportPropertyChanged("EntryCostStdDev");
                 OnEntryCostStdDevChanged();
             }
@@ -3660,7 +3695,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCapacityCostMeanChanging(value);
                 ReportPropertyChanging("CapacityCostMean");
-                _CapacityCostMean = StructuralObject.SetValidValue(value);
+                _CapacityCostMean = StructuralObject.SetValidValue(value, "CapacityCostMean");
                 ReportPropertyChanged("CapacityCostMean");
                 OnCapacityCostMeanChanged();
             }
@@ -3684,7 +3719,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCapacityCostStdDevChanging(value);
                 ReportPropertyChanging("CapacityCostStdDev");
-                _CapacityCostStdDev = StructuralObject.SetValidValue(value);
+                _CapacityCostStdDev = StructuralObject.SetValidValue(value, "CapacityCostStdDev");
                 ReportPropertyChanged("CapacityCostStdDev");
                 OnCapacityCostStdDevChanged();
             }
@@ -3708,7 +3743,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnMarginalCostMeanChanging(value);
                 ReportPropertyChanging("MarginalCostMean");
-                _MarginalCostMean = StructuralObject.SetValidValue(value);
+                _MarginalCostMean = StructuralObject.SetValidValue(value, "MarginalCostMean");
                 ReportPropertyChanged("MarginalCostMean");
                 OnMarginalCostMeanChanged();
             }
@@ -3732,7 +3767,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnMarginalCostStdDevChanging(value);
                 ReportPropertyChanging("MarginalCostStdDev");
-                _MarginalCostStdDev = StructuralObject.SetValidValue(value);
+                _MarginalCostStdDev = StructuralObject.SetValidValue(value, "MarginalCostStdDev");
                 ReportPropertyChanged("MarginalCostStdDev");
                 OnMarginalCostStdDevChanged();
             }
@@ -3756,7 +3791,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCapacityDecayRateChanging(value);
                 ReportPropertyChanging("CapacityDecayRate");
-                _CapacityDecayRate = StructuralObject.SetValidValue(value);
+                _CapacityDecayRate = StructuralObject.SetValidValue(value, "CapacityDecayRate");
                 ReportPropertyChanged("CapacityDecayRate");
                 OnCapacityDecayRateChanged();
             }
@@ -3780,7 +3815,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCapacityResaleRateChanging(value);
                 ReportPropertyChanging("CapacityResaleRate");
-                _CapacityResaleRate = StructuralObject.SetValidValue(value);
+                _CapacityResaleRate = StructuralObject.SetValidValue(value, "CapacityResaleRate");
                 ReportPropertyChanged("CapacityResaleRate");
                 OnCapacityResaleRateChanged();
             }
@@ -3804,7 +3839,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCanHoldInventoryChanging(value);
                 ReportPropertyChanging("CanHoldInventory");
-                _CanHoldInventory = StructuralObject.SetValidValue(value);
+                _CanHoldInventory = StructuralObject.SetValidValue(value, "CanHoldInventory");
                 ReportPropertyChanged("CanHoldInventory");
                 OnCanHoldInventoryChanged();
             }
@@ -3828,7 +3863,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnElasticityChanging(value);
                 ReportPropertyChanging("Elasticity");
-                _Elasticity = StructuralObject.SetValidValue(value);
+                _Elasticity = StructuralObject.SetValidValue(value, "Elasticity");
                 ReportPropertyChanged("Elasticity");
                 OnElasticityChanged();
             }
@@ -3852,7 +3887,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnMaintenanceCostMeanChanging(value);
                 ReportPropertyChanging("MaintenanceCostMean");
-                _MaintenanceCostMean = StructuralObject.SetValidValue(value);
+                _MaintenanceCostMean = StructuralObject.SetValidValue(value, "MaintenanceCostMean");
                 ReportPropertyChanged("MaintenanceCostMean");
                 OnMaintenanceCostMeanChanged();
             }
@@ -3876,7 +3911,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnMaintenanceCostStdDevChanging(value);
                 ReportPropertyChanging("MaintenanceCostStdDev");
-                _MaintenanceCostStdDev = StructuralObject.SetValidValue(value);
+                _MaintenanceCostStdDev = StructuralObject.SetValidValue(value, "MaintenanceCostStdDev");
                 ReportPropertyChanged("MaintenanceCostStdDev");
                 OnMaintenanceCostStdDevChanged();
             }
@@ -3900,7 +3935,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnInventoryCostMeanChanging(value);
                 ReportPropertyChanging("InventoryCostMean");
-                _InventoryCostMean = StructuralObject.SetValidValue(value);
+                _InventoryCostMean = StructuralObject.SetValidValue(value, "InventoryCostMean");
                 ReportPropertyChanged("InventoryCostMean");
                 OnInventoryCostMeanChanged();
             }
@@ -3924,7 +3959,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnInventoryCostStdDevChanging(value);
                 ReportPropertyChanging("InventoryCostStdDev");
-                _InventoryCostStdDev = StructuralObject.SetValidValue(value);
+                _InventoryCostStdDev = StructuralObject.SetValidValue(value, "InventoryCostStdDev");
                 ReportPropertyChanged("InventoryCostStdDev");
                 OnInventoryCostStdDevChanged();
             }
@@ -3935,7 +3970,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -4065,7 +4099,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4084,7 +4118,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -4111,7 +4145,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnAgeIdChanging(value);
                     ReportPropertyChanging("AgeId");
-                    _AgeId = StructuralObject.SetValidValue(value);
+                    _AgeId = StructuralObject.SetValidValue(value, "AgeId");
                     ReportPropertyChanged("AgeId");
                     OnAgeIdChanged();
                 }
@@ -4138,7 +4172,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnWealthIdChanging(value);
                     ReportPropertyChanging("WealthId");
-                    _WealthId = StructuralObject.SetValidValue(value);
+                    _WealthId = StructuralObject.SetValidValue(value, "WealthId");
                     ReportPropertyChanged("WealthId");
                     OnWealthIdChanged();
                 }
@@ -4163,7 +4197,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnSigmaChanging(value);
                 ReportPropertyChanging("Sigma");
-                _Sigma = StructuralObject.SetValidValue(value);
+                _Sigma = StructuralObject.SetValidValue(value, "Sigma");
                 ReportPropertyChanged("Sigma");
                 OnSigmaChanged();
             }
@@ -4187,7 +4221,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnSensitivityTypeChanging(value);
                 ReportPropertyChanging("SensitivityType");
-                _SensitivityType = StructuralObject.SetValidValue(value);
+                _SensitivityType = StructuralObject.SetValidValue(value, "SensitivityType");
                 ReportPropertyChanged("SensitivityType");
                 OnSensitivityTypeChanged();
             }
@@ -4211,7 +4245,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnSensitivityDistanceChanging(value);
                 ReportPropertyChanging("SensitivityDistance");
-                _SensitivityDistance = StructuralObject.SetValidValue(value);
+                _SensitivityDistance = StructuralObject.SetValidValue(value, "SensitivityDistance");
                 ReportPropertyChanged("SensitivityDistance");
                 OnSensitivityDistanceChanged();
             }
@@ -4237,7 +4271,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnIndustryIdChanging(value);
                     ReportPropertyChanging("IndustryId");
-                    _IndustryId = StructuralObject.SetValidValue(value);
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
                     ReportPropertyChanged("IndustryId");
                     OnIndustryIdChanged();
                 }
@@ -4249,7 +4283,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -4445,7 +4478,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4464,7 +4497,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnCompanyIdChanging(value);
                     ReportPropertyChanging("CompanyId");
-                    _CompanyId = StructuralObject.SetValidValue(value);
+                    _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
                     ReportPropertyChanged("CompanyId");
                     OnCompanyIdChanged();
                 }
@@ -4491,7 +4524,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnIndustryIdChanging(value);
                     ReportPropertyChanging("IndustryId");
-                    _IndustryId = StructuralObject.SetValidValue(value);
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
                     ReportPropertyChanged("IndustryId");
                     OnIndustryIdChanged();
                 }
@@ -4518,7 +4551,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -4543,7 +4576,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnEntryCostChanging(value);
                 ReportPropertyChanging("EntryCost");
-                _EntryCost = StructuralObject.SetValidValue(value);
+                _EntryCost = StructuralObject.SetValidValue(value, "EntryCost");
                 ReportPropertyChanged("EntryCost");
                 OnEntryCostChanged();
             }
@@ -4567,7 +4600,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCapacityCostChanging(value);
                 ReportPropertyChanging("CapacityCost");
-                _CapacityCost = StructuralObject.SetValidValue(value);
+                _CapacityCost = StructuralObject.SetValidValue(value, "CapacityCost");
                 ReportPropertyChanged("CapacityCost");
                 OnCapacityCostChanged();
             }
@@ -4591,7 +4624,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnMarginalCostChanging(value);
                 ReportPropertyChanging("MarginalCost");
-                _MarginalCost = StructuralObject.SetValidValue(value);
+                _MarginalCost = StructuralObject.SetValidValue(value, "MarginalCost");
                 ReportPropertyChanged("MarginalCost");
                 OnMarginalCostChanged();
             }
@@ -4615,7 +4648,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnEntranceRoundIdChanging(value);
                 ReportPropertyChanging("EntranceRoundId");
-                _EntranceRoundId = StructuralObject.SetValidValue(value);
+                _EntranceRoundId = StructuralObject.SetValidValue(value, "EntranceRoundId");
                 ReportPropertyChanged("EntranceRoundId");
                 OnEntranceRoundIdChanged();
             }
@@ -4639,7 +4672,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnMaintenanceCostChanging(value);
                 ReportPropertyChanging("MaintenanceCost");
-                _MaintenanceCost = StructuralObject.SetValidValue(value);
+                _MaintenanceCost = StructuralObject.SetValidValue(value, "MaintenanceCost");
                 ReportPropertyChanged("MaintenanceCost");
                 OnMaintenanceCostChanged();
             }
@@ -4663,7 +4696,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnInventoryCostChanging(value);
                 ReportPropertyChanging("InventoryCost");
-                _InventoryCost = StructuralObject.SetValidValue(value);
+                _InventoryCost = StructuralObject.SetValidValue(value, "InventoryCost");
                 ReportPropertyChanged("InventoryCost");
                 OnInventoryCostChanged();
             }
@@ -4674,7 +4707,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -4858,7 +4890,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4877,7 +4909,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnRoundIdChanging(value);
                     ReportPropertyChanging("RoundId");
-                    _RoundId = StructuralObject.SetValidValue(value);
+                    _RoundId = StructuralObject.SetValidValue(value, "RoundId");
                     ReportPropertyChanged("RoundId");
                     OnRoundIdChanged();
                 }
@@ -4904,7 +4936,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnCompanyIdChanging(value);
                     ReportPropertyChanging("CompanyId");
-                    _CompanyId = StructuralObject.SetValidValue(value);
+                    _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
                     ReportPropertyChanged("CompanyId");
                     OnCompanyIdChanged();
                 }
@@ -4931,7 +4963,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnIndustryIdChanging(value);
                     ReportPropertyChanging("IndustryId");
-                    _IndustryId = StructuralObject.SetValidValue(value);
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
                     ReportPropertyChanged("IndustryId");
                     OnIndustryIdChanged();
                 }
@@ -4958,7 +4990,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -4983,7 +5015,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCostOfEntryChanging(value);
                 ReportPropertyChanging("CostOfEntry");
-                _CostOfEntry = StructuralObject.SetValidValue(value);
+                _CostOfEntry = StructuralObject.SetValidValue(value, "CostOfEntry");
                 ReportPropertyChanged("CostOfEntry");
                 OnCostOfEntryChanged();
             }
@@ -5007,7 +5039,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCostOfCapacityChanging(value);
                 ReportPropertyChanging("CostOfCapacity");
-                _CostOfCapacity = StructuralObject.SetValidValue(value);
+                _CostOfCapacity = StructuralObject.SetValidValue(value, "CostOfCapacity");
                 ReportPropertyChanged("CostOfCapacity");
                 OnCostOfCapacityChanged();
             }
@@ -5031,7 +5063,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCostOfProductionChanging(value);
                 ReportPropertyChanging("CostOfProduction");
-                _CostOfProduction = StructuralObject.SetValidValue(value);
+                _CostOfProduction = StructuralObject.SetValidValue(value, "CostOfProduction");
                 ReportPropertyChanged("CostOfProduction");
                 OnCostOfProductionChanged();
             }
@@ -5055,7 +5087,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCostOfInventoryChanging(value);
                 ReportPropertyChanging("CostOfInventory");
-                _CostOfInventory = StructuralObject.SetValidValue(value);
+                _CostOfInventory = StructuralObject.SetValidValue(value, "CostOfInventory");
                 ReportPropertyChanged("CostOfInventory");
                 OnCostOfInventoryChanged();
             }
@@ -5079,7 +5111,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnRevenueChanging(value);
                 ReportPropertyChanging("Revenue");
-                _Revenue = StructuralObject.SetValidValue(value);
+                _Revenue = StructuralObject.SetValidValue(value, "Revenue");
                 ReportPropertyChanged("Revenue");
                 OnRevenueChanged();
             }
@@ -5103,7 +5135,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCostOfMaintenanceChanging(value);
                 ReportPropertyChanging("CostOfMaintenance");
-                _CostOfMaintenance = StructuralObject.SetValidValue(value);
+                _CostOfMaintenance = StructuralObject.SetValidValue(value, "CostOfMaintenance");
                 ReportPropertyChanged("CostOfMaintenance");
                 OnCostOfMaintenanceChanged();
             }
@@ -5114,7 +5146,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -5286,7 +5317,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5305,7 +5336,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnTypeIdChanging(value);
                     ReportPropertyChanging("TypeId");
-                    _TypeId = StructuralObject.SetValidValue(value);
+                    _TypeId = StructuralObject.SetValidValue(value, "TypeId");
                     ReportPropertyChanged("TypeId");
                     OnTypeIdChanged();
                 }
@@ -5332,7 +5363,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnIndustryIdChanging(value);
                     ReportPropertyChanging("IndustryId");
-                    _IndustryId = StructuralObject.SetValidValue(value);
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
                     ReportPropertyChanged("IndustryId");
                     OnIndustryIdChanged();
                 }
@@ -5359,7 +5390,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -5384,7 +5415,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -5395,7 +5426,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -5501,7 +5531,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5520,7 +5550,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnRoundIdChanging(value);
                     ReportPropertyChanging("RoundId");
-                    _RoundId = StructuralObject.SetValidValue(value);
+                    _RoundId = StructuralObject.SetValidValue(value, "RoundId");
                     ReportPropertyChanged("RoundId");
                     OnRoundIdChanged();
                 }
@@ -5547,7 +5577,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnCompanyIdChanging(value);
                     ReportPropertyChanging("CompanyId");
-                    _CompanyId = StructuralObject.SetValidValue(value);
+                    _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
                     ReportPropertyChanged("CompanyId");
                     OnCompanyIdChanged();
                 }
@@ -5574,7 +5604,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnIndustryIdChanging(value);
                     ReportPropertyChanging("IndustryId");
-                    _IndustryId = StructuralObject.SetValidValue(value);
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
                     ReportPropertyChanged("IndustryId");
                     OnIndustryIdChanged();
                 }
@@ -5601,7 +5631,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnGoodIdChanging(value);
                     ReportPropertyChanging("GoodId");
-                    _GoodId = StructuralObject.SetValidValue(value);
+                    _GoodId = StructuralObject.SetValidValue(value, "GoodId");
                     ReportPropertyChanged("GoodId");
                     OnGoodIdChanged();
                 }
@@ -5628,7 +5658,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnHouseholdIdChanging(value);
                     ReportPropertyChanging("HouseholdId");
-                    _HouseholdId = StructuralObject.SetValidValue(value);
+                    _HouseholdId = StructuralObject.SetValidValue(value, "HouseholdId");
                     ReportPropertyChanged("HouseholdId");
                     OnHouseholdIdChanged();
                 }
@@ -5655,7 +5685,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -5680,7 +5710,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnQuantityBoughtChanging(value);
                 ReportPropertyChanging("QuantityBought");
-                _QuantityBought = StructuralObject.SetValidValue(value);
+                _QuantityBought = StructuralObject.SetValidValue(value, "QuantityBought");
                 ReportPropertyChanged("QuantityBought");
                 OnQuantityBoughtChanged();
             }
@@ -5704,7 +5734,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnPriceBoughtChanging(value);
                 ReportPropertyChanging("PriceBought");
-                _PriceBought = StructuralObject.SetValidValue(value);
+                _PriceBought = StructuralObject.SetValidValue(value, "PriceBought");
                 ReportPropertyChanged("PriceBought");
                 OnPriceBoughtChanged();
             }
@@ -5728,7 +5758,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnSurplusChanging(value);
                 ReportPropertyChanging("Surplus");
-                _Surplus = StructuralObject.SetValidValue(value);
+                _Surplus = StructuralObject.SetValidValue(value, "Surplus");
                 ReportPropertyChanged("Surplus");
                 OnSurplusChanged();
             }
@@ -5739,7 +5769,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -5890,7 +5919,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5909,7 +5938,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnIndustryIdChanging(value);
                     ReportPropertyChanging("IndustryId");
-                    _IndustryId = StructuralObject.SetValidValue(value);
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
                     ReportPropertyChanged("IndustryId");
                     OnIndustryIdChanged();
                 }
@@ -5936,7 +5965,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnGoodIdChanging(value);
                     ReportPropertyChanging("GoodId");
-                    _GoodId = StructuralObject.SetValidValue(value);
+                    _GoodId = StructuralObject.SetValidValue(value, "GoodId");
                     ReportPropertyChanged("GoodId");
                     OnGoodIdChanged();
                 }
@@ -5963,7 +5992,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -5988,7 +6017,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnIdentifierChanging(value);
                 ReportPropertyChanging("Identifier");
-                _Identifier = StructuralObject.SetValidValue(value, false);
+                _Identifier = StructuralObject.SetValidValue(value, false, "Identifier");
                 ReportPropertyChanged("Identifier");
                 OnIdentifierChanged();
             }
@@ -5999,7 +6028,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -6060,17 +6088,15 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="householdId">Initial value of the HouseholdId property.</param>
         /// <param name="economyId">Initial value of the EconomyId property.</param>
         /// <param name="identifier">Initial value of the Identifier property.</param>
-        /// <param name="locationId">Initial value of the LocationId property.</param>
         /// <param name="ageId">Initial value of the AgeId property.</param>
         /// <param name="wealthId">Initial value of the WealthId property.</param>
         /// <param name="profileId">Initial value of the ProfileId property.</param>
-        public static Household CreateHousehold(global::System.Int32 householdId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 locationId, global::System.Int32 ageId, global::System.Int32 wealthId, global::System.Int32 profileId)
+        public static Household CreateHousehold(global::System.Int32 householdId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 ageId, global::System.Int32 wealthId, global::System.Int32 profileId)
         {
             Household household = new Household();
             household.HouseholdId = householdId;
             household.EconomyId = economyId;
             household.Identifier = identifier;
-            household.LocationId = locationId;
             household.AgeId = ageId;
             household.WealthId = wealthId;
             household.ProfileId = profileId;
@@ -6079,7 +6105,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6098,7 +6124,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnHouseholdIdChanging(value);
                     ReportPropertyChanging("HouseholdId");
-                    _HouseholdId = StructuralObject.SetValidValue(value);
+                    _HouseholdId = StructuralObject.SetValidValue(value, "HouseholdId");
                     ReportPropertyChanged("HouseholdId");
                     OnHouseholdIdChanged();
                 }
@@ -6125,7 +6151,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -6150,7 +6176,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnIdentifierChanging(value);
                 ReportPropertyChanging("Identifier");
-                _Identifier = StructuralObject.SetValidValue(value, false);
+                _Identifier = StructuralObject.SetValidValue(value, false, "Identifier");
                 ReportPropertyChanged("Identifier");
                 OnIdentifierChanged();
             }
@@ -6162,9 +6188,9 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 LocationId
+        public Nullable<global::System.Int32> LocationId
         {
             get
             {
@@ -6174,13 +6200,13 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnLocationIdChanging(value);
                 ReportPropertyChanging("LocationId");
-                _LocationId = StructuralObject.SetValidValue(value);
+                _LocationId = StructuralObject.SetValidValue(value, "LocationId");
                 ReportPropertyChanged("LocationId");
                 OnLocationIdChanged();
             }
         }
-        private global::System.Int32 _LocationId;
-        partial void OnLocationIdChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _LocationId;
+        partial void OnLocationIdChanging(Nullable<global::System.Int32> value);
         partial void OnLocationIdChanged();
     
         /// <summary>
@@ -6198,7 +6224,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnAgeIdChanging(value);
                 ReportPropertyChanging("AgeId");
-                _AgeId = StructuralObject.SetValidValue(value);
+                _AgeId = StructuralObject.SetValidValue(value, "AgeId");
                 ReportPropertyChanged("AgeId");
                 OnAgeIdChanged();
             }
@@ -6222,7 +6248,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnWealthIdChanging(value);
                 ReportPropertyChanging("WealthId");
-                _WealthId = StructuralObject.SetValidValue(value);
+                _WealthId = StructuralObject.SetValidValue(value, "WealthId");
                 ReportPropertyChanged("WealthId");
                 OnWealthIdChanged();
             }
@@ -6246,7 +6272,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnLatitudeChanging(value);
                 ReportPropertyChanging("Latitude");
-                _Latitude = StructuralObject.SetValidValue(value);
+                _Latitude = StructuralObject.SetValidValue(value, "Latitude");
                 ReportPropertyChanged("Latitude");
                 OnLatitudeChanged();
             }
@@ -6270,7 +6296,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnLongitudeChanging(value);
                 ReportPropertyChanging("Longitude");
-                _Longitude = StructuralObject.SetValidValue(value);
+                _Longitude = StructuralObject.SetValidValue(value, "Longitude");
                 ReportPropertyChanged("Longitude");
                 OnLongitudeChanged();
             }
@@ -6294,7 +6320,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnProfileIdChanging(value);
                 ReportPropertyChanging("ProfileId");
-                _ProfileId = StructuralObject.SetValidValue(value);
+                _ProfileId = StructuralObject.SetValidValue(value, "ProfileId");
                 ReportPropertyChanged("ProfileId");
                 OnProfileIdChanged();
             }
@@ -6305,7 +6331,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -6571,7 +6596,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6590,7 +6615,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnRoleIdChanging(value);
                     ReportPropertyChanging("RoleId");
-                    _RoleId = StructuralObject.SetValidValue(value);
+                    _RoleId = StructuralObject.SetValidValue(value, "RoleId");
                     ReportPropertyChanged("RoleId");
                     OnRoleIdChanged();
                 }
@@ -6615,7 +6640,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -6626,7 +6651,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -6682,7 +6706,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6701,7 +6725,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnUserIdChanging(value);
                     ReportPropertyChanging("UserId");
-                    _UserId = StructuralObject.SetValidValue(value);
+                    _UserId = StructuralObject.SetValidValue(value, "UserId");
                     ReportPropertyChanged("UserId");
                     OnUserIdChanged();
                 }
@@ -6726,7 +6750,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnUserNameChanging(value);
                 ReportPropertyChanging("UserName");
-                _UserName = StructuralObject.SetValidValue(value, false);
+                _UserName = StructuralObject.SetValidValue(value, false, "UserName");
                 ReportPropertyChanged("UserName");
                 OnUserNameChanged();
             }
@@ -6750,7 +6774,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnFirstNameChanging(value);
                 ReportPropertyChanging("FirstName");
-                _FirstName = StructuralObject.SetValidValue(value, true);
+                _FirstName = StructuralObject.SetValidValue(value, true, "FirstName");
                 ReportPropertyChanged("FirstName");
                 OnFirstNameChanged();
             }
@@ -6774,7 +6798,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnLastNameChanging(value);
                 ReportPropertyChanging("LastName");
-                _LastName = StructuralObject.SetValidValue(value, true);
+                _LastName = StructuralObject.SetValidValue(value, true, "LastName");
                 ReportPropertyChanged("LastName");
                 OnLastNameChanged();
             }
@@ -6798,7 +6822,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnEmailChanging(value);
                 ReportPropertyChanging("Email");
-                _Email = StructuralObject.SetValidValue(value, true);
+                _Email = StructuralObject.SetValidValue(value, true, "Email");
                 ReportPropertyChanged("Email");
                 OnEmailChanged();
             }
@@ -6822,7 +6846,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnPasswordChanging(value);
                 ReportPropertyChanging("Password");
-                _Password = StructuralObject.SetValidValue(value, true);
+                _Password = StructuralObject.SetValidValue(value, true, "Password");
                 ReportPropertyChanged("Password");
                 OnPasswordChanged();
             }
@@ -6846,7 +6870,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnActiveChanging(value);
                 ReportPropertyChanging("Active");
-                _Active = StructuralObject.SetValidValue(value);
+                _Active = StructuralObject.SetValidValue(value, "Active");
                 ReportPropertyChanged("Active");
                 OnActiveChanged();
             }
@@ -6857,7 +6881,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -6938,7 +6961,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6957,7 +6980,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnIndustryIdChanging(value);
                     ReportPropertyChanging("IndustryId");
-                    _IndustryId = StructuralObject.SetValidValue(value);
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
                     ReportPropertyChanged("IndustryId");
                     OnIndustryIdChanged();
                 }
@@ -6984,7 +7007,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -7009,7 +7032,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -7033,7 +7056,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnTypeChanging(value);
                 ReportPropertyChanging("Type");
-                _Type = StructuralObject.SetValidValue(value, false);
+                _Type = StructuralObject.SetValidValue(value, false, "Type");
                 ReportPropertyChanged("Type");
                 OnTypeChanged();
             }
@@ -7044,7 +7067,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -7148,7 +7170,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -7167,7 +7189,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnLocationIdChanging(value);
                     ReportPropertyChanging("LocationId");
-                    _LocationId = StructuralObject.SetValidValue(value);
+                    _LocationId = StructuralObject.SetValidValue(value, "LocationId");
                     ReportPropertyChanged("LocationId");
                     OnLocationIdChanged();
                 }
@@ -7194,7 +7216,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -7219,7 +7241,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnIdentifierChanging(value);
                 ReportPropertyChanging("Identifier");
-                _Identifier = StructuralObject.SetValidValue(value, false);
+                _Identifier = StructuralObject.SetValidValue(value, false, "Identifier");
                 ReportPropertyChanged("Identifier");
                 OnIdentifierChanged();
             }
@@ -7243,7 +7265,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCenterXChanging(value);
                 ReportPropertyChanging("CenterX");
-                _CenterX = StructuralObject.SetValidValue(value);
+                _CenterX = StructuralObject.SetValidValue(value, "CenterX");
                 ReportPropertyChanged("CenterX");
                 OnCenterXChanged();
             }
@@ -7267,7 +7289,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCenterYChanging(value);
                 ReportPropertyChanging("CenterY");
-                _CenterY = StructuralObject.SetValidValue(value);
+                _CenterY = StructuralObject.SetValidValue(value, "CenterY");
                 ReportPropertyChanged("CenterY");
                 OnCenterYChanged();
             }
@@ -7291,7 +7313,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnProfileIdChanging(value);
                 ReportPropertyChanging("ProfileId");
-                _ProfileId = StructuralObject.SetValidValue(value);
+                _ProfileId = StructuralObject.SetValidValue(value, "ProfileId");
                 ReportPropertyChanged("ProfileId");
                 OnProfileIdChanged();
             }
@@ -7315,7 +7337,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnTotalPopulationChanging(value);
                 ReportPropertyChanging("TotalPopulation");
-                _TotalPopulation = StructuralObject.SetValidValue(value);
+                _TotalPopulation = StructuralObject.SetValidValue(value, "TotalPopulation");
                 ReportPropertyChanged("TotalPopulation");
                 OnTotalPopulationChanged();
             }
@@ -7339,7 +7361,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnCityChanging(value);
                 ReportPropertyChanging("City");
-                _City = StructuralObject.SetValidValue(value, true);
+                _City = StructuralObject.SetValidValue(value, true, "City");
                 ReportPropertyChanged("City");
                 OnCityChanged();
             }
@@ -7363,7 +7385,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnInteractiveChanging(value);
                 ReportPropertyChanging("Interactive");
-                _Interactive = StructuralObject.SetValidValue(value);
+                _Interactive = StructuralObject.SetValidValue(value, "Interactive");
                 ReportPropertyChanged("Interactive");
                 OnInteractiveChanged();
             }
@@ -7371,10 +7393,33 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         private global::System.Boolean _Interactive;
         partial void OnInteractiveChanging(global::System.Boolean value);
         partial void OnInteractiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Data.Spatial.DbGeography Shape
+        {
+            get
+            {
+                return _Shape;
+            }
+            set
+            {
+                OnShapeChanging(value);
+                ReportPropertyChanging("Shape");
+                _Shape = StructuralObject.SetValidValue(value, true, "Shape");
+                ReportPropertyChanged("Shape");
+                OnShapeChanged();
+            }
+        }
+        private global::System.Data.Spatial.DbGeography _Shape;
+        partial void OnShapeChanging(global::System.Data.Spatial.DbGeography value);
+        partial void OnShapeChanged();
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -7552,7 +7597,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -7571,7 +7616,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnProfileIdChanging(value);
                     ReportPropertyChanging("ProfileId");
-                    _ProfileId = StructuralObject.SetValidValue(value);
+                    _ProfileId = StructuralObject.SetValidValue(value, "ProfileId");
                     ReportPropertyChanged("ProfileId");
                     OnProfileIdChanged();
                 }
@@ -7598,7 +7643,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -7623,7 +7668,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -7647,7 +7692,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnTotalPopulationChanging(value);
                 ReportPropertyChanging("TotalPopulation");
-                _TotalPopulation = StructuralObject.SetValidValue(value);
+                _TotalPopulation = StructuralObject.SetValidValue(value, "TotalPopulation");
                 ReportPropertyChanged("TotalPopulation");
                 OnTotalPopulationChanged();
             }
@@ -7658,7 +7703,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -7800,7 +7844,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -7819,7 +7863,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnProfileIdChanging(value);
                     ReportPropertyChanging("ProfileId");
-                    _ProfileId = StructuralObject.SetValidValue(value);
+                    _ProfileId = StructuralObject.SetValidValue(value, "ProfileId");
                     ReportPropertyChanged("ProfileId");
                     OnProfileIdChanged();
                 }
@@ -7846,7 +7890,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -7873,7 +7917,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnAgeIdChanging(value);
                     ReportPropertyChanging("AgeId");
-                    _AgeId = StructuralObject.SetValidValue(value);
+                    _AgeId = StructuralObject.SetValidValue(value, "AgeId");
                     ReportPropertyChanged("AgeId");
                     OnAgeIdChanged();
                 }
@@ -7900,7 +7944,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnWealthIdChanging(value);
                     ReportPropertyChanging("WealthId");
-                    _WealthId = StructuralObject.SetValidValue(value);
+                    _WealthId = StructuralObject.SetValidValue(value, "WealthId");
                     ReportPropertyChanged("WealthId");
                     OnWealthIdChanged();
                 }
@@ -7925,7 +7969,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnProbabilityChanging(value);
                 ReportPropertyChanging("Probability");
-                _Probability = StructuralObject.SetValidValue(value);
+                _Probability = StructuralObject.SetValidValue(value, "Probability");
                 ReportPropertyChanged("Probability");
                 OnProbabilityChanged();
             }
@@ -7936,7 +7980,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -8112,19 +8155,21 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="economyId">Initial value of the EconomyId property.</param>
         /// <param name="identifier">Initial value of the Identifier property.</param>
         /// <param name="sequence">Initial value of the Sequence property.</param>
-        public static Round CreateRound(global::System.Int32 roundId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 sequence)
+        /// <param name="lastModified">Initial value of the LastModified property.</param>
+        public static Round CreateRound(global::System.Int32 roundId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 sequence, global::System.DateTime lastModified)
         {
             Round round = new Round();
             round.RoundId = roundId;
             round.EconomyId = economyId;
             round.Identifier = identifier;
             round.Sequence = sequence;
+            round.LastModified = lastModified;
             return round;
         }
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -8143,7 +8188,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnRoundIdChanging(value);
                     ReportPropertyChanging("RoundId");
-                    _RoundId = StructuralObject.SetValidValue(value);
+                    _RoundId = StructuralObject.SetValidValue(value, "RoundId");
                     ReportPropertyChanged("RoundId");
                     OnRoundIdChanged();
                 }
@@ -8170,7 +8215,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -8195,7 +8240,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnIdentifierChanging(value);
                 ReportPropertyChanging("Identifier");
-                _Identifier = StructuralObject.SetValidValue(value, false);
+                _Identifier = StructuralObject.SetValidValue(value, false, "Identifier");
                 ReportPropertyChanged("Identifier");
                 OnIdentifierChanged();
             }
@@ -8219,7 +8264,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnPreviousRoundIdChanging(value);
                 ReportPropertyChanging("PreviousRoundId");
-                _PreviousRoundId = StructuralObject.SetValidValue(value);
+                _PreviousRoundId = StructuralObject.SetValidValue(value, "PreviousRoundId");
                 ReportPropertyChanged("PreviousRoundId");
                 OnPreviousRoundIdChanged();
             }
@@ -8243,7 +8288,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnSequenceChanging(value);
                 ReportPropertyChanging("Sequence");
-                _Sequence = StructuralObject.SetValidValue(value);
+                _Sequence = StructuralObject.SetValidValue(value, "Sequence");
                 ReportPropertyChanged("Sequence");
                 OnSequenceChanged();
             }
@@ -8251,10 +8296,57 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         private global::System.Int32 _Sequence;
         partial void OnSequenceChanging(global::System.Int32 value);
         partial void OnSequenceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> RoundStateId
+        {
+            get
+            {
+                return _RoundStateId;
+            }
+            set
+            {
+                OnRoundStateIdChanging(value);
+                ReportPropertyChanging("RoundStateId");
+                _RoundStateId = StructuralObject.SetValidValue(value, "RoundStateId");
+                ReportPropertyChanged("RoundStateId");
+                OnRoundStateIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _RoundStateId;
+        partial void OnRoundStateIdChanging(Nullable<global::System.Int32> value);
+        partial void OnRoundStateIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LastModified
+        {
+            get
+            {
+                return _LastModified;
+            }
+            set
+            {
+                OnLastModifiedChanging(value);
+                ReportPropertyChanging("LastModified");
+                _LastModified = StructuralObject.SetValidValue(value, "LastModified");
+                ReportPropertyChanged("LastModified");
+                OnLastModifiedChanged();
+            }
+        }
+        private global::System.DateTime _LastModified;
+        partial void OnLastModifiedChanging(global::System.DateTime value);
+        partial void OnLastModifiedChanged();
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -8470,6 +8562,152 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Round_Round_State", "Round_State")]
+        public Round_State Round_State
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round_State>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round_State", "Round_State").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round_State>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round_State", "Round_State").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Round_State> Round_StateReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round_State>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round_State", "Round_State");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Round_State>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round_State", "Round_State", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="Round_State")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Round_State : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Round_State object.
+        /// </summary>
+        /// <param name="roundStateId">Initial value of the RoundStateId property.</param>
+        /// <param name="state">Initial value of the State property.</param>
+        public static Round_State CreateRound_State(global::System.Int32 roundStateId, global::System.String state)
+        {
+            Round_State round_State = new Round_State();
+            round_State.RoundStateId = roundStateId;
+            round_State.State = state;
+            return round_State;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RoundStateId
+        {
+            get
+            {
+                return _RoundStateId;
+            }
+            set
+            {
+                if (_RoundStateId != value)
+                {
+                    OnRoundStateIdChanging(value);
+                    ReportPropertyChanging("RoundStateId");
+                    _RoundStateId = StructuralObject.SetValidValue(value, "RoundStateId");
+                    ReportPropertyChanged("RoundStateId");
+                    OnRoundStateIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _RoundStateId;
+        partial void OnRoundStateIdChanging(global::System.Int32 value);
+        partial void OnRoundStateIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String State
+        {
+            get
+            {
+                return _State;
+            }
+            set
+            {
+                OnStateChanging(value);
+                ReportPropertyChanging("State");
+                _State = StructuralObject.SetValidValue(value, false, "State");
+                ReportPropertyChanged("State");
+                OnStateChanged();
+            }
+        }
+        private global::System.String _State;
+        partial void OnStateChanging(global::System.String value);
+        partial void OnStateChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Round_Round_State", "Round")]
+        public EntityCollection<Round> Rounds
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round_State", "Round");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round_State", "Round", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -8491,22 +8729,18 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="economyId">Initial value of the EconomyId property.</param>
         /// <param name="locationId">Initial value of the LocationId property.</param>
         /// <param name="sequence">Initial value of the sequence property.</param>
-        /// <param name="lat">Initial value of the Lat property.</param>
-        /// <param name="long">Initial value of the Long property.</param>
-        public static vw_LocationPoints Createvw_LocationPoints(global::System.Int32 economyId, global::System.Int32 locationId, global::System.Int64 sequence, global::System.Double lat, global::System.Double @long)
+        public static vw_LocationPoints Createvw_LocationPoints(global::System.Int32 economyId, global::System.Int32 locationId, global::System.Int64 sequence)
         {
             vw_LocationPoints vw_LocationPoints = new vw_LocationPoints();
             vw_LocationPoints.EconomyId = economyId;
             vw_LocationPoints.LocationId = locationId;
             vw_LocationPoints.sequence = sequence;
-            vw_LocationPoints.Lat = lat;
-            vw_LocationPoints.Long = @long;
             return vw_LocationPoints;
         }
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -8525,7 +8759,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -8552,7 +8786,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnLocationIdChanging(value);
                     ReportPropertyChanging("LocationId");
-                    _LocationId = StructuralObject.SetValidValue(value);
+                    _LocationId = StructuralObject.SetValidValue(value, "LocationId");
                     ReportPropertyChanged("LocationId");
                     OnLocationIdChanged();
                 }
@@ -8579,7 +8813,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnsequenceChanging(value);
                     ReportPropertyChanging("sequence");
-                    _sequence = StructuralObject.SetValidValue(value);
+                    _sequence = StructuralObject.SetValidValue(value, "sequence");
                     ReportPropertyChanged("sequence");
                     OnsequenceChanged();
                 }
@@ -8592,9 +8826,9 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Double Lat
+        public Nullable<global::System.Double> Lat
         {
             get
             {
@@ -8604,21 +8838,21 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnLatChanging(value);
                 ReportPropertyChanging("Lat");
-                _Lat = StructuralObject.SetValidValue(value);
+                _Lat = StructuralObject.SetValidValue(value, "Lat");
                 ReportPropertyChanged("Lat");
                 OnLatChanged();
             }
         }
-        private global::System.Double _Lat;
-        partial void OnLatChanging(global::System.Double value);
+        private Nullable<global::System.Double> _Lat;
+        partial void OnLatChanging(Nullable<global::System.Double> value);
         partial void OnLatChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Double Long
+        public Nullable<global::System.Double> Long
         {
             get
             {
@@ -8628,18 +8862,17 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnLongChanging(value);
                 ReportPropertyChanging("Long");
-                _Long = StructuralObject.SetValidValue(value);
+                _Long = StructuralObject.SetValidValue(value, "Long");
                 ReportPropertyChanged("Long");
                 OnLongChanged();
             }
         }
-        private global::System.Double _Long;
-        partial void OnLongChanging(global::System.Double value);
+        private Nullable<global::System.Double> _Long;
+        partial void OnLongChanging(Nullable<global::System.Double> value);
         partial void OnLongChanged();
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -8715,7 +8948,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -8734,7 +8967,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnWealthIdChanging(value);
                     ReportPropertyChanging("WealthId");
-                    _WealthId = StructuralObject.SetValidValue(value);
+                    _WealthId = StructuralObject.SetValidValue(value, "WealthId");
                     ReportPropertyChanged("WealthId");
                     OnWealthIdChanged();
                 }
@@ -8761,7 +8994,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 {
                     OnEconomyIdChanging(value);
                     ReportPropertyChanging("EconomyId");
-                    _EconomyId = StructuralObject.SetValidValue(value);
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
                     ReportPropertyChanged("EconomyId");
                     OnEconomyIdChanged();
                 }
@@ -8786,7 +9019,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
+                _Name = StructuralObject.SetValidValue(value, false, "Name");
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -8810,7 +9043,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnProbabilityChanging(value);
                 ReportPropertyChanging("Probability");
-                _Probability = StructuralObject.SetValidValue(value);
+                _Probability = StructuralObject.SetValidValue(value, "Probability");
                 ReportPropertyChanged("Probability");
                 OnProbabilityChanged();
             }
@@ -8834,7 +9067,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             {
                 OnDisplayOrderChanging(value);
                 ReportPropertyChanging("DisplayOrder");
-                _DisplayOrder = StructuralObject.SetValidValue(value);
+                _DisplayOrder = StructuralObject.SetValidValue(value, "DisplayOrder");
                 ReportPropertyChanged("DisplayOrder");
                 OnDisplayOrderChanged();
             }
@@ -8845,7 +9078,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         #endregion
 
-    
         #region Navigation Properties
     
         /// <summary>
@@ -8958,5 +9190,395 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
     #endregion
 
+    #region ComplexTypes
     
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="GetCurrentActions_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class GetCurrentActions_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new GetCurrentActions_Result object.
+        /// </summary>
+        /// <param name="economyId">Initial value of the EconomyId property.</param>
+        /// <param name="roundId">Initial value of the RoundId property.</param>
+        /// <param name="companyId">Initial value of the CompanyId property.</param>
+        /// <param name="companyName">Initial value of the CompanyName property.</param>
+        /// <param name="typeId">Initial value of the TypeId property.</param>
+        /// <param name="foodGoodType">Initial value of the FoodGoodType property.</param>
+        /// <param name="price">Initial value of the Price property.</param>
+        /// <param name="production">Initial value of the Production property.</param>
+        /// <param name="isRollover">Initial value of the IsRollover property.</param>
+        /// <param name="latitude">Initial value of the Latitude property.</param>
+        /// <param name="longitude">Initial value of the Longitude property.</param>
+        /// <param name="capacityChange">Initial value of the CapacityChange property.</param>
+        public static GetCurrentActions_Result CreateGetCurrentActions_Result(global::System.Int32 economyId, global::System.Int32 roundId, global::System.Int32 companyId, global::System.String companyName, global::System.Int32 typeId, global::System.String foodGoodType, global::System.Double price, global::System.Double production, global::System.Boolean isRollover, global::System.Double latitude, global::System.Double longitude, global::System.Double capacityChange)
+        {
+            GetCurrentActions_Result getCurrentActions_Result = new GetCurrentActions_Result();
+            getCurrentActions_Result.EconomyId = economyId;
+            getCurrentActions_Result.RoundId = roundId;
+            getCurrentActions_Result.CompanyId = companyId;
+            getCurrentActions_Result.CompanyName = companyName;
+            getCurrentActions_Result.TypeId = typeId;
+            getCurrentActions_Result.FoodGoodType = foodGoodType;
+            getCurrentActions_Result.Price = price;
+            getCurrentActions_Result.Production = production;
+            getCurrentActions_Result.IsRollover = isRollover;
+            getCurrentActions_Result.Latitude = latitude;
+            getCurrentActions_Result.Longitude = longitude;
+            getCurrentActions_Result.CapacityChange = capacityChange;
+            return getCurrentActions_Result;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 EconomyId
+        {
+            get
+            {
+                return _EconomyId;
+            }
+            set
+            {
+                OnEconomyIdChanging(value);
+                ReportPropertyChanging("EconomyId");
+                _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
+                ReportPropertyChanged("EconomyId");
+                OnEconomyIdChanged();
+            }
+        }
+        private global::System.Int32 _EconomyId;
+        partial void OnEconomyIdChanging(global::System.Int32 value);
+        partial void OnEconomyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RoundId
+        {
+            get
+            {
+                return _RoundId;
+            }
+            set
+            {
+                OnRoundIdChanging(value);
+                ReportPropertyChanging("RoundId");
+                _RoundId = StructuralObject.SetValidValue(value, "RoundId");
+                ReportPropertyChanged("RoundId");
+                OnRoundIdChanged();
+            }
+        }
+        private global::System.Int32 _RoundId;
+        partial void OnRoundIdChanging(global::System.Int32 value);
+        partial void OnRoundIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CompanyId
+        {
+            get
+            {
+                return _CompanyId;
+            }
+            set
+            {
+                OnCompanyIdChanging(value);
+                ReportPropertyChanging("CompanyId");
+                _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
+                ReportPropertyChanged("CompanyId");
+                OnCompanyIdChanged();
+            }
+        }
+        private global::System.Int32 _CompanyId;
+        partial void OnCompanyIdChanging(global::System.Int32 value);
+        partial void OnCompanyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CompanyName
+        {
+            get
+            {
+                return _CompanyName;
+            }
+            set
+            {
+                OnCompanyNameChanging(value);
+                ReportPropertyChanging("CompanyName");
+                _CompanyName = StructuralObject.SetValidValue(value, false, "CompanyName");
+                ReportPropertyChanged("CompanyName");
+                OnCompanyNameChanged();
+            }
+        }
+        private global::System.String _CompanyName;
+        partial void OnCompanyNameChanging(global::System.String value);
+        partial void OnCompanyNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TypeId
+        {
+            get
+            {
+                return _TypeId;
+            }
+            set
+            {
+                OnTypeIdChanging(value);
+                ReportPropertyChanging("TypeId");
+                _TypeId = StructuralObject.SetValidValue(value, "TypeId");
+                ReportPropertyChanged("TypeId");
+                OnTypeIdChanged();
+            }
+        }
+        private global::System.Int32 _TypeId;
+        partial void OnTypeIdChanging(global::System.Int32 value);
+        partial void OnTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FoodGoodType
+        {
+            get
+            {
+                return _FoodGoodType;
+            }
+            set
+            {
+                OnFoodGoodTypeChanging(value);
+                ReportPropertyChanging("FoodGoodType");
+                _FoodGoodType = StructuralObject.SetValidValue(value, false, "FoodGoodType");
+                ReportPropertyChanged("FoodGoodType");
+                OnFoodGoodTypeChanged();
+            }
+        }
+        private global::System.String _FoodGoodType;
+        partial void OnFoodGoodTypeChanging(global::System.String value);
+        partial void OnFoodGoodTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> CapacityLast
+        {
+            get
+            {
+                return _CapacityLast;
+            }
+            set
+            {
+                OnCapacityLastChanging(value);
+                ReportPropertyChanging("CapacityLast");
+                _CapacityLast = StructuralObject.SetValidValue(value, "CapacityLast");
+                ReportPropertyChanged("CapacityLast");
+                OnCapacityLastChanged();
+            }
+        }
+        private Nullable<global::System.Double> _CapacityLast;
+        partial void OnCapacityLastChanging(Nullable<global::System.Double> value);
+        partial void OnCapacityLastChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PriceLast
+        {
+            get
+            {
+                return _PriceLast;
+            }
+            set
+            {
+                OnPriceLastChanging(value);
+                ReportPropertyChanging("PriceLast");
+                _PriceLast = StructuralObject.SetValidValue(value, "PriceLast");
+                ReportPropertyChanged("PriceLast");
+                OnPriceLastChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PriceLast;
+        partial void OnPriceLastChanging(Nullable<global::System.Double> value);
+        partial void OnPriceLastChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Price
+        {
+            get
+            {
+                return _Price;
+            }
+            set
+            {
+                OnPriceChanging(value);
+                ReportPropertyChanging("Price");
+                _Price = StructuralObject.SetValidValue(value, "Price");
+                ReportPropertyChanged("Price");
+                OnPriceChanged();
+            }
+        }
+        private global::System.Double _Price;
+        partial void OnPriceChanging(global::System.Double value);
+        partial void OnPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Production
+        {
+            get
+            {
+                return _Production;
+            }
+            set
+            {
+                OnProductionChanging(value);
+                ReportPropertyChanging("Production");
+                _Production = StructuralObject.SetValidValue(value, "Production");
+                ReportPropertyChanged("Production");
+                OnProductionChanged();
+            }
+        }
+        private global::System.Double _Production;
+        partial void OnProductionChanging(global::System.Double value);
+        partial void OnProductionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsRollover
+        {
+            get
+            {
+                return _IsRollover;
+            }
+            set
+            {
+                OnIsRolloverChanging(value);
+                ReportPropertyChanging("IsRollover");
+                _IsRollover = StructuralObject.SetValidValue(value, "IsRollover");
+                ReportPropertyChanged("IsRollover");
+                OnIsRolloverChanged();
+            }
+        }
+        private global::System.Boolean _IsRollover;
+        partial void OnIsRolloverChanging(global::System.Boolean value);
+        partial void OnIsRolloverChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Latitude
+        {
+            get
+            {
+                return _Latitude;
+            }
+            set
+            {
+                OnLatitudeChanging(value);
+                ReportPropertyChanging("Latitude");
+                _Latitude = StructuralObject.SetValidValue(value, "Latitude");
+                ReportPropertyChanged("Latitude");
+                OnLatitudeChanged();
+            }
+        }
+        private global::System.Double _Latitude;
+        partial void OnLatitudeChanging(global::System.Double value);
+        partial void OnLatitudeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Longitude
+        {
+            get
+            {
+                return _Longitude;
+            }
+            set
+            {
+                OnLongitudeChanging(value);
+                ReportPropertyChanging("Longitude");
+                _Longitude = StructuralObject.SetValidValue(value, "Longitude");
+                ReportPropertyChanged("Longitude");
+                OnLongitudeChanged();
+            }
+        }
+        private global::System.Double _Longitude;
+        partial void OnLongitudeChanging(global::System.Double value);
+        partial void OnLongitudeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double CapacityChange
+        {
+            get
+            {
+                return _CapacityChange;
+            }
+            set
+            {
+                OnCapacityChangeChanging(value);
+                ReportPropertyChanging("CapacityChange");
+                _CapacityChange = StructuralObject.SetValidValue(value, "CapacityChange");
+                ReportPropertyChanged("CapacityChange");
+                OnCapacityChangeChanged();
+            }
+        }
+        private global::System.Double _CapacityChange;
+        partial void OnCapacityChangeChanging(global::System.Double value);
+        partial void OnCapacityChangeChanged();
+
+        #endregion
+
+    }
+
+    #endregion
+
 }

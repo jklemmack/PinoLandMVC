@@ -9,10 +9,11 @@
     <EntitySet Name="Food_Good_Round" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Good_Round" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Food_Household_Company_Round" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Household_Company_Round" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Food_Industry" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Food_Industry_Age_Wealth" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Food_Industry_Company" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Food_Industry_Company_Round" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company_Round" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Food_Industry_Good_Type" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Good_Type" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Food_Profile_Age_Wealth" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Profile_Age_Wealth" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Food_Industry_Household_Company_Round" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Household_Company_Round" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Good" EntityType="Fuqua.CompetativeAnalysis.Store.Good" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Household" EntityType="Fuqua.CompetativeAnalysis.Store.Household" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="IM_Role" EntityType="Fuqua.CompetativeAnalysis.Store.IM_Role" store:Type="Tables" Schema="dbo" />
@@ -24,17 +25,14 @@
     <EntitySet Name="Profile_Age_Wealth" EntityType="Fuqua.CompetativeAnalysis.Store.Profile_Age_Wealth" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Round" EntityType="Fuqua.CompetativeAnalysis.Store.Round" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Wealth" EntityType="Fuqua.CompetativeAnalysis.Store.Wealth" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="vw_FoodMapData" EntityType="Fuqua.CompetativeAnalysis.Store.vw_FoodMapData" store:Type="Views" store:Schema="dbo" store:Name="vw_FoodMapData">
+    <EntitySet Name="vw_LocationPoints" EntityType="Fuqua.CompetativeAnalysis.Store.vw_LocationPoints" store:Type="Views" store:Schema="dbo" store:Name="vw_LocationPoints">
       <DefiningQuery>SELECT 
-      [vw_FoodMapData].[CompanyId] AS [CompanyId], 
-      [vw_FoodMapData].[RoundId] AS [RoundId], 
-      [vw_FoodMapData].[EconomyId] AS [EconomyId], 
-      [vw_FoodMapData].[CompanyName] AS [CompanyName], 
-      [vw_FoodMapData].[FoodTypeName] AS [FoodTypeName], 
-      [vw_FoodMapData].[CapacityStart] AS [CapacityStart], 
-      [vw_FoodMapData].[LocationId] AS [LocationId], 
-      [vw_FoodMapData].[LocationIdentifier] AS [LocationIdentifier]
-      FROM [dbo].[vw_FoodMapData] AS [vw_FoodMapData]</DefiningQuery>
+      [vw_LocationPoints].[EconomyId] AS [EconomyId], 
+      [vw_LocationPoints].[LocationId] AS [LocationId], 
+      [vw_LocationPoints].[sequence] AS [sequence], 
+      [vw_LocationPoints].[Lat] AS [Lat], 
+      [vw_LocationPoints].[Long] AS [Long]
+      FROM [dbo].[vw_LocationPoints] AS [vw_LocationPoints]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Age_Economy" Association="Fuqua.CompetativeAnalysis.Store.FK_Age_Economy">
       <End Role="Economy" EntitySet="Economy" />
@@ -63,6 +61,18 @@
     <AssociationSet Name="FK_Economy_Round" Association="Fuqua.CompetativeAnalysis.Store.FK_Economy_Round">
       <End Role="Round" EntitySet="Round" />
       <End Role="Economy" EntitySet="Economy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Food_Age_Wealth_Age" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Age_Wealth_Age">
+      <End Role="Age" EntitySet="Age" />
+      <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Food_Age_Wealth_Economy" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Age_Wealth_Economy">
+      <End Role="Economy" EntitySet="Economy" />
+      <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Food_Age_Wealth_Wealth" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Age_Wealth_Wealth">
+      <End Role="Wealth" EntitySet="Wealth" />
+      <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
     </AssociationSet>
     <AssociationSet Name="FK_Food_Good_Company" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Good_Company">
       <End Role="Company" EntitySet="Company" />
@@ -112,6 +122,10 @@
       <End Role="Round" EntitySet="Round" />
       <End Role="Food_Household_Company_Round" EntitySet="Food_Household_Company_Round" />
     </AssociationSet>
+    <AssociationSet Name="FK_Food_Industry_Age_Wealth_Food_Industry" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Age_Wealth_Food_Industry">
+      <End Role="Food_Industry" EntitySet="Food_Industry" />
+      <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
+    </AssociationSet>
     <AssociationSet Name="FK_Food_Industry_Company_Company" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Company_Company">
       <End Role="Company" EntitySet="Company" />
       <End Role="Food_Industry_Company" EntitySet="Food_Industry_Company" />
@@ -144,13 +158,21 @@
       <End Role="Food_Industry" EntitySet="Food_Industry" />
       <End Role="Food_Industry_Good_Type" EntitySet="Food_Industry_Good_Type" />
     </AssociationSet>
+    <AssociationSet Name="FK_Food_Industry_Household_Company_Round_Food_Good" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Household_Company_Round_Food_Good">
+      <End Role="Food_Good" EntitySet="Food_Good" />
+      <End Role="Food_Industry_Household_Company_Round" EntitySet="Food_Industry_Household_Company_Round" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Food_Industry_Household_Company_Round_Household" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Household_Company_Round_Household">
+      <End Role="Household" EntitySet="Household" />
+      <End Role="Food_Industry_Household_Company_Round" EntitySet="Food_Industry_Household_Company_Round" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Food_Industry_Household_Company_Round_Round" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Household_Company_Round_Round">
+      <End Role="Round" EntitySet="Round" />
+      <End Role="Food_Industry_Household_Company_Round" EntitySet="Food_Industry_Household_Company_Round" />
+    </AssociationSet>
     <AssociationSet Name="FK_Food_Industry_Industry" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Industry">
       <End Role="Industry" EntitySet="Industry" />
       <End Role="Food_Industry" EntitySet="Food_Industry" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Food_Profile_Age_Wealth_Profile_Age_Wealth" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Profile_Age_Wealth_Profile_Age_Wealth">
-      <End Role="Profile_Age_Wealth" EntitySet="Profile_Age_Wealth" />
-      <End Role="Food_Profile_Age_Wealth" EntitySet="Food_Profile_Age_Wealth" />
     </AssociationSet>
     <AssociationSet Name="FK_Good_Good" Association="Fuqua.CompetativeAnalysis.Store.FK_Good_Good">
       <End Role="Industry" EntitySet="Industry" />
@@ -158,14 +180,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_Household_Age" Association="Fuqua.CompetativeAnalysis.Store.FK_Household_Age">
       <End Role="Age" EntitySet="Age" />
-      <End Role="Household" EntitySet="Household" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Household_Household" Association="Fuqua.CompetativeAnalysis.Store.FK_Household_Household">
-      <End Role="Economy" EntitySet="Economy" />
-      <End Role="Household" EntitySet="Household" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Household_Location" Association="Fuqua.CompetativeAnalysis.Store.FK_Household_Location">
-      <End Role="Location" EntitySet="Location" />
       <End Role="Household" EntitySet="Household" />
     </AssociationSet>
     <AssociationSet Name="FK_Household_Profile" Association="Fuqua.CompetativeAnalysis.Store.FK_Household_Profile">
@@ -198,6 +212,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Profile_Age_Wealth_Age" Association="Fuqua.CompetativeAnalysis.Store.FK_Profile_Age_Wealth_Age">
       <End Role="Age" EntitySet="Age" />
+      <End Role="Profile_Age_Wealth" EntitySet="Profile_Age_Wealth" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Profile_Age_Wealth_Economy" Association="Fuqua.CompetativeAnalysis.Store.FK_Profile_Age_Wealth_Economy">
+      <End Role="Economy" EntitySet="Economy" />
       <End Role="Profile_Age_Wealth" EntitySet="Profile_Age_Wealth" />
     </AssociationSet>
     <AssociationSet Name="FK_Profile_Age_Wealth_Profile" Association="Fuqua.CompetativeAnalysis.Store.FK_Profile_Age_Wealth_Profile">
@@ -254,6 +272,10 @@
     <Property Name="EndingCash" Type="float" Nullable="false" />
     <Property Name="Revenue" Type="float" Nullable="false" />
     <Property Name="Expenses" Type="float" Nullable="false" />
+    <Property Name="FinanceActivity" Type="float" Nullable="false" />
+    <Property Name="Submitted" Type="bit" Nullable="false" />
+    <Property Name="SubmittedTimestamp" Type="datetime" />
+    <Property Name="LastModifiedTimestamp" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
   </EntityType>
   <EntityType Name="Company_User">
     <Key>
@@ -287,6 +309,8 @@
     <Property Name="CompanyId" Type="int" Nullable="false" />
     <Property Name="LocationId" Type="int" Nullable="false" />
     <Property Name="TypeId" Type="int" Nullable="false" />
+    <Property Name="Latitude" Type="float" Nullable="false" />
+    <Property Name="Longitude" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Food_Good_Round">
     <Key>
@@ -310,6 +334,11 @@
     <Property Name="ActualSales" Type="float" Nullable="false" />
     <Property Name="CostOfProduction" Type="float" Nullable="false" />
     <Property Name="CostOfCapacity" Type="float" Nullable="false" />
+    <Property Name="CostOfMaintenance" Type="float" Nullable="false" />
+    <Property Name="CostOfInventory" Type="float" Nullable="false" />
+    <Property Name="InventoryStart" Type="float" Nullable="false" />
+    <Property Name="InventoryEnd" Type="float" Nullable="false" />
+    <Property Name="IsRollover" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Food_Household_Company_Round">
     <Key>
@@ -339,9 +368,27 @@
     <Property Name="MarginalCostStdDev" Type="float" Nullable="false" />
     <Property Name="CapacityDecayRate" Type="float" Nullable="false" />
     <Property Name="CapacityResaleRate" Type="float" Nullable="false" />
+    <Property Name="MaintenanceCostMean" Type="float" Nullable="false" />
+    <Property Name="MaintenanceCostStdDev" Type="float" Nullable="false" />
     <Property Name="CanHoldInventory" Type="bit" Nullable="false" />
-    <Property Name="InventoryCost" Type="float" Nullable="false" />
+    <Property Name="InventoryCostMean" Type="float" Nullable="false" />
+    <Property Name="InventoryCostStdDev" Type="float" Nullable="false" />
     <Property Name="Elasticity" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Food_Industry_Age_Wealth">
+    <Key>
+      <PropertyRef Name="IndustryId" />
+      <PropertyRef Name="EconomyId" />
+      <PropertyRef Name="AgeId" />
+      <PropertyRef Name="WealthId" />
+    </Key>
+    <Property Name="IndustryId" Type="int" Nullable="false" />
+    <Property Name="EconomyId" Type="int" Nullable="false" />
+    <Property Name="AgeId" Type="int" Nullable="false" />
+    <Property Name="WealthId" Type="int" Nullable="false" />
+    <Property Name="Sigma" Type="float" Nullable="false" />
+    <Property Name="SensitivityType" Type="float" Nullable="false" />
+    <Property Name="SensitivityDistance" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Food_Industry_Company">
     <Key>
@@ -355,6 +402,8 @@
     <Property Name="EntryCost" Type="float" Nullable="false" />
     <Property Name="CapacityCost" Type="float" Nullable="false" />
     <Property Name="MarginalCost" Type="float" Nullable="false" />
+    <Property Name="MaintenanceCost" Type="float" Nullable="false" />
+    <Property Name="InventoryCost" Type="float" Nullable="false" />
     <Property Name="EntranceRoundId" Type="int" />
   </EntityType>
   <EntityType Name="Food_Industry_Company_Round">
@@ -372,6 +421,7 @@
     <Property Name="CostOfCapacity" Type="float" Nullable="false" />
     <Property Name="CostOfProduction" Type="float" Nullable="false" />
     <Property Name="CostOfInventory" Type="float" Nullable="false" />
+    <Property Name="CostOfMaintenance" Type="float" Nullable="false" />
     <Property Name="Revenue" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Food_Industry_Good_Type">
@@ -385,20 +435,24 @@
     <Property Name="EconomyId" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
-  <EntityType Name="Food_Profile_Age_Wealth">
+  <EntityType Name="Food_Industry_Household_Company_Round">
     <Key>
-      <PropertyRef Name="ProfileId" />
+      <PropertyRef Name="RoundId" />
+      <PropertyRef Name="CompanyId" />
+      <PropertyRef Name="IndustryId" />
+      <PropertyRef Name="GoodId" />
+      <PropertyRef Name="HouseholdId" />
       <PropertyRef Name="EconomyId" />
-      <PropertyRef Name="AgeId" />
-      <PropertyRef Name="WealthId" />
     </Key>
-    <Property Name="ProfileId" Type="int" Nullable="false" />
+    <Property Name="RoundId" Type="int" Nullable="false" />
+    <Property Name="CompanyId" Type="int" Nullable="false" />
+    <Property Name="IndustryId" Type="int" Nullable="false" />
+    <Property Name="GoodId" Type="int" Nullable="false" />
+    <Property Name="HouseholdId" Type="int" Nullable="false" />
     <Property Name="EconomyId" Type="int" Nullable="false" />
-    <Property Name="AgeId" Type="int" Nullable="false" />
-    <Property Name="WealthId" Type="int" Nullable="false" />
-    <Property Name="Sigma" Type="float" Nullable="false" />
-    <Property Name="SensitivityType" Type="float" Nullable="false" />
-    <Property Name="SensitivityDistance" Type="float" Nullable="false" />
+    <Property Name="QuantityBought" Type="float" Nullable="false" />
+    <Property Name="PriceBought" Type="float" Nullable="false" />
+    <Property Name="Surplus" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Good">
     <Key>
@@ -419,9 +473,11 @@
     <Property Name="HouseholdId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="EconomyId" Type="int" Nullable="false" />
     <Property Name="Identifier" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" />
     <Property Name="AgeId" Type="int" Nullable="false" />
     <Property Name="WealthId" Type="int" Nullable="false" />
+    <Property Name="Latitude" Type="float" />
+    <Property Name="Longitude" Type="float" />
     <Property Name="ProfileId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="IM_Role">
@@ -462,7 +518,7 @@
     <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6005: The data type 'geometry' is not supported; the column 'Shape' in table 'PinoLand.dbo.Location' was excluded.
+      warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'Shape' in the table 'PinoLandMVC.dbo.Location' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
       -->
   <EntityType Name="Location">
     <Key>
@@ -472,10 +528,12 @@
     <Property Name="LocationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="EconomyId" Type="int" Nullable="false" />
     <Property Name="Identifier" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
     <Property Name="CenterX" Type="float" Nullable="false" />
     <Property Name="CenterY" Type="float" Nullable="false" />
     <Property Name="ProfileId" Type="int" Nullable="false" />
     <Property Name="TotalPopulation" Type="int" Nullable="false" />
+    <Property Name="Interactive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile">
     <Key>
@@ -485,6 +543,7 @@
     <Property Name="ProfileId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="EconomyId" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TotalPopulation" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Profile_Age_Wealth">
     <Key>
@@ -522,27 +581,19 @@
     <Property Name="DisplayOrder" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-      warning 6002: The table/view 'PinoLand.dbo.vw_FoodMapData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'PinoLandMVC.dbo.vw_LocationPoints' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
-  <EntityType Name="vw_FoodMapData">
+  <EntityType Name="vw_LocationPoints">
     <Key>
-      <PropertyRef Name="CompanyId" />
-      <PropertyRef Name="RoundId" />
       <PropertyRef Name="EconomyId" />
-      <PropertyRef Name="CompanyName" />
-      <PropertyRef Name="FoodTypeName" />
-      <PropertyRef Name="CapacityStart" />
       <PropertyRef Name="LocationId" />
-      <PropertyRef Name="LocationIdentifier" />
+      <PropertyRef Name="sequence" />
     </Key>
-    <Property Name="CompanyId" Type="int" Nullable="false" />
-    <Property Name="RoundId" Type="int" Nullable="false" />
     <Property Name="EconomyId" Type="int" Nullable="false" />
-    <Property Name="CompanyName" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="FoodTypeName" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="CapacityStart" Type="float" Nullable="false" />
     <Property Name="LocationId" Type="int" Nullable="false" />
-    <Property Name="LocationIdentifier" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="sequence" Type="bigint" Nullable="false" />
+    <Property Name="Lat" Type="float" />
+    <Property Name="Long" Type="float" />
   </EntityType>
   <Association Name="FK_Age_Economy">
     <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
@@ -632,6 +683,46 @@
       </Principal>
       <Dependent Role="Economy">
         <PropertyRef Name="CurrentRoundId" />
+        <PropertyRef Name="EconomyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Food_Age_Wealth_Age">
+    <End Role="Age" Type="Fuqua.CompetativeAnalysis.Store.Age" Multiplicity="1" />
+    <End Role="Food_Industry_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Age">
+        <PropertyRef Name="AgeId" />
+        <PropertyRef Name="EconomyId" />
+      </Principal>
+      <Dependent Role="Food_Industry_Age_Wealth">
+        <PropertyRef Name="AgeId" />
+        <PropertyRef Name="EconomyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Food_Age_Wealth_Economy">
+    <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
+    <End Role="Food_Industry_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Economy">
+        <PropertyRef Name="EconomyId" />
+      </Principal>
+      <Dependent Role="Food_Industry_Age_Wealth">
+        <PropertyRef Name="EconomyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Food_Age_Wealth_Wealth">
+    <End Role="Wealth" Type="Fuqua.CompetativeAnalysis.Store.Wealth" Multiplicity="1" />
+    <End Role="Food_Industry_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Wealth">
+        <PropertyRef Name="WealthId" />
+        <PropertyRef Name="EconomyId" />
+      </Principal>
+      <Dependent Role="Food_Industry_Age_Wealth">
+        <PropertyRef Name="WealthId" />
         <PropertyRef Name="EconomyId" />
       </Dependent>
     </ReferentialConstraint>
@@ -814,6 +905,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Food_Industry_Age_Wealth_Food_Industry">
+    <End Role="Food_Industry" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry" Multiplicity="1" />
+    <End Role="Food_Industry_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food_Industry">
+        <PropertyRef Name="IndustryId" />
+        <PropertyRef Name="EconomyId" />
+      </Principal>
+      <Dependent Role="Food_Industry_Age_Wealth">
+        <PropertyRef Name="IndustryId" />
+        <PropertyRef Name="EconomyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Food_Industry_Company_Company">
     <End Role="Company" Type="Fuqua.CompetativeAnalysis.Store.Company" Multiplicity="1" />
     <End Role="Food_Industry_Company" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company" Multiplicity="*" />
@@ -928,6 +1033,50 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Food_Industry_Household_Company_Round_Food_Good">
+    <End Role="Food_Good" Type="Fuqua.CompetativeAnalysis.Store.Food_Good" Multiplicity="1" />
+    <End Role="Food_Industry_Household_Company_Round" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Household_Company_Round" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food_Good">
+        <PropertyRef Name="IndustryId" />
+        <PropertyRef Name="GoodId" />
+        <PropertyRef Name="EconomyId" />
+      </Principal>
+      <Dependent Role="Food_Industry_Household_Company_Round">
+        <PropertyRef Name="IndustryId" />
+        <PropertyRef Name="GoodId" />
+        <PropertyRef Name="EconomyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Food_Industry_Household_Company_Round_Household">
+    <End Role="Household" Type="Fuqua.CompetativeAnalysis.Store.Household" Multiplicity="1" />
+    <End Role="Food_Industry_Household_Company_Round" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Household_Company_Round" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Household">
+        <PropertyRef Name="HouseholdId" />
+        <PropertyRef Name="EconomyId" />
+      </Principal>
+      <Dependent Role="Food_Industry_Household_Company_Round">
+        <PropertyRef Name="HouseholdId" />
+        <PropertyRef Name="EconomyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Food_Industry_Household_Company_Round_Round">
+    <End Role="Round" Type="Fuqua.CompetativeAnalysis.Store.Round" Multiplicity="1" />
+    <End Role="Food_Industry_Household_Company_Round" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Household_Company_Round" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Round">
+        <PropertyRef Name="RoundId" />
+        <PropertyRef Name="EconomyId" />
+      </Principal>
+      <Dependent Role="Food_Industry_Household_Company_Round">
+        <PropertyRef Name="RoundId" />
+        <PropertyRef Name="EconomyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Food_Industry_Industry">
     <End Role="Industry" Type="Fuqua.CompetativeAnalysis.Store.Industry" Multiplicity="1" />
     <End Role="Food_Industry" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry" Multiplicity="0..1" />
@@ -939,24 +1088,6 @@
       <Dependent Role="Food_Industry">
         <PropertyRef Name="IndustryId" />
         <PropertyRef Name="EconomyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Food_Profile_Age_Wealth_Profile_Age_Wealth">
-    <End Role="Profile_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Profile_Age_Wealth" Multiplicity="1" />
-    <End Role="Food_Profile_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Food_Profile_Age_Wealth" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Profile_Age_Wealth">
-        <PropertyRef Name="ProfileId" />
-        <PropertyRef Name="EconomyId" />
-        <PropertyRef Name="AgeId" />
-        <PropertyRef Name="WealthId" />
-      </Principal>
-      <Dependent Role="Food_Profile_Age_Wealth">
-        <PropertyRef Name="ProfileId" />
-        <PropertyRef Name="EconomyId" />
-        <PropertyRef Name="AgeId" />
-        <PropertyRef Name="WealthId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -984,32 +1115,6 @@
       </Principal>
       <Dependent Role="Household">
         <PropertyRef Name="AgeId" />
-        <PropertyRef Name="EconomyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Household_Household">
-    <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
-    <End Role="Household" Type="Fuqua.CompetativeAnalysis.Store.Household" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Economy">
-        <PropertyRef Name="EconomyId" />
-      </Principal>
-      <Dependent Role="Household">
-        <PropertyRef Name="EconomyId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Household_Location">
-    <End Role="Location" Type="Fuqua.CompetativeAnalysis.Store.Location" Multiplicity="1" />
-    <End Role="Household" Type="Fuqua.CompetativeAnalysis.Store.Household" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Location">
-        <PropertyRef Name="LocationId" />
-        <PropertyRef Name="EconomyId" />
-      </Principal>
-      <Dependent Role="Household">
-        <PropertyRef Name="LocationId" />
         <PropertyRef Name="EconomyId" />
       </Dependent>
     </ReferentialConstraint>
@@ -1118,6 +1223,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Profile_Age_Wealth_Economy">
+    <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
+    <End Role="Profile_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Profile_Age_Wealth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Economy">
+        <PropertyRef Name="EconomyId" />
+      </Principal>
+      <Dependent Role="Profile_Age_Wealth">
+        <PropertyRef Name="EconomyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Profile_Age_Wealth_Profile">
     <End Role="Profile" Type="Fuqua.CompetativeAnalysis.Store.Profile" Multiplicity="1" />
     <End Role="Profile_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Profile_Age_Wealth" Multiplicity="*" />
@@ -1184,4 +1301,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_SetLocationShape" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LocationId" Type="int" Mode="In" />
+    <Parameter Name="lng1" Type="float" Mode="In" />
+    <Parameter Name="lat1" Type="float" Mode="In" />
+    <Parameter Name="lng2" Type="float" Mode="In" />
+    <Parameter Name="lat2" Type="float" Mode="In" />
+    <Parameter Name="lng3" Type="float" Mode="In" />
+    <Parameter Name="lat3" Type="float" Mode="In" />
+    <Parameter Name="lng4" Type="float" Mode="In" />
+    <Parameter Name="lat4" Type="float" Mode="In" />
+  </Function>
 </Schema>

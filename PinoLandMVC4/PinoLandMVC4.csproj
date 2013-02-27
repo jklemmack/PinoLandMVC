@@ -13,9 +13,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PinoLandMVC4</RootNamespace>
     <AssemblyName>PinoLandMVC4</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
+    <TargetFrameworkProfile />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +39,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML">
@@ -55,6 +62,7 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activities" />
     <Reference Include="System.ServiceModel.Channels" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -263,6 +271,14 @@
     <Content Include="Content\themes\start\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\images\marker-icon-blue.png" />
+    <Content Include="Scripts\images\marker-icon-green.png" />
+    <Content Include="Scripts\images\marker-icon-grey.png" />
+    <Content Include="Scripts\images\marker-icon-purple.png" />
+    <Content Include="Scripts\images\marker-icon-red.png" />
+    <Content Include="Scripts\images\marker-icon-white.png" />
+    <Content Include="Scripts\images\marker-icon-yellow.png" />
+    <Content Include="Scripts\images\marker-icon.png" />
     <Content Include="Scripts\jquery-1.9.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -285,7 +301,6 @@
     <Content Include="Content\leaflet.css" />
     <Content Include="Scripts\leaflet.js" />
     <Content Include="Scripts\leaflet.markercluster.js" />
-    <Content Include="Scripts\images\marker-icon.png" />
     <Content Include="Scripts\images\marker-shadow.png" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\Site\Economy.js" />
@@ -318,10 +333,12 @@
     <Content Include="Views\Reports\ReportControl.ascx" />
     <Content Include="Views\Shared\LogOnControl.ascx" />
     <Content Include="Views\Student\GameList.aspx" />
-    <Content Include="Views\Student\Index.aspx" />
+    <Content Include="Views\Student\Details.aspx" />
+    <Content Include="Views\Student\NoValidGames.aspx" />
+    <Content Include="Views\Student\Parts\Actions.ascx" />
+    <Content Include="Views\Student\Parts\EditRestaurant.ascx" />
     <Content Include="Views\Student\Parts\News.ascx" />
     <Content Include="Views\Student\Parts\SmallMap.ascx" />
-    <Content Include="Views\Student\ReportViewer.aspx" />
     <Content Include="Views\Tile\Index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

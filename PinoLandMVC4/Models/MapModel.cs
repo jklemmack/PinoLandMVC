@@ -13,7 +13,7 @@ namespace PinoLandMVC4.Models
         public int top;
         public int bottom;
 
-        static PinolandBounds LLBOUNDS = new PinolandBounds() { top = 1, right = 1, bottom = -1, left = -1 };
+        public static PinolandBounds LLBOUNDS = new PinolandBounds() { top = 1, right = 1, bottom = -1, left = -1 };
     }
 
 }

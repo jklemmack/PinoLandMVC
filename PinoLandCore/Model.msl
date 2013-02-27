@@ -23,6 +23,10 @@
     <EntitySetMapping Name="Company_Round">
       <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Company_Round">
         <MappingFragment StoreEntitySet="Company_Round">
+          <ScalarProperty Name="LastModifiedTimestamp" ColumnName="LastModifiedTimestamp" />
+          <ScalarProperty Name="SubmittedTimestamp" ColumnName="SubmittedTimestamp" />
+          <ScalarProperty Name="Submitted" ColumnName="Submitted" />
+          <ScalarProperty Name="FinanceActivity" ColumnName="FinanceActivity" />
           <ScalarProperty Name="Expenses" ColumnName="Expenses" />
           <ScalarProperty Name="Revenue" ColumnName="Revenue" />
           <ScalarProperty Name="RoundId" ColumnName="RoundId" />
@@ -55,6 +59,8 @@
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Fuqua.CompetativeAnalysis.MarketGame.Food_Good)">
         <MappingFragment StoreEntitySet="Food_Good">
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
           <ScalarProperty Name="GoodId" ColumnName="GoodId" />
           <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
@@ -67,13 +73,15 @@
     <EntitySetMapping Name="Households">
       <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Household">
         <MappingFragment StoreEntitySet="Household">
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
           <ScalarProperty Name="HouseholdId" ColumnName="HouseholdId" />
           <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
           <ScalarProperty Name="Identifier" ColumnName="Identifier" />
           <ScalarProperty Name="LocationId" ColumnName="LocationId" />
           <ScalarProperty Name="AgeId" ColumnName="AgeId" />
           <ScalarProperty Name="WealthId" ColumnName="WealthId" />
-          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -88,8 +96,11 @@
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry)">
         <MappingFragment StoreEntitySet="Food_Industry">
+          <ScalarProperty Name="InventoryCostStdDev" ColumnName="InventoryCostStdDev" />
+          <ScalarProperty Name="InventoryCostMean" ColumnName="InventoryCostMean" />
+          <ScalarProperty Name="MaintenanceCostStdDev" ColumnName="MaintenanceCostStdDev" />
+          <ScalarProperty Name="MaintenanceCostMean" ColumnName="MaintenanceCostMean" />
           <ScalarProperty Name="Elasticity" ColumnName="Elasticity" />
-          <ScalarProperty Name="InventoryCost" ColumnName="InventoryCost" />
           <ScalarProperty Name="CanHoldInventory" ColumnName="CanHoldInventory" />
           <ScalarProperty Name="CapacityResaleRate" ColumnName="CapacityResaleRate" />
           <ScalarProperty Name="CapacityDecayRate" ColumnName="CapacityDecayRate" />
@@ -107,6 +118,8 @@
     <EntitySetMapping Name="Locations">
       <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Location">
         <MappingFragment StoreEntitySet="Location">
+          <ScalarProperty Name="Interactive" ColumnName="Interactive" />
+          <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="TotalPopulation" ColumnName="TotalPopulation" />
           <ScalarProperty Name="LocationId" ColumnName="LocationId" />
           <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
@@ -114,15 +127,6 @@
           <ScalarProperty Name="CenterX" ColumnName="CenterX" />
           <ScalarProperty Name="CenterY" ColumnName="CenterY" />
           <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Profiles">
-      <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Profile">
-        <MappingFragment StoreEntitySet="Profile">
-          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-          <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -172,6 +176,11 @@
     <EntitySetMapping Name="Food_Good_Round">
       <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Good_Round">
         <MappingFragment StoreEntitySet="Food_Good_Round">
+          <ScalarProperty Name="IsRollover" ColumnName="IsRollover" />
+          <ScalarProperty Name="CostOfInventory" ColumnName="CostOfInventory" />
+          <ScalarProperty Name="CostOfMaintenance" ColumnName="CostOfMaintenance" />
+          <ScalarProperty Name="InventoryEnd" ColumnName="InventoryEnd" />
+          <ScalarProperty Name="InventoryStart" ColumnName="InventoryStart" />
           <ScalarProperty Name="Production" ColumnName="Production" />
           <ScalarProperty Name="CostOfCapacity" ColumnName="CostOfCapacity" />
           <ScalarProperty Name="CostOfProduction" ColumnName="CostOfProduction" />
@@ -201,22 +210,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Food_Profile_Age_Wealth">
-      <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Profile_Age_Wealth">
-        <MappingFragment StoreEntitySet="Food_Profile_Age_Wealth">
-          <ScalarProperty Name="SensitivityDistance" ColumnName="SensitivityDistance" />
-          <ScalarProperty Name="SensitivityType" ColumnName="SensitivityType" />
-          <ScalarProperty Name="Sigma" ColumnName="Sigma" />
-          <ScalarProperty Name="WealthId" ColumnName="WealthId" />
-          <ScalarProperty Name="AgeId" ColumnName="AgeId" />
-          <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
-          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Food_Industry_Company">
       <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company">
         <MappingFragment StoreEntitySet="Food_Industry_Company">
+          <ScalarProperty Name="InventoryCost" ColumnName="InventoryCost" />
+          <ScalarProperty Name="MaintenanceCost" ColumnName="MaintenanceCost" />
           <ScalarProperty Name="EntranceRoundId" ColumnName="EntranceRoundId" />
           <ScalarProperty Name="MarginalCost" ColumnName="MarginalCost" />
           <ScalarProperty Name="CapacityCost" ColumnName="CapacityCost" />
@@ -230,6 +228,7 @@
     <EntitySetMapping Name="Food_Industry_Company_Round">
       <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round">
         <MappingFragment StoreEntitySet="Food_Industry_Company_Round">
+          <ScalarProperty Name="CostOfMaintenance" ColumnName="CostOfMaintenance" />
           <ScalarProperty Name="Revenue" ColumnName="Revenue" />
           <ScalarProperty Name="CostOfInventory" ColumnName="CostOfInventory" />
           <ScalarProperty Name="CostOfProduction" ColumnName="CostOfProduction" />
@@ -247,20 +246,6 @@
         <MappingFragment StoreEntitySet="IM_Role">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="vw_FoodMapData">
-      <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapData">
-        <MappingFragment StoreEntitySet="vw_FoodMapData">
-          <ScalarProperty Name="LocationIdentifier" ColumnName="LocationIdentifier" />
-          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-          <ScalarProperty Name="CapacityStart" ColumnName="CapacityStart" />
-          <ScalarProperty Name="FoodTypeName" ColumnName="FoodTypeName" />
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
-          <ScalarProperty Name="RoundId" ColumnName="RoundId" />
-          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -294,5 +279,55 @@
         <ScalarProperty Name="RoleId" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Food_Industry_Household_Company_Round">
+      <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round">
+        <MappingFragment StoreEntitySet="Food_Industry_Household_Company_Round">
+          <ScalarProperty Name="PriceBought" ColumnName="PriceBought" />
+          <ScalarProperty Name="Surplus" ColumnName="Surplus" />
+          <ScalarProperty Name="QuantityBought" ColumnName="QuantityBought" />
+          <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+          <ScalarProperty Name="HouseholdId" ColumnName="HouseholdId" />
+          <ScalarProperty Name="GoodId" ColumnName="GoodId" />
+          <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="RoundId" ColumnName="RoundId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SetLocationShape" FunctionName="Fuqua.CompetativeAnalysis.Store.sp_SetLocationShape" />
+    <EntitySetMapping Name="vw_LocationPoints">
+      <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPoints">
+        <MappingFragment StoreEntitySet="vw_LocationPoints">
+          <ScalarProperty Name="Long" ColumnName="Long" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="sequence" ColumnName="sequence" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Food_Industry_Age_Wealth">
+      <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth">
+        <MappingFragment StoreEntitySet="Food_Industry_Age_Wealth">
+          <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+          <ScalarProperty Name="SensitivityDistance" ColumnName="SensitivityDistance" />
+          <ScalarProperty Name="SensitivityType" ColumnName="SensitivityType" />
+          <ScalarProperty Name="Sigma" ColumnName="Sigma" />
+          <ScalarProperty Name="WealthId" ColumnName="WealthId" />
+          <ScalarProperty Name="AgeId" ColumnName="AgeId" />
+          <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profiles">
+      <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Profile">
+        <MappingFragment StoreEntitySet="Profile">
+          <ScalarProperty Name="TotalPopulation" ColumnName="TotalPopulation" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
