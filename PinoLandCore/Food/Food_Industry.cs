@@ -93,13 +93,14 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             }
         }
 
-        public void EnterTeamAction(Company company, Location location, double latitude, double longitude, string type
+        public Food_Good_Round EnterTeamAction(Company company, Location location, double latitude, double longitude, string type
                         , double newCapacity, double soldCapacity, double production, double price)
         {
             Food_Good_Round action = GenerateRoundAction(company, location, latitude, longitude, type, newCapacity, soldCapacity, production, price);
 
             // Finally update our known cost from this action
             UpdateTeamCosts(action);
+            return action;
         }
 
         public Food_Good_Round GenerateRoundAction(Company company, Location location, double latitude, double longitude, string type, double newCapacity, double soldCapacity, double production, double price)
@@ -117,7 +118,11 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 fgood.Company = company;
                 fgood.Location = location;
                 fgood.Food_Industry_Good_Type = this.Food_Industry_Good_Type.Single(x => x.Name == type);
-                fgood.Identifier = string.Format("{0} : {1} : {2}", location.Identifier, figType.Name, fgood.Company.Name);
+                //fgood.Identifier = string.Format("{0} : {1} : {2}", location.Identifier, figType.Name, fgood.Company.Name);
+                int sequence = this.Food_Good.Count(fg => fg.EconomyId == this.EconomyId
+                    && fg.CompanyId == company.CompanyId
+                    && fg.Food_Industry_Good_Type.TypeId == fgood.Food_Industry_Good_Type.TypeId) + 1;
+                fgood.Identifier = string.Format("{0} : {1} : {2}", sequence, figType.Name, fgood.Company.Name);
                 fgood.Latitude = latitude;
                 fgood.Longitude = longitude;
             }

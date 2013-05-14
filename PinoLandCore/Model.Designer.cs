@@ -9217,7 +9217,8 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="latitude">Initial value of the Latitude property.</param>
         /// <param name="longitude">Initial value of the Longitude property.</param>
         /// <param name="capacityChange">Initial value of the CapacityChange property.</param>
-        public static GetCurrentActions_Result CreateGetCurrentActions_Result(global::System.Int32 economyId, global::System.Int32 roundId, global::System.Int32 companyId, global::System.String companyName, global::System.Int32 typeId, global::System.String foodGoodType, global::System.Double price, global::System.Double production, global::System.Boolean isRollover, global::System.Double latitude, global::System.Double longitude, global::System.Double capacityChange)
+        /// <param name="goodId">Initial value of the GoodId property.</param>
+        public static GetCurrentActions_Result CreateGetCurrentActions_Result(global::System.Int32 economyId, global::System.Int32 roundId, global::System.Int32 companyId, global::System.String companyName, global::System.Int32 typeId, global::System.String foodGoodType, global::System.Double price, global::System.Double production, global::System.Boolean isRollover, global::System.Double latitude, global::System.Double longitude, global::System.Double capacityChange, global::System.Int32 goodId)
         {
             GetCurrentActions_Result getCurrentActions_Result = new GetCurrentActions_Result();
             getCurrentActions_Result.EconomyId = economyId;
@@ -9232,6 +9233,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             getCurrentActions_Result.Latitude = latitude;
             getCurrentActions_Result.Longitude = longitude;
             getCurrentActions_Result.CapacityChange = capacityChange;
+            getCurrentActions_Result.GoodId = goodId;
             return getCurrentActions_Result;
         }
 
@@ -9574,6 +9576,30 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         private global::System.Double _CapacityChange;
         partial void OnCapacityChangeChanging(global::System.Double value);
         partial void OnCapacityChangeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 GoodId
+        {
+            get
+            {
+                return _GoodId;
+            }
+            set
+            {
+                OnGoodIdChanging(value);
+                ReportPropertyChanging("GoodId");
+                _GoodId = StructuralObject.SetValidValue(value, "GoodId");
+                ReportPropertyChanged("GoodId");
+                OnGoodIdChanged();
+            }
+        }
+        private global::System.Int32 _GoodId;
+        partial void OnGoodIdChanging(global::System.Int32 value);
+        partial void OnGoodIdChanged();
 
         #endregion
 

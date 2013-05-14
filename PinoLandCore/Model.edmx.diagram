@@ -105,7 +105,7 @@
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Household" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Household" />
       </edmx:Diagram>
-      <edmx:Diagram DiagramId="009985f820094487858dad1b41868816" Name="Core" ZoomLevel="47" >
+      <edmx:Diagram DiagramId="009985f820094487858dad1b41868816" Name="Core" ZoomLevel="105" >
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Age" Width="1.5" PointX="7.5" PointY="13.75" />
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company" Width="1.5" PointX="7.5" PointY="17.25" />
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company_Round" Width="1.5" PointX="9.75" PointY="15.875" />
