@@ -24,7 +24,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Company_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Company), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Company_Round_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Company), "Company_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Company_Round), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Company_Round_Round", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), "Company_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Company_Round), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Economy_Round", "CurrentRound", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Household", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Household", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Household), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Industry_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Industry), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Location_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Location), true)]
@@ -52,24 +51,41 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Round_Company_Round", "Company_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Company_Round), "Food_Industry_Company_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Round_Food_Industry_Company", "Food_Industry_Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company), "Food_Industry_Company_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Round_Round", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), "Food_Industry_Company_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Round", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), "Food_Industry_Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Round_Food_Industry_Company_Round", "Food_Industry_Company_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round), "Food_Good_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Good_Round), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "Company_User", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Company), "IM_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.IM_User))]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "IM_User_Role", "IM_Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.IM_Role), "IM_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.IM_User))]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Household_Company_Round_Household", "Household", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Household), "Food_Industry_Household_Company_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Household_Company_Round_Food_Good", "Food_Good", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Good), "Food_Industry_Household_Company_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Household_Company_Round_Round", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), "Food_Industry_Household_Company_Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_LocationPointsLocation", "vw_LocationPoints", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPoints), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Location), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Age", "Age", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Age), "Food_Industry_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Food_Industry_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Wealth", "Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Wealth), "Food_Industry_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth), true)]
-[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Food_Industry", "Food_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry), "Food_Industry_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Location_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Location), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Profile_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Profile", "Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile), "Household", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Household), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Age_Wealth_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Profile_Age_Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth), true)]
 [assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Round_Round_State", "Round_State", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round_State), "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Household1", "Household", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Household), "Household1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Fuqua.CompetativeAnalysis.MarketGame.Household), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Location_Food_Industry_Company", "Food_Industry_Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company), "Food_Industry_Company_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Location_Location", "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Location), "Food_Industry_Company_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Location_Food_Industry", "Food_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry), "Food_Industry_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Location_Location", "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Location), "Food_Industry_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Location_Food_Industry_Good_Type", "Food_Industry_Good_Type", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type), "Food_Industry_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Food_Industry_Location", "Food_Industry_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location), "Food_Good", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Good), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Location_Food_Industry_Location", "Food_Industry_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location), "Food_Industry_Company_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Food_Industry_Company", "Food_Industry_Company", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company), "Food_Good", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Good), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Food_Industry", "Food_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry), "Food_Industry_Age_Wealth_Type", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type", "Food_Industry_Good_Type", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type), "Food_Industry_Age_Wealth_Type", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Age", "Age", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Age), "Food_Industry_Age_Wealth_Type", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Wealth", "Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Wealth), "Food_Industry_Age_Wealth_Type", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PublicDemandDataEconomy", "vw_PublicDemandData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandData), "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PopulationByLocationLocation", "vw_PopulationByLocation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocation), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Location), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PopulationByLocationAge", "vw_PopulationByLocation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocation), "Age", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Age), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PopulationByLocationWealth", "vw_PopulationByLocation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocation), "Wealth", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Wealth), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Food_Industry_Company_Location", "Food_Industry_Company_Location", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location), "Food_Good", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Good), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_FoodMapDataLocation", "vw_FoodMapData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapData), "Location", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Location), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_FoodMapDataRound", "vw_FoodMapData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapData), "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_FoodMapDataFood_Industry_Good_Type", "vw_FoodMapData", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapData), "Food_Industry_Good_Type", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Round", "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), "Food_Good", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Food_Good), true)]
+[assembly: EdmRelationshipAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Round_Economy", "Economy", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Fuqua.CompetativeAnalysis.MarketGame.Economy), "Round", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Fuqua.CompetativeAnalysis.MarketGame.Round), true)]
 
 #endregion
 
@@ -428,38 +444,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<vw_LocationPoints> vw_LocationPoints
-        {
-            get
-            {
-                if ((_vw_LocationPoints == null))
-                {
-                    _vw_LocationPoints = base.CreateObjectSet<vw_LocationPoints>("vw_LocationPoints");
-                }
-                return _vw_LocationPoints;
-            }
-        }
-        private ObjectSet<vw_LocationPoints> _vw_LocationPoints;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Food_Industry_Age_Wealth> Food_Industry_Age_Wealth
-        {
-            get
-            {
-                if ((_Food_Industry_Age_Wealth == null))
-                {
-                    _Food_Industry_Age_Wealth = base.CreateObjectSet<Food_Industry_Age_Wealth>("Food_Industry_Age_Wealth");
-                }
-                return _Food_Industry_Age_Wealth;
-            }
-        }
-        private ObjectSet<Food_Industry_Age_Wealth> _Food_Industry_Age_Wealth;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Profile> Profiles
         {
             get
@@ -488,6 +472,102 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             }
         }
         private ObjectSet<Round_State> _Round_State;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Food_Industry_Company_Location> Food_Industry_Company_Location
+        {
+            get
+            {
+                if ((_Food_Industry_Company_Location == null))
+                {
+                    _Food_Industry_Company_Location = base.CreateObjectSet<Food_Industry_Company_Location>("Food_Industry_Company_Location");
+                }
+                return _Food_Industry_Company_Location;
+            }
+        }
+        private ObjectSet<Food_Industry_Company_Location> _Food_Industry_Company_Location;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Food_Industry_Location> Food_Industry_Location
+        {
+            get
+            {
+                if ((_Food_Industry_Location == null))
+                {
+                    _Food_Industry_Location = base.CreateObjectSet<Food_Industry_Location>("Food_Industry_Location");
+                }
+                return _Food_Industry_Location;
+            }
+        }
+        private ObjectSet<Food_Industry_Location> _Food_Industry_Location;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Food_Industry_Age_Wealth_Type> Food_Industry_Age_Wealth_Type
+        {
+            get
+            {
+                if ((_Food_Industry_Age_Wealth_Type == null))
+                {
+                    _Food_Industry_Age_Wealth_Type = base.CreateObjectSet<Food_Industry_Age_Wealth_Type>("Food_Industry_Age_Wealth_Type");
+                }
+                return _Food_Industry_Age_Wealth_Type;
+            }
+        }
+        private ObjectSet<Food_Industry_Age_Wealth_Type> _Food_Industry_Age_Wealth_Type;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<vw_PublicDemandData> vw_PublicDemandData
+        {
+            get
+            {
+                if ((_vw_PublicDemandData == null))
+                {
+                    _vw_PublicDemandData = base.CreateObjectSet<vw_PublicDemandData>("vw_PublicDemandData");
+                }
+                return _vw_PublicDemandData;
+            }
+        }
+        private ObjectSet<vw_PublicDemandData> _vw_PublicDemandData;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<vw_PopulationByLocation> vw_PopulationByLocation
+        {
+            get
+            {
+                if ((_vw_PopulationByLocation == null))
+                {
+                    _vw_PopulationByLocation = base.CreateObjectSet<vw_PopulationByLocation>("vw_PopulationByLocation");
+                }
+                return _vw_PopulationByLocation;
+            }
+        }
+        private ObjectSet<vw_PopulationByLocation> _vw_PopulationByLocation;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<vw_FoodMapData> vw_FoodMapData
+        {
+            get
+            {
+                if ((_vw_FoodMapData == null))
+                {
+                    _vw_FoodMapData = base.CreateObjectSet<vw_FoodMapData>("vw_FoodMapData");
+                }
+                return _vw_FoodMapData;
+            }
+        }
+        private ObjectSet<vw_FoodMapData> _vw_FoodMapData;
 
         #endregion
 
@@ -646,22 +726,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the vw_LocationPoints EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTovw_LocationPoints(vw_LocationPoints vw_LocationPoints)
-        {
-            base.AddObject("vw_LocationPoints", vw_LocationPoints);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Food_Industry_Age_Wealth EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToFood_Industry_Age_Wealth(Food_Industry_Age_Wealth food_Industry_Age_Wealth)
-        {
-            base.AddObject("Food_Industry_Age_Wealth", food_Industry_Age_Wealth);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Profiles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToProfiles(Profile profile)
@@ -675,6 +739,54 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         public void AddToRound_State(Round_State round_State)
         {
             base.AddObject("Round_State", round_State);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Food_Industry_Company_Location EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFood_Industry_Company_Location(Food_Industry_Company_Location food_Industry_Company_Location)
+        {
+            base.AddObject("Food_Industry_Company_Location", food_Industry_Company_Location);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Food_Industry_Location EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFood_Industry_Location(Food_Industry_Location food_Industry_Location)
+        {
+            base.AddObject("Food_Industry_Location", food_Industry_Location);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Food_Industry_Age_Wealth_Type EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFood_Industry_Age_Wealth_Type(Food_Industry_Age_Wealth_Type food_Industry_Age_Wealth_Type)
+        {
+            base.AddObject("Food_Industry_Age_Wealth_Type", food_Industry_Age_Wealth_Type);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the vw_PublicDemandData EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTovw_PublicDemandData(vw_PublicDemandData vw_PublicDemandData)
+        {
+            base.AddObject("vw_PublicDemandData", vw_PublicDemandData);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the vw_PopulationByLocation EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTovw_PopulationByLocation(vw_PopulationByLocation vw_PopulationByLocation)
+        {
+            base.AddObject("vw_PopulationByLocation", vw_PopulationByLocation);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the vw_FoodMapData EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTovw_FoodMapData(vw_FoodMapData vw_FoodMapData)
+        {
+            base.AddObject("vw_FoodMapData", vw_FoodMapData);
         }
 
         #endregion
@@ -1066,18 +1178,40 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Age", "Food_Industry_Age_Wealth")]
-        public EntityCollection<Food_Industry_Age_Wealth> Food_Industry_Age_Wealth
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Age", "Food_Industry_Age_Wealth_Type")]
+        public EntityCollection<Food_Industry_Age_Wealth_Type> Food_Industry_Age_Wealth_Type
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age", "Food_Industry_Age_Wealth");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Age_Wealth_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Age", "Food_Industry_Age_Wealth_Type");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age", "Food_Industry_Age_Wealth", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Age_Wealth_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Age", "Food_Industry_Age_Wealth_Type", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PopulationByLocationAge", "vw_PopulationByLocation")]
+        public EntityCollection<vw_PopulationByLocation> vw_PopulationByLocation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<vw_PopulationByLocation>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationAge", "vw_PopulationByLocation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<vw_PopulationByLocation>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationAge", "vw_PopulationByLocation", value);
                 }
             }
         }
@@ -1892,30 +2026,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         partial void OnDateCreatedChanged();
     
         /// <summary>
-        /// Current Round
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CurrentRoundId
-        {
-            get
-            {
-                return _CurrentRoundId;
-            }
-            set
-            {
-                OnCurrentRoundIdChanging(value);
-                ReportPropertyChanging("CurrentRoundId");
-                _CurrentRoundId = StructuralObject.SetValidValue(value, "CurrentRoundId");
-                ReportPropertyChanged("CurrentRoundId");
-                OnCurrentRoundIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CurrentRoundId;
-        partial void OnCurrentRoundIdChanging(Nullable<global::System.Int32> value);
-        partial void OnCurrentRoundIdChanged();
-    
-        /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
@@ -1983,44 +2093,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Economy", "Company", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Economy_Round", "CurrentRound")]
-        public Round CurrentRound
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round", "CurrentRound").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round", "CurrentRound").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Round> CurrentRoundReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round", "CurrentRound");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round", "CurrentRound", value);
                 }
             }
         }
@@ -2141,28 +2213,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Economy", "Food_Industry_Age_Wealth")]
-        public EntityCollection<Food_Industry_Age_Wealth> Food_Industry_Age_Wealth
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy", "Food_Industry_Age_Wealth");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy", "Food_Industry_Age_Wealth", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Profile_Economy", "Profile")]
         public EntityCollection<Profile> Profiles
         {
@@ -2200,6 +2250,50 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PublicDemandDataEconomy", "vw_PublicDemandData")]
+        public EntityCollection<vw_PublicDemandData> vw_PublicDemandData
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<vw_PublicDemandData>("Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandDataEconomy", "vw_PublicDemandData");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<vw_PublicDemandData>("Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandDataEconomy", "vw_PublicDemandData", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Round_Economy", "Round")]
+        public EntityCollection<Round> Rounds
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy", "Round");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy", "Round", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -2224,9 +2318,9 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="identifier">Initial value of the Identifier property.</param>
         /// <param name="companyId">Initial value of the CompanyId property.</param>
         /// <param name="typeId">Initial value of the TypeId property.</param>
-        /// <param name="latitude">Initial value of the Latitude property.</param>
-        /// <param name="longitude">Initial value of the Longitude property.</param>
-        public static Food_Good CreateFood_Good(global::System.Int32 industryId, global::System.Int32 goodId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 companyId, global::System.Int32 typeId, global::System.Double latitude, global::System.Double longitude)
+        /// <param name="hasLicense">Initial value of the HasLicense property.</param>
+        /// <param name="createdRoundId">Initial value of the CreatedRoundId property.</param>
+        public static Food_Good CreateFood_Good(global::System.Int32 industryId, global::System.Int32 goodId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 companyId, global::System.Int32 typeId, global::System.Boolean hasLicense, global::System.Int32 createdRoundId)
         {
             Food_Good food_Good = new Food_Good();
             food_Good.IndustryId = industryId;
@@ -2235,8 +2329,8 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             food_Good.Identifier = identifier;
             food_Good.CompanyId = companyId;
             food_Good.TypeId = typeId;
-            food_Good.Latitude = latitude;
-            food_Good.Longitude = longitude;
+            food_Good.HasLicense = hasLicense;
+            food_Good.CreatedRoundId = createdRoundId;
             return food_Good;
         }
 
@@ -2321,48 +2415,48 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Double Latitude
+        public global::System.Boolean HasLicense
         {
             get
             {
-                return _Latitude;
+                return _HasLicense;
             }
             set
             {
-                OnLatitudeChanging(value);
-                ReportPropertyChanging("Latitude");
-                _Latitude = StructuralObject.SetValidValue(value, "Latitude");
-                ReportPropertyChanged("Latitude");
-                OnLatitudeChanged();
+                OnHasLicenseChanging(value);
+                ReportPropertyChanging("HasLicense");
+                _HasLicense = StructuralObject.SetValidValue(value, "HasLicense");
+                ReportPropertyChanged("HasLicense");
+                OnHasLicenseChanged();
             }
         }
-        private global::System.Double _Latitude;
-        partial void OnLatitudeChanging(global::System.Double value);
-        partial void OnLatitudeChanged();
+        private global::System.Boolean _HasLicense;
+        partial void OnHasLicenseChanging(global::System.Boolean value);
+        partial void OnHasLicenseChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Double Longitude
+        public global::System.Int32 CreatedRoundId
         {
             get
             {
-                return _Longitude;
+                return _CreatedRoundId;
             }
             set
             {
-                OnLongitudeChanging(value);
-                ReportPropertyChanging("Longitude");
-                _Longitude = StructuralObject.SetValidValue(value, "Longitude");
-                ReportPropertyChanged("Longitude");
-                OnLongitudeChanged();
+                OnCreatedRoundIdChanging(value);
+                ReportPropertyChanging("CreatedRoundId");
+                _CreatedRoundId = StructuralObject.SetValidValue(value, "CreatedRoundId");
+                ReportPropertyChanged("CreatedRoundId");
+                OnCreatedRoundIdChanged();
             }
         }
-        private global::System.Double _Longitude;
-        partial void OnLongitudeChanging(global::System.Double value);
-        partial void OnLongitudeChanged();
+        private global::System.Int32 _CreatedRoundId;
+        partial void OnCreatedRoundIdChanging(global::System.Int32 value);
+        partial void OnCreatedRoundIdChanged();
 
         #endregion
 
@@ -2563,6 +2657,158 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Food_Industry_Location", "Food_Industry_Location")]
+        public Food_Industry_Location Food_Industry_Location
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location", "Food_Industry_Location").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location", "Food_Industry_Location").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Food_Industry_Location> Food_Industry_LocationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location", "Food_Industry_Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location", "Food_Industry_Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Food_Industry_Company", "Food_Industry_Company")]
+        public Food_Industry_Company Food_Industry_Company
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company", "Food_Industry_Company").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company", "Food_Industry_Company").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Food_Industry_Company> Food_Industry_CompanyReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company", "Food_Industry_Company");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry_Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company", "Food_Industry_Company", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Food_Industry_Company_Location", "Food_Industry_Company_Location")]
+        public Food_Industry_Company_Location Food_Industry_Company_Location
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Company_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location", "Food_Industry_Company_Location").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Company_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location", "Food_Industry_Company_Location").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Food_Industry_Company_Location> Food_Industry_Company_LocationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Company_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location", "Food_Industry_Company_Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry_Company_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location", "Food_Industry_Company_Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Round", "Round")]
+        public Round CreatedRound
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round", "Round").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round", "Round").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Round> CreatedRoundReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round", "Round");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round", "Round", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -2600,8 +2846,8 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="inventoryEnd">Initial value of the InventoryEnd property.</param>
         /// <param name="costOfMaintenance">Initial value of the CostOfMaintenance property.</param>
         /// <param name="costOfInventory">Initial value of the CostOfInventory property.</param>
-        /// <param name="isRollover">Initial value of the IsRollover property.</param>
-        public static Food_Good_Round CreateFood_Good_Round(global::System.Int32 industryId, global::System.Int32 goodId, global::System.Int32 roundId, global::System.Int32 economyId, global::System.Int32 companyId, global::System.Double capacityStart, global::System.Double capacityNew, global::System.Double capacitySold, global::System.Double capacityDecay, global::System.Double capacityEnd, global::System.Double price, global::System.Double actualSales, global::System.Double costOfProduction, global::System.Double costOfCapacity, global::System.Double production, global::System.Double inventoryStart, global::System.Double inventoryEnd, global::System.Double costOfMaintenance, global::System.Double costOfInventory, global::System.Boolean isRollover)
+        /// <param name="maxSales">Initial value of the MaxSales property.</param>
+        public static Food_Good_Round CreateFood_Good_Round(global::System.Int32 industryId, global::System.Int32 goodId, global::System.Int32 roundId, global::System.Int32 economyId, global::System.Int32 companyId, global::System.Double capacityStart, global::System.Double capacityNew, global::System.Double capacitySold, global::System.Double capacityDecay, global::System.Double capacityEnd, global::System.Double price, global::System.Double actualSales, global::System.Double costOfProduction, global::System.Double costOfCapacity, global::System.Double production, global::System.Double inventoryStart, global::System.Double inventoryEnd, global::System.Double costOfMaintenance, global::System.Double costOfInventory, global::System.Double maxSales)
         {
             Food_Good_Round food_Good_Round = new Food_Good_Round();
             food_Good_Round.IndustryId = industryId;
@@ -2623,7 +2869,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             food_Good_Round.InventoryEnd = inventoryEnd;
             food_Good_Round.CostOfMaintenance = costOfMaintenance;
             food_Good_Round.CostOfInventory = costOfInventory;
-            food_Good_Round.IsRollover = isRollover;
+            food_Good_Round.MaxSales = maxSales;
             return food_Good_Round;
         }
 
@@ -3104,24 +3350,24 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Boolean IsRollover
+        public global::System.Double MaxSales
         {
             get
             {
-                return _IsRollover;
+                return _MaxSales;
             }
             set
             {
-                OnIsRolloverChanging(value);
-                ReportPropertyChanging("IsRollover");
-                _IsRollover = StructuralObject.SetValidValue(value, "IsRollover");
-                ReportPropertyChanged("IsRollover");
-                OnIsRolloverChanged();
+                OnMaxSalesChanging(value);
+                ReportPropertyChanging("MaxSales");
+                _MaxSales = StructuralObject.SetValidValue(value, "MaxSales");
+                ReportPropertyChanged("MaxSales");
+                OnMaxSalesChanged();
             }
         }
-        private global::System.Boolean _IsRollover;
-        partial void OnIsRolloverChanging(global::System.Boolean value);
-        partial void OnIsRolloverChanged();
+        private global::System.Double _MaxSales;
+        partial void OnMaxSalesChanging(global::System.Double value);
+        partial void OnMaxSalesChanged();
 
         #endregion
 
@@ -3587,386 +3833,15 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="economyId">Initial value of the EconomyId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="type">Initial value of the Type property.</param>
-        /// <param name="entryCostMean">Initial value of the EntryCostMean property.</param>
-        /// <param name="entryCostStdDev">Initial value of the EntryCostStdDev property.</param>
-        /// <param name="capacityCostMean">Initial value of the CapacityCostMean property.</param>
-        /// <param name="capacityCostStdDev">Initial value of the CapacityCostStdDev property.</param>
-        /// <param name="marginalCostMean">Initial value of the MarginalCostMean property.</param>
-        /// <param name="marginalCostStdDev">Initial value of the MarginalCostStdDev property.</param>
-        /// <param name="capacityDecayRate">Initial value of the CapacityDecayRate property.</param>
-        /// <param name="capacityResaleRate">Initial value of the CapacityResaleRate property.</param>
-        /// <param name="canHoldInventory">Initial value of the CanHoldInventory property.</param>
-        /// <param name="elasticity">Initial value of the Elasticity property.</param>
-        /// <param name="maintenanceCostMean">Initial value of the MaintenanceCostMean property.</param>
-        /// <param name="maintenanceCostStdDev">Initial value of the MaintenanceCostStdDev property.</param>
-        /// <param name="inventoryCostMean">Initial value of the InventoryCostMean property.</param>
-        /// <param name="inventoryCostStdDev">Initial value of the InventoryCostStdDev property.</param>
-        public static Food_Industry CreateFood_Industry(global::System.Int32 industryId, global::System.Int32 economyId, global::System.String name, global::System.String type, global::System.Double entryCostMean, global::System.Double entryCostStdDev, global::System.Double capacityCostMean, global::System.Double capacityCostStdDev, global::System.Double marginalCostMean, global::System.Double marginalCostStdDev, global::System.Double capacityDecayRate, global::System.Double capacityResaleRate, global::System.Boolean canHoldInventory, global::System.Double elasticity, global::System.Double maintenanceCostMean, global::System.Double maintenanceCostStdDev, global::System.Double inventoryCostMean, global::System.Double inventoryCostStdDev)
+        public static Food_Industry CreateFood_Industry(global::System.Int32 industryId, global::System.Int32 economyId, global::System.String name, global::System.String type)
         {
             Food_Industry food_Industry = new Food_Industry();
             food_Industry.IndustryId = industryId;
             food_Industry.EconomyId = economyId;
             food_Industry.Name = name;
             food_Industry.Type = type;
-            food_Industry.EntryCostMean = entryCostMean;
-            food_Industry.EntryCostStdDev = entryCostStdDev;
-            food_Industry.CapacityCostMean = capacityCostMean;
-            food_Industry.CapacityCostStdDev = capacityCostStdDev;
-            food_Industry.MarginalCostMean = marginalCostMean;
-            food_Industry.MarginalCostStdDev = marginalCostStdDev;
-            food_Industry.CapacityDecayRate = capacityDecayRate;
-            food_Industry.CapacityResaleRate = capacityResaleRate;
-            food_Industry.CanHoldInventory = canHoldInventory;
-            food_Industry.Elasticity = elasticity;
-            food_Industry.MaintenanceCostMean = maintenanceCostMean;
-            food_Industry.MaintenanceCostStdDev = maintenanceCostStdDev;
-            food_Industry.InventoryCostMean = inventoryCostMean;
-            food_Industry.InventoryCostStdDev = inventoryCostStdDev;
             return food_Industry;
         }
-
-        #endregion
-
-        #region Simple Properties
-    
-        /// <summary>
-        /// Entry Cost Mean
-        /// </summary>
-        /// <LongDescription>
-        /// The mean value for the distribution for entry cost for teams when generating a company&apos;s settings for this industry.
-        /// </LongDescription>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double EntryCostMean
-        {
-            get
-            {
-                return _EntryCostMean;
-            }
-            set
-            {
-                OnEntryCostMeanChanging(value);
-                ReportPropertyChanging("EntryCostMean");
-                _EntryCostMean = StructuralObject.SetValidValue(value, "EntryCostMean");
-                ReportPropertyChanged("EntryCostMean");
-                OnEntryCostMeanChanged();
-            }
-        }
-        private global::System.Double _EntryCostMean;
-        partial void OnEntryCostMeanChanging(global::System.Double value);
-        partial void OnEntryCostMeanChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double EntryCostStdDev
-        {
-            get
-            {
-                return _EntryCostStdDev;
-            }
-            set
-            {
-                OnEntryCostStdDevChanging(value);
-                ReportPropertyChanging("EntryCostStdDev");
-                _EntryCostStdDev = StructuralObject.SetValidValue(value, "EntryCostStdDev");
-                ReportPropertyChanged("EntryCostStdDev");
-                OnEntryCostStdDevChanged();
-            }
-        }
-        private global::System.Double _EntryCostStdDev;
-        partial void OnEntryCostStdDevChanging(global::System.Double value);
-        partial void OnEntryCostStdDevChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double CapacityCostMean
-        {
-            get
-            {
-                return _CapacityCostMean;
-            }
-            set
-            {
-                OnCapacityCostMeanChanging(value);
-                ReportPropertyChanging("CapacityCostMean");
-                _CapacityCostMean = StructuralObject.SetValidValue(value, "CapacityCostMean");
-                ReportPropertyChanged("CapacityCostMean");
-                OnCapacityCostMeanChanged();
-            }
-        }
-        private global::System.Double _CapacityCostMean;
-        partial void OnCapacityCostMeanChanging(global::System.Double value);
-        partial void OnCapacityCostMeanChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double CapacityCostStdDev
-        {
-            get
-            {
-                return _CapacityCostStdDev;
-            }
-            set
-            {
-                OnCapacityCostStdDevChanging(value);
-                ReportPropertyChanging("CapacityCostStdDev");
-                _CapacityCostStdDev = StructuralObject.SetValidValue(value, "CapacityCostStdDev");
-                ReportPropertyChanged("CapacityCostStdDev");
-                OnCapacityCostStdDevChanged();
-            }
-        }
-        private global::System.Double _CapacityCostStdDev;
-        partial void OnCapacityCostStdDevChanging(global::System.Double value);
-        partial void OnCapacityCostStdDevChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double MarginalCostMean
-        {
-            get
-            {
-                return _MarginalCostMean;
-            }
-            set
-            {
-                OnMarginalCostMeanChanging(value);
-                ReportPropertyChanging("MarginalCostMean");
-                _MarginalCostMean = StructuralObject.SetValidValue(value, "MarginalCostMean");
-                ReportPropertyChanged("MarginalCostMean");
-                OnMarginalCostMeanChanged();
-            }
-        }
-        private global::System.Double _MarginalCostMean;
-        partial void OnMarginalCostMeanChanging(global::System.Double value);
-        partial void OnMarginalCostMeanChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double MarginalCostStdDev
-        {
-            get
-            {
-                return _MarginalCostStdDev;
-            }
-            set
-            {
-                OnMarginalCostStdDevChanging(value);
-                ReportPropertyChanging("MarginalCostStdDev");
-                _MarginalCostStdDev = StructuralObject.SetValidValue(value, "MarginalCostStdDev");
-                ReportPropertyChanged("MarginalCostStdDev");
-                OnMarginalCostStdDevChanged();
-            }
-        }
-        private global::System.Double _MarginalCostStdDev;
-        partial void OnMarginalCostStdDevChanging(global::System.Double value);
-        partial void OnMarginalCostStdDevChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double CapacityDecayRate
-        {
-            get
-            {
-                return _CapacityDecayRate;
-            }
-            set
-            {
-                OnCapacityDecayRateChanging(value);
-                ReportPropertyChanging("CapacityDecayRate");
-                _CapacityDecayRate = StructuralObject.SetValidValue(value, "CapacityDecayRate");
-                ReportPropertyChanged("CapacityDecayRate");
-                OnCapacityDecayRateChanged();
-            }
-        }
-        private global::System.Double _CapacityDecayRate;
-        partial void OnCapacityDecayRateChanging(global::System.Double value);
-        partial void OnCapacityDecayRateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double CapacityResaleRate
-        {
-            get
-            {
-                return _CapacityResaleRate;
-            }
-            set
-            {
-                OnCapacityResaleRateChanging(value);
-                ReportPropertyChanging("CapacityResaleRate");
-                _CapacityResaleRate = StructuralObject.SetValidValue(value, "CapacityResaleRate");
-                ReportPropertyChanged("CapacityResaleRate");
-                OnCapacityResaleRateChanged();
-            }
-        }
-        private global::System.Double _CapacityResaleRate;
-        partial void OnCapacityResaleRateChanging(global::System.Double value);
-        partial void OnCapacityResaleRateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean CanHoldInventory
-        {
-            get
-            {
-                return _CanHoldInventory;
-            }
-            set
-            {
-                OnCanHoldInventoryChanging(value);
-                ReportPropertyChanging("CanHoldInventory");
-                _CanHoldInventory = StructuralObject.SetValidValue(value, "CanHoldInventory");
-                ReportPropertyChanged("CanHoldInventory");
-                OnCanHoldInventoryChanged();
-            }
-        }
-        private global::System.Boolean _CanHoldInventory;
-        partial void OnCanHoldInventoryChanging(global::System.Boolean value);
-        partial void OnCanHoldInventoryChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double Elasticity
-        {
-            get
-            {
-                return _Elasticity;
-            }
-            set
-            {
-                OnElasticityChanging(value);
-                ReportPropertyChanging("Elasticity");
-                _Elasticity = StructuralObject.SetValidValue(value, "Elasticity");
-                ReportPropertyChanged("Elasticity");
-                OnElasticityChanged();
-            }
-        }
-        private global::System.Double _Elasticity;
-        partial void OnElasticityChanging(global::System.Double value);
-        partial void OnElasticityChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double MaintenanceCostMean
-        {
-            get
-            {
-                return _MaintenanceCostMean;
-            }
-            set
-            {
-                OnMaintenanceCostMeanChanging(value);
-                ReportPropertyChanging("MaintenanceCostMean");
-                _MaintenanceCostMean = StructuralObject.SetValidValue(value, "MaintenanceCostMean");
-                ReportPropertyChanged("MaintenanceCostMean");
-                OnMaintenanceCostMeanChanged();
-            }
-        }
-        private global::System.Double _MaintenanceCostMean;
-        partial void OnMaintenanceCostMeanChanging(global::System.Double value);
-        partial void OnMaintenanceCostMeanChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double MaintenanceCostStdDev
-        {
-            get
-            {
-                return _MaintenanceCostStdDev;
-            }
-            set
-            {
-                OnMaintenanceCostStdDevChanging(value);
-                ReportPropertyChanging("MaintenanceCostStdDev");
-                _MaintenanceCostStdDev = StructuralObject.SetValidValue(value, "MaintenanceCostStdDev");
-                ReportPropertyChanged("MaintenanceCostStdDev");
-                OnMaintenanceCostStdDevChanged();
-            }
-        }
-        private global::System.Double _MaintenanceCostStdDev;
-        partial void OnMaintenanceCostStdDevChanging(global::System.Double value);
-        partial void OnMaintenanceCostStdDevChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double InventoryCostMean
-        {
-            get
-            {
-                return _InventoryCostMean;
-            }
-            set
-            {
-                OnInventoryCostMeanChanging(value);
-                ReportPropertyChanging("InventoryCostMean");
-                _InventoryCostMean = StructuralObject.SetValidValue(value, "InventoryCostMean");
-                ReportPropertyChanged("InventoryCostMean");
-                OnInventoryCostMeanChanged();
-            }
-        }
-        private global::System.Double _InventoryCostMean;
-        partial void OnInventoryCostMeanChanging(global::System.Double value);
-        partial void OnInventoryCostMeanChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double InventoryCostStdDev
-        {
-            get
-            {
-                return _InventoryCostStdDev;
-            }
-            set
-            {
-                OnInventoryCostStdDevChanging(value);
-                ReportPropertyChanging("InventoryCostStdDev");
-                _InventoryCostStdDev = StructuralObject.SetValidValue(value, "InventoryCostStdDev");
-                ReportPropertyChanged("InventoryCostStdDev");
-                OnInventoryCostStdDevChanged();
-            }
-        }
-        private global::System.Double _InventoryCostStdDev;
-        partial void OnInventoryCostStdDevChanging(global::System.Double value);
-        partial void OnInventoryCostStdDevChanged();
 
         #endregion
 
@@ -4044,18 +3919,40 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Food_Industry", "Food_Industry_Age_Wealth")]
-        public EntityCollection<Food_Industry_Age_Wealth> Food_Industry_Age_Wealth
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Location_Food_Industry", "Food_Industry_Location")]
+        public EntityCollection<Food_Industry_Location> Food_Industry_Location
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry", "Food_Industry_Age_Wealth");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry", "Food_Industry_Location");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry", "Food_Industry_Age_Wealth", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry", "Food_Industry_Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Food_Industry", "Food_Industry_Age_Wealth_Type")]
+        public EntityCollection<Food_Industry_Age_Wealth_Type> Food_Industry_Age_Wealth_Type
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Age_Wealth_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry", "Food_Industry_Age_Wealth_Type");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Age_Wealth_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry", "Food_Industry_Age_Wealth_Type", value);
                 }
             }
         }
@@ -4067,39 +3964,68 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="Food_Industry_Age_Wealth")]
+    [EdmEntityTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="Food_Industry_Age_Wealth_Type")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Food_Industry_Age_Wealth : EntityObject
+    public partial class Food_Industry_Age_Wealth_Type : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Food_Industry_Age_Wealth object.
+        /// Create a new Food_Industry_Age_Wealth_Type object.
         /// </summary>
+        /// <param name="industryId">Initial value of the IndustryId property.</param>
         /// <param name="economyId">Initial value of the EconomyId property.</param>
         /// <param name="ageId">Initial value of the AgeId property.</param>
         /// <param name="wealthId">Initial value of the WealthId property.</param>
+        /// <param name="typeId">Initial value of the TypeId property.</param>
         /// <param name="sigma">Initial value of the Sigma property.</param>
-        /// <param name="sensitivityType">Initial value of the SensitivityType property.</param>
-        /// <param name="sensitivityDistance">Initial value of the SensitivityDistance property.</param>
-        /// <param name="industryId">Initial value of the IndustryId property.</param>
-        public static Food_Industry_Age_Wealth CreateFood_Industry_Age_Wealth(global::System.Int32 economyId, global::System.Int32 ageId, global::System.Int32 wealthId, global::System.Double sigma, global::System.Double sensitivityType, global::System.Double sensitivityDistance, global::System.Int32 industryId)
+        /// <param name="transportationCost">Initial value of the TransportationCost property.</param>
+        /// <param name="maxDistance">Initial value of the MaxDistance property.</param>
+        public static Food_Industry_Age_Wealth_Type CreateFood_Industry_Age_Wealth_Type(global::System.Int32 industryId, global::System.Int32 economyId, global::System.Int32 ageId, global::System.Int32 wealthId, global::System.Int32 typeId, global::System.Double sigma, global::System.Double transportationCost, global::System.Double maxDistance)
         {
-            Food_Industry_Age_Wealth food_Industry_Age_Wealth = new Food_Industry_Age_Wealth();
-            food_Industry_Age_Wealth.EconomyId = economyId;
-            food_Industry_Age_Wealth.AgeId = ageId;
-            food_Industry_Age_Wealth.WealthId = wealthId;
-            food_Industry_Age_Wealth.Sigma = sigma;
-            food_Industry_Age_Wealth.SensitivityType = sensitivityType;
-            food_Industry_Age_Wealth.SensitivityDistance = sensitivityDistance;
-            food_Industry_Age_Wealth.IndustryId = industryId;
-            return food_Industry_Age_Wealth;
+            Food_Industry_Age_Wealth_Type food_Industry_Age_Wealth_Type = new Food_Industry_Age_Wealth_Type();
+            food_Industry_Age_Wealth_Type.IndustryId = industryId;
+            food_Industry_Age_Wealth_Type.EconomyId = economyId;
+            food_Industry_Age_Wealth_Type.AgeId = ageId;
+            food_Industry_Age_Wealth_Type.WealthId = wealthId;
+            food_Industry_Age_Wealth_Type.TypeId = typeId;
+            food_Industry_Age_Wealth_Type.Sigma = sigma;
+            food_Industry_Age_Wealth_Type.TransportationCost = transportationCost;
+            food_Industry_Age_Wealth_Type.MaxDistance = maxDistance;
+            return food_Industry_Age_Wealth_Type;
         }
 
         #endregion
 
         #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IndustryId
+        {
+            get
+            {
+                return _IndustryId;
+            }
+            set
+            {
+                if (_IndustryId != value)
+                {
+                    OnIndustryIdChanging(value);
+                    ReportPropertyChanging("IndustryId");
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
+                    ReportPropertyChanged("IndustryId");
+                    OnIndustryIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IndustryId;
+        partial void OnIndustryIdChanging(global::System.Int32 value);
+        partial void OnIndustryIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4185,6 +4111,33 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TypeId
+        {
+            get
+            {
+                return _TypeId;
+            }
+            set
+            {
+                if (_TypeId != value)
+                {
+                    OnTypeIdChanging(value);
+                    ReportPropertyChanging("TypeId");
+                    _TypeId = StructuralObject.SetValidValue(value, "TypeId");
+                    ReportPropertyChanged("TypeId");
+                    OnTypeIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TypeId;
+        partial void OnTypeIdChanging(global::System.Int32 value);
+        partial void OnTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Sigma
@@ -4211,75 +4164,48 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Double SensitivityType
+        public global::System.Double TransportationCost
         {
             get
             {
-                return _SensitivityType;
+                return _TransportationCost;
             }
             set
             {
-                OnSensitivityTypeChanging(value);
-                ReportPropertyChanging("SensitivityType");
-                _SensitivityType = StructuralObject.SetValidValue(value, "SensitivityType");
-                ReportPropertyChanged("SensitivityType");
-                OnSensitivityTypeChanged();
+                OnTransportationCostChanging(value);
+                ReportPropertyChanging("TransportationCost");
+                _TransportationCost = StructuralObject.SetValidValue(value, "TransportationCost");
+                ReportPropertyChanged("TransportationCost");
+                OnTransportationCostChanged();
             }
         }
-        private global::System.Double _SensitivityType;
-        partial void OnSensitivityTypeChanging(global::System.Double value);
-        partial void OnSensitivityTypeChanged();
+        private global::System.Double _TransportationCost;
+        partial void OnTransportationCostChanging(global::System.Double value);
+        partial void OnTransportationCostChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Double SensitivityDistance
+        public global::System.Double MaxDistance
         {
             get
             {
-                return _SensitivityDistance;
+                return _MaxDistance;
             }
             set
             {
-                OnSensitivityDistanceChanging(value);
-                ReportPropertyChanging("SensitivityDistance");
-                _SensitivityDistance = StructuralObject.SetValidValue(value, "SensitivityDistance");
-                ReportPropertyChanged("SensitivityDistance");
-                OnSensitivityDistanceChanged();
+                OnMaxDistanceChanging(value);
+                ReportPropertyChanging("MaxDistance");
+                _MaxDistance = StructuralObject.SetValidValue(value, "MaxDistance");
+                ReportPropertyChanged("MaxDistance");
+                OnMaxDistanceChanged();
             }
         }
-        private global::System.Double _SensitivityDistance;
-        partial void OnSensitivityDistanceChanging(global::System.Double value);
-        partial void OnSensitivityDistanceChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 IndustryId
-        {
-            get
-            {
-                return _IndustryId;
-            }
-            set
-            {
-                if (_IndustryId != value)
-                {
-                    OnIndustryIdChanging(value);
-                    ReportPropertyChanging("IndustryId");
-                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
-                    ReportPropertyChanged("IndustryId");
-                    OnIndustryIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _IndustryId;
-        partial void OnIndustryIdChanging(global::System.Int32 value);
-        partial void OnIndustryIdChanged();
+        private global::System.Double _MaxDistance;
+        partial void OnMaxDistanceChanging(global::System.Double value);
+        partial void OnMaxDistanceChanged();
 
         #endregion
 
@@ -4291,130 +4217,16 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Age", "Age")]
-        public Age Age
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age", "Age").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age", "Age").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Age> AgeReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age", "Age");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age", "Age", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Economy", "Economy")]
-        public Economy Economy
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy", "Economy").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy", "Economy").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Economy> EconomyReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy", "Economy");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy", "Economy", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Wealth", "Wealth")]
-        public Wealth Wealth
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth", "Wealth").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth", "Wealth").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Wealth> WealthReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth", "Wealth");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth", "Wealth", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Food_Industry", "Food_Industry")]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Food_Industry", "Food_Industry")]
         public Food_Industry Food_Industry
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry", "Food_Industry").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry", "Food_Industry").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry", "Food_Industry").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry", "Food_Industry").Value = value;
             }
         }
         /// <summary>
@@ -4426,13 +4238,127 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry", "Food_Industry");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry", "Food_Industry");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry", "Food_Industry", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry", "Food_Industry", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type", "Food_Industry_Good_Type")]
+        public Food_Industry_Good_Type Food_Industry_Good_Type
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type", "Food_Industry_Good_Type").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type", "Food_Industry_Good_Type").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Food_Industry_Good_Type> Food_Industry_Good_TypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type", "Food_Industry_Good_Type");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type", "Food_Industry_Good_Type", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Age", "Age")]
+        public Age Age
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Age", "Age").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Age", "Age").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Age> AgeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Age", "Age");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Age", "Age", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Wealth", "Wealth")]
+        public Wealth Wealth
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Wealth", "Wealth").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Wealth", "Wealth").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Wealth> WealthReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Wealth", "Wealth");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Wealth", "Wealth", value);
                 }
             }
         }
@@ -4457,22 +4383,12 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="companyId">Initial value of the CompanyId property.</param>
         /// <param name="industryId">Initial value of the IndustryId property.</param>
         /// <param name="economyId">Initial value of the EconomyId property.</param>
-        /// <param name="entryCost">Initial value of the EntryCost property.</param>
-        /// <param name="capacityCost">Initial value of the CapacityCost property.</param>
-        /// <param name="marginalCost">Initial value of the MarginalCost property.</param>
-        /// <param name="maintenanceCost">Initial value of the MaintenanceCost property.</param>
-        /// <param name="inventoryCost">Initial value of the InventoryCost property.</param>
-        public static Food_Industry_Company CreateFood_Industry_Company(global::System.Int32 companyId, global::System.Int32 industryId, global::System.Int32 economyId, global::System.Double entryCost, global::System.Double capacityCost, global::System.Double marginalCost, global::System.Double maintenanceCost, global::System.Double inventoryCost)
+        public static Food_Industry_Company CreateFood_Industry_Company(global::System.Int32 companyId, global::System.Int32 industryId, global::System.Int32 economyId)
         {
             Food_Industry_Company food_Industry_Company = new Food_Industry_Company();
             food_Industry_Company.CompanyId = companyId;
             food_Industry_Company.IndustryId = industryId;
             food_Industry_Company.EconomyId = economyId;
-            food_Industry_Company.EntryCost = entryCost;
-            food_Industry_Company.CapacityCost = capacityCost;
-            food_Industry_Company.MarginalCost = marginalCost;
-            food_Industry_Company.MaintenanceCost = maintenanceCost;
-            food_Industry_Company.InventoryCost = inventoryCost;
             return food_Industry_Company;
         }
 
@@ -4564,78 +4480,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double EntryCost
-        {
-            get
-            {
-                return _EntryCost;
-            }
-            set
-            {
-                OnEntryCostChanging(value);
-                ReportPropertyChanging("EntryCost");
-                _EntryCost = StructuralObject.SetValidValue(value, "EntryCost");
-                ReportPropertyChanged("EntryCost");
-                OnEntryCostChanged();
-            }
-        }
-        private global::System.Double _EntryCost;
-        partial void OnEntryCostChanging(global::System.Double value);
-        partial void OnEntryCostChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double CapacityCost
-        {
-            get
-            {
-                return _CapacityCost;
-            }
-            set
-            {
-                OnCapacityCostChanging(value);
-                ReportPropertyChanging("CapacityCost");
-                _CapacityCost = StructuralObject.SetValidValue(value, "CapacityCost");
-                ReportPropertyChanged("CapacityCost");
-                OnCapacityCostChanged();
-            }
-        }
-        private global::System.Double _CapacityCost;
-        partial void OnCapacityCostChanging(global::System.Double value);
-        partial void OnCapacityCostChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double MarginalCost
-        {
-            get
-            {
-                return _MarginalCost;
-            }
-            set
-            {
-                OnMarginalCostChanging(value);
-                ReportPropertyChanging("MarginalCost");
-                _MarginalCost = StructuralObject.SetValidValue(value, "MarginalCost");
-                ReportPropertyChanged("MarginalCost");
-                OnMarginalCostChanged();
-            }
-        }
-        private global::System.Double _MarginalCost;
-        partial void OnMarginalCostChanging(global::System.Double value);
-        partial void OnMarginalCostChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public Nullable<global::System.Int32> EntranceRoundId
@@ -4656,54 +4500,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         private Nullable<global::System.Int32> _EntranceRoundId;
         partial void OnEntranceRoundIdChanging(Nullable<global::System.Int32> value);
         partial void OnEntranceRoundIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double MaintenanceCost
-        {
-            get
-            {
-                return _MaintenanceCost;
-            }
-            set
-            {
-                OnMaintenanceCostChanging(value);
-                ReportPropertyChanging("MaintenanceCost");
-                _MaintenanceCost = StructuralObject.SetValidValue(value, "MaintenanceCost");
-                ReportPropertyChanged("MaintenanceCost");
-                OnMaintenanceCostChanged();
-            }
-        }
-        private global::System.Double _MaintenanceCost;
-        partial void OnMaintenanceCostChanging(global::System.Double value);
-        partial void OnMaintenanceCostChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double InventoryCost
-        {
-            get
-            {
-                return _InventoryCost;
-            }
-            set
-            {
-                OnInventoryCostChanging(value);
-                ReportPropertyChanging("InventoryCost");
-                _InventoryCost = StructuralObject.SetValidValue(value, "InventoryCost");
-                ReportPropertyChanged("InventoryCost");
-                OnInventoryCostChanged();
-            }
-        }
-        private global::System.Double _InventoryCost;
-        partial void OnInventoryCostChanging(global::System.Double value);
-        partial void OnInventoryCostChanged();
 
         #endregion
 
@@ -4813,16 +4609,314 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Round", "Round")]
-        public Round Round
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Location_Food_Industry_Company", "Food_Industry_Company_Location")]
+        public EntityCollection<Food_Industry_Company_Location> Food_Industry_Company_Location
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round", "Round").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Company_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company", "Food_Industry_Company_Location");
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round", "Round").Value = value;
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Company_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company", "Food_Industry_Company_Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Food_Industry_Company", "Food_Good")]
+        public EntityCollection<Food_Good> Food_Good
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Good>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company", "Food_Good");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Good>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company", "Food_Good", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="Food_Industry_Company_Location")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Food_Industry_Company_Location : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Food_Industry_Company_Location object.
+        /// </summary>
+        /// <param name="companyId">Initial value of the CompanyId property.</param>
+        /// <param name="industryId">Initial value of the IndustryId property.</param>
+        /// <param name="locationId">Initial value of the LocationId property.</param>
+        /// <param name="economyId">Initial value of the EconomyId property.</param>
+        /// <param name="typeId">Initial value of the TypeId property.</param>
+        /// <param name="capacityCost">Initial value of the CapacityCost property.</param>
+        /// <param name="marginalCost">Initial value of the MarginalCost property.</param>
+        /// <param name="inventoryCost">Initial value of the InventoryCost property.</param>
+        public static Food_Industry_Company_Location CreateFood_Industry_Company_Location(global::System.Int32 companyId, global::System.Int32 industryId, global::System.Int32 locationId, global::System.Int32 economyId, global::System.Int32 typeId, global::System.Double capacityCost, global::System.Double marginalCost, global::System.Double inventoryCost)
+        {
+            Food_Industry_Company_Location food_Industry_Company_Location = new Food_Industry_Company_Location();
+            food_Industry_Company_Location.CompanyId = companyId;
+            food_Industry_Company_Location.IndustryId = industryId;
+            food_Industry_Company_Location.LocationId = locationId;
+            food_Industry_Company_Location.EconomyId = economyId;
+            food_Industry_Company_Location.TypeId = typeId;
+            food_Industry_Company_Location.CapacityCost = capacityCost;
+            food_Industry_Company_Location.MarginalCost = marginalCost;
+            food_Industry_Company_Location.InventoryCost = inventoryCost;
+            return food_Industry_Company_Location;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CompanyId
+        {
+            get
+            {
+                return _CompanyId;
+            }
+            set
+            {
+                if (_CompanyId != value)
+                {
+                    OnCompanyIdChanging(value);
+                    ReportPropertyChanging("CompanyId");
+                    _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
+                    ReportPropertyChanged("CompanyId");
+                    OnCompanyIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _CompanyId;
+        partial void OnCompanyIdChanging(global::System.Int32 value);
+        partial void OnCompanyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IndustryId
+        {
+            get
+            {
+                return _IndustryId;
+            }
+            set
+            {
+                if (_IndustryId != value)
+                {
+                    OnIndustryIdChanging(value);
+                    ReportPropertyChanging("IndustryId");
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
+                    ReportPropertyChanged("IndustryId");
+                    OnIndustryIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IndustryId;
+        partial void OnIndustryIdChanging(global::System.Int32 value);
+        partial void OnIndustryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LocationId
+        {
+            get
+            {
+                return _LocationId;
+            }
+            set
+            {
+                if (_LocationId != value)
+                {
+                    OnLocationIdChanging(value);
+                    ReportPropertyChanging("LocationId");
+                    _LocationId = StructuralObject.SetValidValue(value, "LocationId");
+                    ReportPropertyChanged("LocationId");
+                    OnLocationIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _LocationId;
+        partial void OnLocationIdChanging(global::System.Int32 value);
+        partial void OnLocationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 EconomyId
+        {
+            get
+            {
+                return _EconomyId;
+            }
+            set
+            {
+                if (_EconomyId != value)
+                {
+                    OnEconomyIdChanging(value);
+                    ReportPropertyChanging("EconomyId");
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
+                    ReportPropertyChanged("EconomyId");
+                    OnEconomyIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _EconomyId;
+        partial void OnEconomyIdChanging(global::System.Int32 value);
+        partial void OnEconomyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TypeId
+        {
+            get
+            {
+                return _TypeId;
+            }
+            set
+            {
+                if (_TypeId != value)
+                {
+                    OnTypeIdChanging(value);
+                    ReportPropertyChanging("TypeId");
+                    _TypeId = StructuralObject.SetValidValue(value, "TypeId");
+                    ReportPropertyChanged("TypeId");
+                    OnTypeIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TypeId;
+        partial void OnTypeIdChanging(global::System.Int32 value);
+        partial void OnTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double CapacityCost
+        {
+            get
+            {
+                return _CapacityCost;
+            }
+            set
+            {
+                OnCapacityCostChanging(value);
+                ReportPropertyChanging("CapacityCost");
+                _CapacityCost = StructuralObject.SetValidValue(value, "CapacityCost");
+                ReportPropertyChanged("CapacityCost");
+                OnCapacityCostChanged();
+            }
+        }
+        private global::System.Double _CapacityCost;
+        partial void OnCapacityCostChanging(global::System.Double value);
+        partial void OnCapacityCostChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double MarginalCost
+        {
+            get
+            {
+                return _MarginalCost;
+            }
+            set
+            {
+                OnMarginalCostChanging(value);
+                ReportPropertyChanging("MarginalCost");
+                _MarginalCost = StructuralObject.SetValidValue(value, "MarginalCost");
+                ReportPropertyChanged("MarginalCost");
+                OnMarginalCostChanged();
+            }
+        }
+        private global::System.Double _MarginalCost;
+        partial void OnMarginalCostChanging(global::System.Double value);
+        partial void OnMarginalCostChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double InventoryCost
+        {
+            get
+            {
+                return _InventoryCost;
+            }
+            set
+            {
+                OnInventoryCostChanging(value);
+                ReportPropertyChanging("InventoryCost");
+                _InventoryCost = StructuralObject.SetValidValue(value, "InventoryCost");
+                ReportPropertyChanged("InventoryCost");
+                OnInventoryCostChanged();
+            }
+        }
+        private global::System.Double _InventoryCost;
+        partial void OnInventoryCostChanging(global::System.Double value);
+        partial void OnInventoryCostChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Location_Food_Industry_Company", "Food_Industry_Company")]
+        public Food_Industry_Company Food_Industry_Company
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company", "Food_Industry_Company").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company", "Food_Industry_Company").Value = value;
             }
         }
         /// <summary>
@@ -4830,17 +4924,115 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Round> RoundReference
+        public EntityReference<Food_Industry_Company> Food_Industry_CompanyReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round", "Round");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company", "Food_Industry_Company");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round", "Round", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry_Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company", "Food_Industry_Company", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Location_Location", "Location")]
+        public Location Location
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Location", "Location").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Location", "Location").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Location> LocationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Location", "Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Location", "Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Location_Food_Industry_Location", "Food_Industry_Location")]
+        public Food_Industry_Location Food_Industry_Location
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location", "Food_Industry_Location").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location", "Food_Industry_Location").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Food_Industry_Location> Food_Industry_LocationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location", "Food_Industry_Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location", "Food_Industry_Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Food_Industry_Company_Location", "Food_Good")]
+        public EntityCollection<Food_Good> Food_Good
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Good>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location", "Food_Good");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Good>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location", "Food_Good", value);
                 }
             }
         }
@@ -5487,6 +5679,72 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Location_Food_Industry_Good_Type", "Food_Industry_Location")]
+        public EntityCollection<Food_Industry_Location> Food_Industry_Location
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type", "Food_Industry_Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type", "Food_Industry_Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type", "Food_Industry_Age_Wealth_Type")]
+        public EntityCollection<Food_Industry_Age_Wealth_Type> Food_Industry_Age_Wealth_Type
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Age_Wealth_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type", "Food_Industry_Age_Wealth_Type");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Age_Wealth_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type", "Food_Industry_Age_Wealth_Type", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_FoodMapDataFood_Industry_Good_Type", "vw_FoodMapData")]
+        public EntityCollection<vw_FoodMapData> vw_FoodMapData
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<vw_FoodMapData>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataFood_Industry_Good_Type", "vw_FoodMapData");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<vw_FoodMapData>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataFood_Industry_Good_Type", "vw_FoodMapData", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -5892,6 +6150,545 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="Food_Industry_Location")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Food_Industry_Location : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Food_Industry_Location object.
+        /// </summary>
+        /// <param name="industryId">Initial value of the IndustryId property.</param>
+        /// <param name="locationId">Initial value of the LocationId property.</param>
+        /// <param name="economyId">Initial value of the EconomyId property.</param>
+        /// <param name="typeId">Initial value of the TypeId property.</param>
+        /// <param name="capacityCostMean">Initial value of the CapacityCostMean property.</param>
+        /// <param name="capacityCostStdDev">Initial value of the CapacityCostStdDev property.</param>
+        /// <param name="marginalCostMean">Initial value of the MarginalCostMean property.</param>
+        /// <param name="marginalCostStdDev">Initial value of the MarginalCostStdDev property.</param>
+        /// <param name="inventoryCostMean">Initial value of the InventoryCostMean property.</param>
+        /// <param name="inventoryCostStdDev">Initial value of the InventoryCostStdDev property.</param>
+        /// <param name="elasticity">Initial value of the Elasticity property.</param>
+        /// <param name="capacityDecayRate">Initial value of the CapacityDecayRate property.</param>
+        /// <param name="capacityResaleRate">Initial value of the CapacityResaleRate property.</param>
+        public static Food_Industry_Location CreateFood_Industry_Location(global::System.Int32 industryId, global::System.Int32 locationId, global::System.Int32 economyId, global::System.Int32 typeId, global::System.Double capacityCostMean, global::System.Double capacityCostStdDev, global::System.Double marginalCostMean, global::System.Double marginalCostStdDev, global::System.Double inventoryCostMean, global::System.Double inventoryCostStdDev, global::System.Double elasticity, global::System.Double capacityDecayRate, global::System.Double capacityResaleRate)
+        {
+            Food_Industry_Location food_Industry_Location = new Food_Industry_Location();
+            food_Industry_Location.IndustryId = industryId;
+            food_Industry_Location.LocationId = locationId;
+            food_Industry_Location.EconomyId = economyId;
+            food_Industry_Location.TypeId = typeId;
+            food_Industry_Location.CapacityCostMean = capacityCostMean;
+            food_Industry_Location.CapacityCostStdDev = capacityCostStdDev;
+            food_Industry_Location.MarginalCostMean = marginalCostMean;
+            food_Industry_Location.MarginalCostStdDev = marginalCostStdDev;
+            food_Industry_Location.InventoryCostMean = inventoryCostMean;
+            food_Industry_Location.InventoryCostStdDev = inventoryCostStdDev;
+            food_Industry_Location.Elasticity = elasticity;
+            food_Industry_Location.CapacityDecayRate = capacityDecayRate;
+            food_Industry_Location.CapacityResaleRate = capacityResaleRate;
+            return food_Industry_Location;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IndustryId
+        {
+            get
+            {
+                return _IndustryId;
+            }
+            set
+            {
+                if (_IndustryId != value)
+                {
+                    OnIndustryIdChanging(value);
+                    ReportPropertyChanging("IndustryId");
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
+                    ReportPropertyChanged("IndustryId");
+                    OnIndustryIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IndustryId;
+        partial void OnIndustryIdChanging(global::System.Int32 value);
+        partial void OnIndustryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LocationId
+        {
+            get
+            {
+                return _LocationId;
+            }
+            set
+            {
+                if (_LocationId != value)
+                {
+                    OnLocationIdChanging(value);
+                    ReportPropertyChanging("LocationId");
+                    _LocationId = StructuralObject.SetValidValue(value, "LocationId");
+                    ReportPropertyChanged("LocationId");
+                    OnLocationIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _LocationId;
+        partial void OnLocationIdChanging(global::System.Int32 value);
+        partial void OnLocationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 EconomyId
+        {
+            get
+            {
+                return _EconomyId;
+            }
+            set
+            {
+                if (_EconomyId != value)
+                {
+                    OnEconomyIdChanging(value);
+                    ReportPropertyChanging("EconomyId");
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
+                    ReportPropertyChanged("EconomyId");
+                    OnEconomyIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _EconomyId;
+        partial void OnEconomyIdChanging(global::System.Int32 value);
+        partial void OnEconomyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TypeId
+        {
+            get
+            {
+                return _TypeId;
+            }
+            set
+            {
+                if (_TypeId != value)
+                {
+                    OnTypeIdChanging(value);
+                    ReportPropertyChanging("TypeId");
+                    _TypeId = StructuralObject.SetValidValue(value, "TypeId");
+                    ReportPropertyChanged("TypeId");
+                    OnTypeIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TypeId;
+        partial void OnTypeIdChanging(global::System.Int32 value);
+        partial void OnTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double CapacityCostMean
+        {
+            get
+            {
+                return _CapacityCostMean;
+            }
+            set
+            {
+                OnCapacityCostMeanChanging(value);
+                ReportPropertyChanging("CapacityCostMean");
+                _CapacityCostMean = StructuralObject.SetValidValue(value, "CapacityCostMean");
+                ReportPropertyChanged("CapacityCostMean");
+                OnCapacityCostMeanChanged();
+            }
+        }
+        private global::System.Double _CapacityCostMean;
+        partial void OnCapacityCostMeanChanging(global::System.Double value);
+        partial void OnCapacityCostMeanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double CapacityCostStdDev
+        {
+            get
+            {
+                return _CapacityCostStdDev;
+            }
+            set
+            {
+                OnCapacityCostStdDevChanging(value);
+                ReportPropertyChanging("CapacityCostStdDev");
+                _CapacityCostStdDev = StructuralObject.SetValidValue(value, "CapacityCostStdDev");
+                ReportPropertyChanged("CapacityCostStdDev");
+                OnCapacityCostStdDevChanged();
+            }
+        }
+        private global::System.Double _CapacityCostStdDev;
+        partial void OnCapacityCostStdDevChanging(global::System.Double value);
+        partial void OnCapacityCostStdDevChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double MarginalCostMean
+        {
+            get
+            {
+                return _MarginalCostMean;
+            }
+            set
+            {
+                OnMarginalCostMeanChanging(value);
+                ReportPropertyChanging("MarginalCostMean");
+                _MarginalCostMean = StructuralObject.SetValidValue(value, "MarginalCostMean");
+                ReportPropertyChanged("MarginalCostMean");
+                OnMarginalCostMeanChanged();
+            }
+        }
+        private global::System.Double _MarginalCostMean;
+        partial void OnMarginalCostMeanChanging(global::System.Double value);
+        partial void OnMarginalCostMeanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double MarginalCostStdDev
+        {
+            get
+            {
+                return _MarginalCostStdDev;
+            }
+            set
+            {
+                OnMarginalCostStdDevChanging(value);
+                ReportPropertyChanging("MarginalCostStdDev");
+                _MarginalCostStdDev = StructuralObject.SetValidValue(value, "MarginalCostStdDev");
+                ReportPropertyChanged("MarginalCostStdDev");
+                OnMarginalCostStdDevChanged();
+            }
+        }
+        private global::System.Double _MarginalCostStdDev;
+        partial void OnMarginalCostStdDevChanging(global::System.Double value);
+        partial void OnMarginalCostStdDevChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double InventoryCostMean
+        {
+            get
+            {
+                return _InventoryCostMean;
+            }
+            set
+            {
+                OnInventoryCostMeanChanging(value);
+                ReportPropertyChanging("InventoryCostMean");
+                _InventoryCostMean = StructuralObject.SetValidValue(value, "InventoryCostMean");
+                ReportPropertyChanged("InventoryCostMean");
+                OnInventoryCostMeanChanged();
+            }
+        }
+        private global::System.Double _InventoryCostMean;
+        partial void OnInventoryCostMeanChanging(global::System.Double value);
+        partial void OnInventoryCostMeanChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double InventoryCostStdDev
+        {
+            get
+            {
+                return _InventoryCostStdDev;
+            }
+            set
+            {
+                OnInventoryCostStdDevChanging(value);
+                ReportPropertyChanging("InventoryCostStdDev");
+                _InventoryCostStdDev = StructuralObject.SetValidValue(value, "InventoryCostStdDev");
+                ReportPropertyChanged("InventoryCostStdDev");
+                OnInventoryCostStdDevChanged();
+            }
+        }
+        private global::System.Double _InventoryCostStdDev;
+        partial void OnInventoryCostStdDevChanging(global::System.Double value);
+        partial void OnInventoryCostStdDevChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Elasticity
+        {
+            get
+            {
+                return _Elasticity;
+            }
+            set
+            {
+                OnElasticityChanging(value);
+                ReportPropertyChanging("Elasticity");
+                _Elasticity = StructuralObject.SetValidValue(value, "Elasticity");
+                ReportPropertyChanged("Elasticity");
+                OnElasticityChanged();
+            }
+        }
+        private global::System.Double _Elasticity;
+        partial void OnElasticityChanging(global::System.Double value);
+        partial void OnElasticityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double CapacityDecayRate
+        {
+            get
+            {
+                return _CapacityDecayRate;
+            }
+            set
+            {
+                OnCapacityDecayRateChanging(value);
+                ReportPropertyChanging("CapacityDecayRate");
+                _CapacityDecayRate = StructuralObject.SetValidValue(value, "CapacityDecayRate");
+                ReportPropertyChanged("CapacityDecayRate");
+                OnCapacityDecayRateChanged();
+            }
+        }
+        private global::System.Double _CapacityDecayRate;
+        partial void OnCapacityDecayRateChanging(global::System.Double value);
+        partial void OnCapacityDecayRateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double CapacityResaleRate
+        {
+            get
+            {
+                return _CapacityResaleRate;
+            }
+            set
+            {
+                OnCapacityResaleRateChanging(value);
+                ReportPropertyChanging("CapacityResaleRate");
+                _CapacityResaleRate = StructuralObject.SetValidValue(value, "CapacityResaleRate");
+                ReportPropertyChanged("CapacityResaleRate");
+                OnCapacityResaleRateChanged();
+            }
+        }
+        private global::System.Double _CapacityResaleRate;
+        partial void OnCapacityResaleRateChanging(global::System.Double value);
+        partial void OnCapacityResaleRateChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Location_Food_Industry", "Food_Industry")]
+        public Food_Industry Food_Industry
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry", "Food_Industry").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry", "Food_Industry").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Food_Industry> Food_IndustryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry", "Food_Industry");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry", "Food_Industry", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Location_Location", "Location")]
+        public Location Location
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Location", "Location").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Location", "Location").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Location> LocationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Location", "Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Location", "Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Location_Food_Industry_Good_Type", "Food_Industry_Good_Type")]
+        public Food_Industry_Good_Type Food_Industry_Good_Type
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type", "Food_Industry_Good_Type").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type", "Food_Industry_Good_Type").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Food_Industry_Good_Type> Food_Industry_Good_TypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type", "Food_Industry_Good_Type");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type", "Food_Industry_Good_Type", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Food_Industry_Location", "Food_Good")]
+        public EntityCollection<Food_Good> Food_Good
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Good>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location", "Food_Good");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Good>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location", "Food_Good", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Location_Food_Industry_Location", "Food_Industry_Company_Location")]
+        public EntityCollection<Food_Industry_Company_Location> Food_Industry_Company_Location
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Company_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location", "Food_Industry_Company_Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Company_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location", "Food_Industry_Company_Location", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="Good")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -6260,54 +7057,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Double> Latitude
-        {
-            get
-            {
-                return _Latitude;
-            }
-            set
-            {
-                OnLatitudeChanging(value);
-                ReportPropertyChanging("Latitude");
-                _Latitude = StructuralObject.SetValidValue(value, "Latitude");
-                ReportPropertyChanged("Latitude");
-                OnLatitudeChanged();
-            }
-        }
-        private Nullable<global::System.Double> _Latitude;
-        partial void OnLatitudeChanging(Nullable<global::System.Double> value);
-        partial void OnLatitudeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Double> Longitude
-        {
-            get
-            {
-                return _Longitude;
-            }
-            set
-            {
-                OnLongitudeChanging(value);
-                ReportPropertyChanging("Longitude");
-                _Longitude = StructuralObject.SetValidValue(value, "Longitude");
-                ReportPropertyChanged("Longitude");
-                OnLongitudeChanged();
-            }
-        }
-        private Nullable<global::System.Double> _Longitude;
-        partial void OnLongitudeChanging(Nullable<global::System.Double> value);
-        partial void OnLongitudeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 ProfileId
@@ -6563,6 +7312,82 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Profile>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile", "Profile", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Household1", "Household1")]
+        public Household Household1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1", "Household1").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1", "Household1").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Household> Household1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1", "Household1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1", "Household1", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Household_Household1", "Household")]
+        public Household Household2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1", "Household").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1", "Household").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Household> Household2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1", "Household");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Household>("Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1", "Household", value);
                 }
             }
         }
@@ -7149,22 +7974,22 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="locationId">Initial value of the LocationId property.</param>
         /// <param name="economyId">Initial value of the EconomyId property.</param>
         /// <param name="identifier">Initial value of the Identifier property.</param>
-        /// <param name="centerX">Initial value of the CenterX property.</param>
-        /// <param name="centerY">Initial value of the CenterY property.</param>
         /// <param name="profileId">Initial value of the ProfileId property.</param>
         /// <param name="totalPopulation">Initial value of the TotalPopulation property.</param>
         /// <param name="interactive">Initial value of the Interactive property.</param>
-        public static Location CreateLocation(global::System.Int32 locationId, global::System.Int32 economyId, global::System.String identifier, global::System.Double centerX, global::System.Double centerY, global::System.Int32 profileId, global::System.Int32 totalPopulation, global::System.Boolean interactive)
+        /// <param name="x">Initial value of the X property.</param>
+        /// <param name="y">Initial value of the Y property.</param>
+        public static Location CreateLocation(global::System.Int32 locationId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 profileId, global::System.Int32 totalPopulation, global::System.Boolean interactive, global::System.Int32 x, global::System.Int32 y)
         {
             Location location = new Location();
             location.LocationId = locationId;
             location.EconomyId = economyId;
             location.Identifier = identifier;
-            location.CenterX = centerX;
-            location.CenterY = centerY;
             location.ProfileId = profileId;
             location.TotalPopulation = totalPopulation;
             location.Interactive = interactive;
+            location.X = x;
+            location.Y = y;
             return location;
         }
 
@@ -7255,54 +8080,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Double CenterX
-        {
-            get
-            {
-                return _CenterX;
-            }
-            set
-            {
-                OnCenterXChanging(value);
-                ReportPropertyChanging("CenterX");
-                _CenterX = StructuralObject.SetValidValue(value, "CenterX");
-                ReportPropertyChanged("CenterX");
-                OnCenterXChanged();
-            }
-        }
-        private global::System.Double _CenterX;
-        partial void OnCenterXChanging(global::System.Double value);
-        partial void OnCenterXChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Double CenterY
-        {
-            get
-            {
-                return _CenterY;
-            }
-            set
-            {
-                OnCenterYChanging(value);
-                ReportPropertyChanging("CenterY");
-                _CenterY = StructuralObject.SetValidValue(value, "CenterY");
-                ReportPropertyChanged("CenterY");
-                OnCenterYChanged();
-            }
-        }
-        private global::System.Double _CenterY;
-        partial void OnCenterYChanging(global::System.Double value);
-        partial void OnCenterYChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Int32 ProfileId
         {
             get
@@ -7349,30 +8126,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String City
-        {
-            get
-            {
-                return _City;
-            }
-            set
-            {
-                OnCityChanging(value);
-                ReportPropertyChanging("City");
-                _City = StructuralObject.SetValidValue(value, true, "City");
-                ReportPropertyChanged("City");
-                OnCityChanged();
-            }
-        }
-        private global::System.String _City;
-        partial void OnCityChanging(global::System.String value);
-        partial void OnCityChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Boolean Interactive
@@ -7397,26 +8150,50 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Data.Spatial.DbGeography Shape
+        public global::System.Int32 X
         {
             get
             {
-                return _Shape;
+                return _X;
             }
             set
             {
-                OnShapeChanging(value);
-                ReportPropertyChanging("Shape");
-                _Shape = StructuralObject.SetValidValue(value, true, "Shape");
-                ReportPropertyChanged("Shape");
-                OnShapeChanged();
+                OnXChanging(value);
+                ReportPropertyChanging("X");
+                _X = StructuralObject.SetValidValue(value, "X");
+                ReportPropertyChanged("X");
+                OnXChanged();
             }
         }
-        private global::System.Data.Spatial.DbGeography _Shape;
-        partial void OnShapeChanging(global::System.Data.Spatial.DbGeography value);
-        partial void OnShapeChanged();
+        private global::System.Int32 _X;
+        partial void OnXChanging(global::System.Int32 value);
+        partial void OnXChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Y
+        {
+            get
+            {
+                return _Y;
+            }
+            set
+            {
+                OnYChanging(value);
+                ReportPropertyChanging("Y");
+                _Y = StructuralObject.SetValidValue(value, "Y");
+                ReportPropertyChanged("Y");
+                OnYChanged();
+            }
+        }
+        private global::System.Int32 _Y;
+        partial void OnYChanging(global::System.Int32 value);
+        partial void OnYChanged();
 
         #endregion
 
@@ -7510,28 +8287,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_LocationPointsLocation", "vw_LocationPoints")]
-        public EntityCollection<vw_LocationPoints> vw_LocationPoints
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<vw_LocationPoints>("Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation", "vw_LocationPoints");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<vw_LocationPoints>("Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation", "vw_LocationPoints", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Location_Profile", "Profile")]
         public Profile Profile
         {
@@ -7563,6 +8318,94 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Location_Location", "Food_Industry_Company_Location")]
+        public EntityCollection<Food_Industry_Company_Location> Food_Industry_Company_Location
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Company_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Location", "Food_Industry_Company_Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Company_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Location", "Food_Industry_Company_Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Location_Location", "Food_Industry_Location")]
+        public EntityCollection<Food_Industry_Location> Food_Industry_Location
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Location", "Food_Industry_Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Location>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Location", "Food_Industry_Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PopulationByLocationLocation", "vw_PopulationByLocation")]
+        public EntityCollection<vw_PopulationByLocation> vw_PopulationByLocation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<vw_PopulationByLocation>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationLocation", "vw_PopulationByLocation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<vw_PopulationByLocation>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationLocation", "vw_PopulationByLocation", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_FoodMapDataLocation", "vw_FoodMapData")]
+        public EntityCollection<vw_FoodMapData> vw_FoodMapData
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<vw_FoodMapData>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataLocation", "vw_FoodMapData");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<vw_FoodMapData>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataLocation", "vw_FoodMapData", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -7584,14 +8427,12 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="profileId">Initial value of the ProfileId property.</param>
         /// <param name="economyId">Initial value of the EconomyId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="totalPopulation">Initial value of the TotalPopulation property.</param>
-        public static Profile CreateProfile(global::System.Int32 profileId, global::System.Int32 economyId, global::System.String name, global::System.Int32 totalPopulation)
+        public static Profile CreateProfile(global::System.Int32 profileId, global::System.Int32 economyId, global::System.String name)
         {
             Profile profile = new Profile();
             profile.ProfileId = profileId;
             profile.EconomyId = economyId;
             profile.Name = name;
-            profile.TotalPopulation = totalPopulation;
             return profile;
         }
 
@@ -7676,30 +8517,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
-    
-        /// <summary>
-        /// The total number of households that will use this profile.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 TotalPopulation
-        {
-            get
-            {
-                return _TotalPopulation;
-            }
-            set
-            {
-                OnTotalPopulationChanging(value);
-                ReportPropertyChanging("TotalPopulation");
-                _TotalPopulation = StructuralObject.SetValidValue(value, "TotalPopulation");
-                ReportPropertyChanged("TotalPopulation");
-                OnTotalPopulationChanged();
-            }
-        }
-        private global::System.Int32 _TotalPopulation;
-        partial void OnTotalPopulationChanging(global::System.Int32 value);
-        partial void OnTotalPopulationChanged();
 
         #endregion
 
@@ -8156,7 +8973,8 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// <param name="identifier">Initial value of the Identifier property.</param>
         /// <param name="sequence">Initial value of the Sequence property.</param>
         /// <param name="lastModified">Initial value of the LastModified property.</param>
-        public static Round CreateRound(global::System.Int32 roundId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 sequence, global::System.DateTime lastModified)
+        /// <param name="isCurrent">Initial value of the IsCurrent property.</param>
+        public static Round CreateRound(global::System.Int32 roundId, global::System.Int32 economyId, global::System.String identifier, global::System.Int32 sequence, global::System.DateTime lastModified, global::System.Boolean isCurrent)
         {
             Round round = new Round();
             round.RoundId = roundId;
@@ -8164,6 +8982,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             round.Identifier = identifier;
             round.Sequence = sequence;
             round.LastModified = lastModified;
+            round.IsCurrent = isCurrent;
             return round;
         }
 
@@ -8344,6 +9163,30 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         private global::System.DateTime _LastModified;
         partial void OnLastModifiedChanging(global::System.DateTime value);
         partial void OnLastModifiedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsCurrent
+        {
+            get
+            {
+                return _IsCurrent;
+            }
+            set
+            {
+                OnIsCurrentChanging(value);
+                ReportPropertyChanging("IsCurrent");
+                _IsCurrent = StructuralObject.SetValidValue(value, "IsCurrent");
+                ReportPropertyChanged("IsCurrent");
+                OnIsCurrentChanged();
+            }
+        }
+        private global::System.Boolean _IsCurrent;
+        partial void OnIsCurrentChanging(global::System.Boolean value);
+        partial void OnIsCurrentChanged();
 
         #endregion
 
@@ -8367,28 +9210,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Company_Round>("Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Round_Round", "Company_Round", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Economy_Round", "Economy")]
-        public EntityCollection<Economy> Economies
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round", "Economy");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round", "Economy", value);
                 }
             }
         }
@@ -8525,28 +9346,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Company_Round", "Food_Industry_Company")]
-        public EntityCollection<Food_Industry_Company> Food_Industry_Company
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round", "Food_Industry_Company");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Company>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round", "Food_Industry_Company", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Household_Company_Round_Round", "Food_Industry_Household_Company_Round")]
         public EntityCollection<Food_Industry_Household_Company_Round> Food_Industry_Household_Company_Round
         {
@@ -8597,6 +9396,88 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Round_State>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round_State", "Round_State", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_FoodMapDataRound", "vw_FoodMapData")]
+        public EntityCollection<vw_FoodMapData> vw_FoodMapData
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<vw_FoodMapData>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataRound", "vw_FoodMapData");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<vw_FoodMapData>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataRound", "vw_FoodMapData", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Good_Round", "Food_Good")]
+        public EntityCollection<Food_Good> Food_Good
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Good>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round", "Food_Good");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Good>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round", "Food_Good", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Round_Economy", "Economy")]
+        public Economy Economy
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy", "Economy").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy", "Economy").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Economy> EconomyReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy", "Economy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy", "Economy", value);
                 }
             }
         }
@@ -8716,26 +9597,525 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="vw_LocationPoints")]
+    [EdmEntityTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="vw_FoodMapData")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class vw_LocationPoints : EntityObject
+    public partial class vw_FoodMapData : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new vw_LocationPoints object.
+        /// Create a new vw_FoodMapData object.
+        /// </summary>
+        /// <param name="economyId">Initial value of the EconomyId property.</param>
+        /// <param name="roundId">Initial value of the RoundId property.</param>
+        /// <param name="locationId">Initial value of the LocationId property.</param>
+        /// <param name="locationIdentifier">Initial value of the LocationIdentifier property.</param>
+        /// <param name="companyId">Initial value of the CompanyId property.</param>
+        /// <param name="companyName">Initial value of the CompanyName property.</param>
+        /// <param name="storename">Initial value of the Storename property.</param>
+        /// <param name="foodTypeId">Initial value of the FoodTypeId property.</param>
+        /// <param name="foodTypeName">Initial value of the FoodTypeName property.</param>
+        /// <param name="capacityStart">Initial value of the CapacityStart property.</param>
+        /// <param name="price">Initial value of the Price property.</param>
+        /// <param name="industryId">Initial value of the IndustryId property.</param>
+        public static vw_FoodMapData Createvw_FoodMapData(global::System.Int32 economyId, global::System.Int32 roundId, global::System.Int32 locationId, global::System.String locationIdentifier, global::System.Int32 companyId, global::System.String companyName, global::System.String storename, global::System.Int32 foodTypeId, global::System.String foodTypeName, global::System.Double capacityStart, global::System.Double price, global::System.Int32 industryId)
+        {
+            vw_FoodMapData vw_FoodMapData = new vw_FoodMapData();
+            vw_FoodMapData.EconomyId = economyId;
+            vw_FoodMapData.RoundId = roundId;
+            vw_FoodMapData.LocationId = locationId;
+            vw_FoodMapData.LocationIdentifier = locationIdentifier;
+            vw_FoodMapData.CompanyId = companyId;
+            vw_FoodMapData.CompanyName = companyName;
+            vw_FoodMapData.Storename = storename;
+            vw_FoodMapData.FoodTypeId = foodTypeId;
+            vw_FoodMapData.FoodTypeName = foodTypeName;
+            vw_FoodMapData.CapacityStart = capacityStart;
+            vw_FoodMapData.Price = price;
+            vw_FoodMapData.IndustryId = industryId;
+            return vw_FoodMapData;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 EconomyId
+        {
+            get
+            {
+                return _EconomyId;
+            }
+            set
+            {
+                if (_EconomyId != value)
+                {
+                    OnEconomyIdChanging(value);
+                    ReportPropertyChanging("EconomyId");
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
+                    ReportPropertyChanged("EconomyId");
+                    OnEconomyIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _EconomyId;
+        partial void OnEconomyIdChanging(global::System.Int32 value);
+        partial void OnEconomyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RoundId
+        {
+            get
+            {
+                return _RoundId;
+            }
+            set
+            {
+                if (_RoundId != value)
+                {
+                    OnRoundIdChanging(value);
+                    ReportPropertyChanging("RoundId");
+                    _RoundId = StructuralObject.SetValidValue(value, "RoundId");
+                    ReportPropertyChanged("RoundId");
+                    OnRoundIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _RoundId;
+        partial void OnRoundIdChanging(global::System.Int32 value);
+        partial void OnRoundIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LocationId
+        {
+            get
+            {
+                return _LocationId;
+            }
+            set
+            {
+                if (_LocationId != value)
+                {
+                    OnLocationIdChanging(value);
+                    ReportPropertyChanging("LocationId");
+                    _LocationId = StructuralObject.SetValidValue(value, "LocationId");
+                    ReportPropertyChanged("LocationId");
+                    OnLocationIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _LocationId;
+        partial void OnLocationIdChanging(global::System.Int32 value);
+        partial void OnLocationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LocationIdentifier
+        {
+            get
+            {
+                return _LocationIdentifier;
+            }
+            set
+            {
+                if (_LocationIdentifier != value)
+                {
+                    OnLocationIdentifierChanging(value);
+                    ReportPropertyChanging("LocationIdentifier");
+                    _LocationIdentifier = StructuralObject.SetValidValue(value, false, "LocationIdentifier");
+                    ReportPropertyChanged("LocationIdentifier");
+                    OnLocationIdentifierChanged();
+                }
+            }
+        }
+        private global::System.String _LocationIdentifier;
+        partial void OnLocationIdentifierChanging(global::System.String value);
+        partial void OnLocationIdentifierChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CompanyId
+        {
+            get
+            {
+                return _CompanyId;
+            }
+            set
+            {
+                if (_CompanyId != value)
+                {
+                    OnCompanyIdChanging(value);
+                    ReportPropertyChanging("CompanyId");
+                    _CompanyId = StructuralObject.SetValidValue(value, "CompanyId");
+                    ReportPropertyChanged("CompanyId");
+                    OnCompanyIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _CompanyId;
+        partial void OnCompanyIdChanging(global::System.Int32 value);
+        partial void OnCompanyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CompanyName
+        {
+            get
+            {
+                return _CompanyName;
+            }
+            set
+            {
+                if (_CompanyName != value)
+                {
+                    OnCompanyNameChanging(value);
+                    ReportPropertyChanging("CompanyName");
+                    _CompanyName = StructuralObject.SetValidValue(value, false, "CompanyName");
+                    ReportPropertyChanged("CompanyName");
+                    OnCompanyNameChanged();
+                }
+            }
+        }
+        private global::System.String _CompanyName;
+        partial void OnCompanyNameChanging(global::System.String value);
+        partial void OnCompanyNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Storename
+        {
+            get
+            {
+                return _Storename;
+            }
+            set
+            {
+                if (_Storename != value)
+                {
+                    OnStorenameChanging(value);
+                    ReportPropertyChanging("Storename");
+                    _Storename = StructuralObject.SetValidValue(value, false, "Storename");
+                    ReportPropertyChanged("Storename");
+                    OnStorenameChanged();
+                }
+            }
+        }
+        private global::System.String _Storename;
+        partial void OnStorenameChanging(global::System.String value);
+        partial void OnStorenameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 FoodTypeId
+        {
+            get
+            {
+                return _FoodTypeId;
+            }
+            set
+            {
+                if (_FoodTypeId != value)
+                {
+                    OnFoodTypeIdChanging(value);
+                    ReportPropertyChanging("FoodTypeId");
+                    _FoodTypeId = StructuralObject.SetValidValue(value, "FoodTypeId");
+                    ReportPropertyChanged("FoodTypeId");
+                    OnFoodTypeIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _FoodTypeId;
+        partial void OnFoodTypeIdChanging(global::System.Int32 value);
+        partial void OnFoodTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FoodTypeName
+        {
+            get
+            {
+                return _FoodTypeName;
+            }
+            set
+            {
+                if (_FoodTypeName != value)
+                {
+                    OnFoodTypeNameChanging(value);
+                    ReportPropertyChanging("FoodTypeName");
+                    _FoodTypeName = StructuralObject.SetValidValue(value, false, "FoodTypeName");
+                    ReportPropertyChanged("FoodTypeName");
+                    OnFoodTypeNameChanged();
+                }
+            }
+        }
+        private global::System.String _FoodTypeName;
+        partial void OnFoodTypeNameChanging(global::System.String value);
+        partial void OnFoodTypeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double CapacityStart
+        {
+            get
+            {
+                return _CapacityStart;
+            }
+            set
+            {
+                if (_CapacityStart != value)
+                {
+                    OnCapacityStartChanging(value);
+                    ReportPropertyChanging("CapacityStart");
+                    _CapacityStart = StructuralObject.SetValidValue(value, "CapacityStart");
+                    ReportPropertyChanged("CapacityStart");
+                    OnCapacityStartChanged();
+                }
+            }
+        }
+        private global::System.Double _CapacityStart;
+        partial void OnCapacityStartChanging(global::System.Double value);
+        partial void OnCapacityStartChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Price
+        {
+            get
+            {
+                return _Price;
+            }
+            set
+            {
+                if (_Price != value)
+                {
+                    OnPriceChanging(value);
+                    ReportPropertyChanging("Price");
+                    _Price = StructuralObject.SetValidValue(value, "Price");
+                    ReportPropertyChanged("Price");
+                    OnPriceChanged();
+                }
+            }
+        }
+        private global::System.Double _Price;
+        partial void OnPriceChanging(global::System.Double value);
+        partial void OnPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IndustryId
+        {
+            get
+            {
+                return _IndustryId;
+            }
+            set
+            {
+                if (_IndustryId != value)
+                {
+                    OnIndustryIdChanging(value);
+                    ReportPropertyChanging("IndustryId");
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
+                    ReportPropertyChanged("IndustryId");
+                    OnIndustryIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IndustryId;
+        partial void OnIndustryIdChanging(global::System.Int32 value);
+        partial void OnIndustryIdChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_FoodMapDataLocation", "Location")]
+        public Location Location
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataLocation", "Location").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataLocation", "Location").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Location> LocationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataLocation", "Location");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataLocation", "Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_FoodMapDataRound", "Round")]
+        public Round Round
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataRound", "Round").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataRound", "Round").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Round> RoundReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataRound", "Round");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Round>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataRound", "Round", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_FoodMapDataFood_Industry_Good_Type", "Food_Industry_Good_Type")]
+        public Food_Industry_Good_Type Food_Industry_Good_Type
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataFood_Industry_Good_Type", "Food_Industry_Good_Type").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataFood_Industry_Good_Type", "Food_Industry_Good_Type").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Food_Industry_Good_Type> Food_Industry_Good_TypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataFood_Industry_Good_Type", "Food_Industry_Good_Type");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Food_Industry_Good_Type>("Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataFood_Industry_Good_Type", "Food_Industry_Good_Type", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="vw_PopulationByLocation")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class vw_PopulationByLocation : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new vw_PopulationByLocation object.
         /// </summary>
         /// <param name="economyId">Initial value of the EconomyId property.</param>
         /// <param name="locationId">Initial value of the LocationId property.</param>
-        /// <param name="sequence">Initial value of the sequence property.</param>
-        public static vw_LocationPoints Createvw_LocationPoints(global::System.Int32 economyId, global::System.Int32 locationId, global::System.Int64 sequence)
+        /// <param name="ageId">Initial value of the AgeId property.</param>
+        /// <param name="wealthId">Initial value of the WealthId property.</param>
+        /// <param name="probability">Initial value of the Probability property.</param>
+        /// <param name="population">Initial value of the Population property.</param>
+        public static vw_PopulationByLocation Createvw_PopulationByLocation(global::System.Int32 economyId, global::System.Int32 locationId, global::System.Int32 ageId, global::System.Int32 wealthId, global::System.Double probability, global::System.Double population)
         {
-            vw_LocationPoints vw_LocationPoints = new vw_LocationPoints();
-            vw_LocationPoints.EconomyId = economyId;
-            vw_LocationPoints.LocationId = locationId;
-            vw_LocationPoints.sequence = sequence;
-            return vw_LocationPoints;
+            vw_PopulationByLocation vw_PopulationByLocation = new vw_PopulationByLocation();
+            vw_PopulationByLocation.EconomyId = economyId;
+            vw_PopulationByLocation.LocationId = locationId;
+            vw_PopulationByLocation.AgeId = ageId;
+            vw_PopulationByLocation.WealthId = wealthId;
+            vw_PopulationByLocation.Probability = probability;
+            vw_PopulationByLocation.Population = population;
+            return vw_PopulationByLocation;
         }
 
         #endregion
@@ -8801,75 +10181,108 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 sequence
+        public global::System.Int32 AgeId
         {
             get
             {
-                return _sequence;
+                return _AgeId;
             }
             set
             {
-                if (_sequence != value)
+                if (_AgeId != value)
                 {
-                    OnsequenceChanging(value);
-                    ReportPropertyChanging("sequence");
-                    _sequence = StructuralObject.SetValidValue(value, "sequence");
-                    ReportPropertyChanged("sequence");
-                    OnsequenceChanged();
+                    OnAgeIdChanging(value);
+                    ReportPropertyChanging("AgeId");
+                    _AgeId = StructuralObject.SetValidValue(value, "AgeId");
+                    ReportPropertyChanged("AgeId");
+                    OnAgeIdChanged();
                 }
             }
         }
-        private global::System.Int64 _sequence;
-        partial void OnsequenceChanging(global::System.Int64 value);
-        partial void OnsequenceChanged();
+        private global::System.Int32 _AgeId;
+        partial void OnAgeIdChanging(global::System.Int32 value);
+        partial void OnAgeIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> Lat
+        public global::System.Int32 WealthId
         {
             get
             {
-                return _Lat;
+                return _WealthId;
             }
             set
             {
-                OnLatChanging(value);
-                ReportPropertyChanging("Lat");
-                _Lat = StructuralObject.SetValidValue(value, "Lat");
-                ReportPropertyChanged("Lat");
-                OnLatChanged();
+                if (_WealthId != value)
+                {
+                    OnWealthIdChanging(value);
+                    ReportPropertyChanging("WealthId");
+                    _WealthId = StructuralObject.SetValidValue(value, "WealthId");
+                    ReportPropertyChanged("WealthId");
+                    OnWealthIdChanged();
+                }
             }
         }
-        private Nullable<global::System.Double> _Lat;
-        partial void OnLatChanging(Nullable<global::System.Double> value);
-        partial void OnLatChanged();
+        private global::System.Int32 _WealthId;
+        partial void OnWealthIdChanging(global::System.Int32 value);
+        partial void OnWealthIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> Long
+        public global::System.Double Probability
         {
             get
             {
-                return _Long;
+                return _Probability;
             }
             set
             {
-                OnLongChanging(value);
-                ReportPropertyChanging("Long");
-                _Long = StructuralObject.SetValidValue(value, "Long");
-                ReportPropertyChanged("Long");
-                OnLongChanged();
+                if (_Probability != value)
+                {
+                    OnProbabilityChanging(value);
+                    ReportPropertyChanging("Probability");
+                    _Probability = StructuralObject.SetValidValue(value, "Probability");
+                    ReportPropertyChanged("Probability");
+                    OnProbabilityChanged();
+                }
             }
         }
-        private Nullable<global::System.Double> _Long;
-        partial void OnLongChanging(Nullable<global::System.Double> value);
-        partial void OnLongChanged();
+        private global::System.Double _Probability;
+        partial void OnProbabilityChanging(global::System.Double value);
+        partial void OnProbabilityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Double Population
+        {
+            get
+            {
+                return _Population;
+            }
+            set
+            {
+                if (_Population != value)
+                {
+                    OnPopulationChanging(value);
+                    ReportPropertyChanging("Population");
+                    _Population = StructuralObject.SetValidValue(value, "Population");
+                    ReportPropertyChanged("Population");
+                    OnPopulationChanged();
+                }
+            }
+        }
+        private global::System.Double _Population;
+        partial void OnPopulationChanging(global::System.Double value);
+        partial void OnPopulationChanged();
 
         #endregion
 
@@ -8881,16 +10294,16 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_LocationPointsLocation", "Location")]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PopulationByLocationLocation", "Location")]
         public Location Location
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation", "Location").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationLocation", "Location").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation", "Location").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationLocation", "Location").Value = value;
             }
         }
         /// <summary>
@@ -8902,13 +10315,356 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation", "Location");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationLocation", "Location");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation", "Location", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Location>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationLocation", "Location", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PopulationByLocationAge", "Age")]
+        public Age Age
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationAge", "Age").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationAge", "Age").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Age> AgeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationAge", "Age");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Age>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationAge", "Age", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PopulationByLocationWealth", "Wealth")]
+        public Wealth Wealth
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationWealth", "Wealth").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationWealth", "Wealth").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Wealth> WealthReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationWealth", "Wealth");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Wealth>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationWealth", "Wealth", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Fuqua.CompetativeAnalysis.MarketGame", Name="vw_PublicDemandData")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class vw_PublicDemandData : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new vw_PublicDemandData object.
+        /// </summary>
+        /// <param name="economyId">Initial value of the EconomyId property.</param>
+        /// <param name="industryId">Initial value of the IndustryId property.</param>
+        /// <param name="locationId">Initial value of the LocationId property.</param>
+        /// <param name="typeId">Initial value of the TypeId property.</param>
+        /// <param name="ageId">Initial value of the AgeId property.</param>
+        /// <param name="identifier">Initial value of the Identifier property.</param>
+        public static vw_PublicDemandData Createvw_PublicDemandData(global::System.Int32 economyId, global::System.Int32 industryId, global::System.Int32 locationId, global::System.Int32 typeId, global::System.Int32 ageId, global::System.String identifier)
+        {
+            vw_PublicDemandData vw_PublicDemandData = new vw_PublicDemandData();
+            vw_PublicDemandData.EconomyId = economyId;
+            vw_PublicDemandData.IndustryId = industryId;
+            vw_PublicDemandData.LocationId = locationId;
+            vw_PublicDemandData.TypeId = typeId;
+            vw_PublicDemandData.AgeId = ageId;
+            vw_PublicDemandData.Identifier = identifier;
+            return vw_PublicDemandData;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 EconomyId
+        {
+            get
+            {
+                return _EconomyId;
+            }
+            set
+            {
+                if (_EconomyId != value)
+                {
+                    OnEconomyIdChanging(value);
+                    ReportPropertyChanging("EconomyId");
+                    _EconomyId = StructuralObject.SetValidValue(value, "EconomyId");
+                    ReportPropertyChanged("EconomyId");
+                    OnEconomyIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _EconomyId;
+        partial void OnEconomyIdChanging(global::System.Int32 value);
+        partial void OnEconomyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IndustryId
+        {
+            get
+            {
+                return _IndustryId;
+            }
+            set
+            {
+                if (_IndustryId != value)
+                {
+                    OnIndustryIdChanging(value);
+                    ReportPropertyChanging("IndustryId");
+                    _IndustryId = StructuralObject.SetValidValue(value, "IndustryId");
+                    ReportPropertyChanged("IndustryId");
+                    OnIndustryIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _IndustryId;
+        partial void OnIndustryIdChanging(global::System.Int32 value);
+        partial void OnIndustryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LocationId
+        {
+            get
+            {
+                return _LocationId;
+            }
+            set
+            {
+                if (_LocationId != value)
+                {
+                    OnLocationIdChanging(value);
+                    ReportPropertyChanging("LocationId");
+                    _LocationId = StructuralObject.SetValidValue(value, "LocationId");
+                    ReportPropertyChanged("LocationId");
+                    OnLocationIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _LocationId;
+        partial void OnLocationIdChanging(global::System.Int32 value);
+        partial void OnLocationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TypeId
+        {
+            get
+            {
+                return _TypeId;
+            }
+            set
+            {
+                if (_TypeId != value)
+                {
+                    OnTypeIdChanging(value);
+                    ReportPropertyChanging("TypeId");
+                    _TypeId = StructuralObject.SetValidValue(value, "TypeId");
+                    ReportPropertyChanged("TypeId");
+                    OnTypeIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TypeId;
+        partial void OnTypeIdChanging(global::System.Int32 value);
+        partial void OnTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 AgeId
+        {
+            get
+            {
+                return _AgeId;
+            }
+            set
+            {
+                if (_AgeId != value)
+                {
+                    OnAgeIdChanging(value);
+                    ReportPropertyChanging("AgeId");
+                    _AgeId = StructuralObject.SetValidValue(value, "AgeId");
+                    ReportPropertyChanged("AgeId");
+                    OnAgeIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _AgeId;
+        partial void OnAgeIdChanging(global::System.Int32 value);
+        partial void OnAgeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Identifier
+        {
+            get
+            {
+                return _Identifier;
+            }
+            set
+            {
+                if (_Identifier != value)
+                {
+                    OnIdentifierChanging(value);
+                    ReportPropertyChanging("Identifier");
+                    _Identifier = StructuralObject.SetValidValue(value, false, "Identifier");
+                    ReportPropertyChanged("Identifier");
+                    OnIdentifierChanged();
+                }
+            }
+        }
+        private global::System.String _Identifier;
+        partial void OnIdentifierChanging(global::System.String value);
+        partial void OnIdentifierChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> Sigma
+        {
+            get
+            {
+                return _Sigma;
+            }
+            set
+            {
+                OnSigmaChanging(value);
+                ReportPropertyChanging("Sigma");
+                _Sigma = StructuralObject.SetValidValue(value, "Sigma");
+                ReportPropertyChanged("Sigma");
+                OnSigmaChanged();
+            }
+        }
+        private Nullable<global::System.Double> _Sigma;
+        partial void OnSigmaChanging(Nullable<global::System.Double> value);
+        partial void OnSigmaChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PublicDemandDataEconomy", "Economy")]
+        public Economy Economy
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandDataEconomy", "Economy").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandDataEconomy", "Economy").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Economy> EconomyReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandDataEconomy", "Economy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Economy>("Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandDataEconomy", "Economy", value);
                 }
             }
         }
@@ -9168,18 +10924,40 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Age_Wealth_Wealth", "Food_Industry_Age_Wealth")]
-        public EntityCollection<Food_Industry_Age_Wealth> Food_Industry_Age_Wealth
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "FK_Food_Industry_Age_Wealth_Type_Wealth", "Food_Industry_Age_Wealth_Type")]
+        public EntityCollection<Food_Industry_Age_Wealth_Type> Food_Industry_Age_Wealth_Type
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth", "Food_Industry_Age_Wealth");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Food_Industry_Age_Wealth_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Wealth", "Food_Industry_Age_Wealth_Type");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Age_Wealth>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth", "Food_Industry_Age_Wealth", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Food_Industry_Age_Wealth_Type>("Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Wealth", "Food_Industry_Age_Wealth_Type", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("Fuqua.CompetativeAnalysis.MarketGame", "vw_PopulationByLocationWealth", "vw_PopulationByLocation")]
+        public EntityCollection<vw_PopulationByLocation> vw_PopulationByLocation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<vw_PopulationByLocation>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationWealth", "vw_PopulationByLocation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<vw_PopulationByLocation>("Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationWealth", "vw_PopulationByLocation", value);
                 }
             }
         }

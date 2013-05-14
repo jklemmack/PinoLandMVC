@@ -2,156 +2,184 @@
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <edmx:Designer>
     <edmx:Diagrams>
-      <edmx:Diagram DiagramId="e554933e67e94bbd8548f04e4eb6ad79" Name="All" ZoomLevel="29" >
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Age" Width="1.5" PointX="8.25" PointY="6.25" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company" Width="1.5" PointX="7.5" PointY="14.125" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company_Round" Width="1.5" PointX="12.75" PointY="13.5" />
+      <edmx:Diagram DiagramId="e554933e67e94bbd8548f04e4eb6ad79" Name="All" ZoomLevel="91" >
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Age" Width="1.5" PointX="21.75" PointY="138.375" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company" Width="1.5" PointX="26.25" PointY="133" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company_Round" Width="2.125" PointX="28.5" PointY="133.625" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Round_Company" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Economy" Width="1.5" PointX="3" PointY="13.375" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Economy" Width="2.125" PointX="15.75" PointY="134.5" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Age_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Economy" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" Width="1.5" PointX="5.75" PointY="25.75" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" Width="2.5" PointX="15.75" PointY="157.625" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Company" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good_Round" Width="1.5" PointX="22.75" PointY="12.875" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good_Round" Width="2.625" PointX="31.75" PointY="132.5" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Company" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Food_Good" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Household_Company_Round" Width="1.5" PointX="15" PointY="12.75" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Household_Company_Round" Width="2.75" PointX="31.5" PointY="129.125" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Company" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" Width="1.5" PointX="4.375" PointY="29.625" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" Width="2.125" PointX="11.125" PointY="162.25" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.Food_GoodFood_Industry" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth" Width="1.5" PointX="15.25" PointY="16.25" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company" Width="1.5" PointX="18.25" PointY="16" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company" Width="2" PointX="22.25" PointY="143.375" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Company" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Food_Industry" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round" Width="1.5" PointX="20.5" PointY="14.5" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round" Width="1.5" PointX="32.375" PointY="138.875" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round_Company_Round" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round_Food_Industry_Company" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Food_Industry_Company_Round" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" Width="1.5" PointX="10.5" PointY="22.875" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" Width="2.5" PointX="22.25" PointY="133.125" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Good_Type" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Good_Type_Food_Industry" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round" Width="1.5" PointX="15" PointY="20.375" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round" Width="2.625" PointX="35.75" PointY="135.5" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Food_Good" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Good" Width="1.5" PointX="3" PointY="21.125" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Good" Width="1.5" PointX="6.25" PointY="142.625" />
         <edmx:InheritanceConnector EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Household" Width="1.5" PointX="12.75" PointY="18.875" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Household" Width="1.5" PointX="24" PointY="137.625" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Age" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Household" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Household" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_Role" Width="1.5" PointX="8.5" PointY="3.75" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_User" Width="1.5" PointX="10.75" PointY="9.25" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_Role" Width="1.5" PointX="26.25" PointY="129.625" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_User" Width="1.5" PointX="28.5" PointY="130.125" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.Company_User" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.IM_User_Role" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Industry" Width="1.5" PointX="3" PointY="18.25" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Industry" Width="1.5" PointX="6.25" PointY="139.625" />
         <edmx:InheritanceConnector EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Industry_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Good_Good" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Location" Width="1.5" PointX="10.5" PointY="13.625" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Location" Width="2.5" PointX="18.75" PointY="142.625" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Location" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Location" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile" Width="1.5" PointX="5.25" PointY="14.25" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile" Width="1.75" PointX="16.25" PointY="140.5" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth" Width="1.5" PointX="10.5" PointY="18.5" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth" Width="2.125" PointX="25" PointY="143.375" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Age" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Round" Width="1.5" PointX="0.75" PointY="13.25" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Round" Width="1.75" PointX="13" PointY="132.625" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Round_Round" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Round" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Round" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round_Round" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Round" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Round_State" Width="1.5" PointX="8.25" PointY="10.625" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Round_State" Width="1.5" PointX="10.625" PointY="134.75" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round_State" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPoints" Width="1.5" PointX="8.25" PointY="17.75" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Wealth" Width="1.5" PointX="8.25" PointY="26.75" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Wealth" Width="1.5" PointX="18.75" PointY="138.375" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Wealth_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Wealth" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location" Width="2.75" PointX="25" PointY="153.5" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Location" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location" Width="2.125" PointX="22.125" PointY="147.5" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Location" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type" Width="2.625" PointX="28.625" PointY="139.5" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Age" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Wealth" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandData" Width="2.125" PointX="13" PointY="140.875" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandDataEconomy" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocation" Width="3.25" PointX="14.75" PointY="144.375" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationLocation" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationAge" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationWealth" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapData" Width="2.375" PointX="9.25" PointY="138" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataLocation" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataRound" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataFood_Industry_Good_Type" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy" />
       </edmx:Diagram>
-      <edmx:Diagram DiagramId="3048e621e3e0417896f4cebb4123a23e" Name="Food" ZoomLevel="62" >
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" Width="1.5" PointX="1.125" PointY="16.125" FillColor="Red" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good_Round" Width="2.25" PointX="12.875" PointY="19.875" FillColor="Red" />
+      <edmx:Diagram DiagramId="3048e621e3e0417896f4cebb4123a23e" Name="Food" ZoomLevel="77" >
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" Width="1.875" PointX="11.25" PointY="5.5" FillColor="Red" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good_Round" Width="2.25" PointX="13.75" PointY="13.375" FillColor="Red" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Food_Good" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Household_Company_Round" Width="2.875" PointX="17.875" PointY="18.75" FillColor="Red" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" Width="2.25" PointX="2.875" PointY="20.5" FillColor="Red" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Household_Company_Round" Width="2.875" PointX="7.25" PointY="1.75" FillColor="Red" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" Width="2.25" PointX="0.75" PointY="12" FillColor="Red" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.Food_GoodFood_Industry" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth" Width="2.5" PointX="6" PointY="20" FillColor="Red" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company" Width="1.5" PointX="6" PointY="24.5" FillColor="Red" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company" Width="2.625" PointX="3.75" PointY="16.375" FillColor="Red" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Food_Industry" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round" Width="2.75" PointX="8.25" PointY="24.375" FillColor="Red" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Round" Width="2.75" PointX="8.75" PointY="17.5" FillColor="Red" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round_Food_Industry_Company" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Food_Industry_Company_Round" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" Width="2.375" PointX="9.25" PointY="18" FillColor="Red" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" Width="2.375" PointX="3.5" PointY="8.875" FillColor="Red" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Good_Type" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Good_Type_Food_Industry" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round" Width="3" PointX="6.75" PointY="12.875" FillColor="Red" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round" Width="3" PointX="14.125" PointY="8.875" FillColor="Red" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Food_Good" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Household" Width="1.5" PointX="15.5" PointY="13.375" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Household" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Household" />
-      </edmx:Diagram>
-      <edmx:Diagram DiagramId="009985f820094487858dad1b41868816" Name="Core" ZoomLevel="105" >
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Age" Width="1.5" PointX="7.5" PointY="13.75" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company" Width="1.5" PointX="7.5" PointY="17.25" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company_Round" Width="1.5" PointX="9.75" PointY="15.875" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location" Width="3.25" PointX="3.75" PointY="12.75" FillColor="Red" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location" Width="2.875" PointX="7.875" PointY="10" FillColor="Red" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type" Width="1.5" PointX="6.875" PointY="5.75" FillColor="Red" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location" />
+        </edmx:Diagram>
+      <edmx:Diagram DiagramId="009985f820094487858dad1b41868816" Name="Core" ZoomLevel="79" >
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Age" Width="1.5" PointX="7.25" PointY="13.75" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company" Width="2.75" PointX="6.25" PointY="17.25" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Company_Round" Width="2.375" PointX="9.75" PointY="15.875" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Round_Company" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Economy" Width="1.5" PointX="5.25" PointY="19.75" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Economy" Width="1.5" PointX="4.75" PointY="20.375" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Age_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Economy" />
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Good" Width="1.5" PointX="9.75" PointY="21" />
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Household" Width="1.5" PointX="10" PointY="24" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Age" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_Role" Width="1.5" PointX="10.5" PointY="13" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_Role" Width="1.5" PointX="12.75" PointY="15.25" />
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.IM_User" Width="1.5" PointX="12.75" PointY="17.375" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.Company_User" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.IM_User_Role" />
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Industry" Width="1.5" PointX="7.5" PointY="21" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Industry_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Good_Good" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Location" Width="1.5" PointX="14.375" PointY="26.5" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Location" Width="1.5" PointX="7.25" PointY="24" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Location" />
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile" Width="1.5" PointX="7.5" PointY="28.5" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth" Width="1.5" PointX="12.75" PointY="22.75" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile_Age_Wealth" Width="1.875" PointX="12.75" PointY="22.75" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Age" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile" ManuallyRouted="true" >
+          <edmx:ConnectorPoint PointX="9" PointY="30.486345302734367" />
+          <edmx:ConnectorPoint PointX="11.092324357258299" PointY="30.486345302734367" />
+          <edmx:ConnectorPoint PointX="11.258991023924967" PointY="30.486345302734367" />
+          <edmx:ConnectorPoint PointX="13.119946900402068" PointY="30.486345302734367" />
+          <edmx:ConnectorPoint PointX="13.119946900402068" PointY="25.499492187500003" />
+        </edmx:AssociationConnector>
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Round" Width="1.5" PointX="3" PointY="15.25" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Round" Width="2" PointX="2.75" PointY="15.25" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Round_Round" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round" />
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Round_State" Width="1.5" PointX="0.75" PointY="16.625" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round_State" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPoints" Width="1.5" PointX="10.5" PointY="29.375" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Wealth" Width="1.5" PointX="7.5" PointY="31.875" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Wealth" Width="1.5" PointX="8.375" PointY="31.75" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Wealth_Economy" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Wealth" />
-        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth" ManuallyRouted="true" >
-          <edmx:ConnectorPoint PointX="9" PointY="32.937404061071732" />
-          <edmx:ConnectorPoint PointX="16.610815571413351" PointY="32.937404061071732" />
-          <edmx:ConnectorPoint PointX="16.610815571413351" PointY="24.706728573365769" />
-          <edmx:ConnectorPoint PointX="14.25" PointY="24.706728573365769" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth" ManuallyRouted="false" >
         </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1" />
+        <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy" />
       </edmx:Diagram>
 		</edmx:Diagrams>
   </edmx:Designer>

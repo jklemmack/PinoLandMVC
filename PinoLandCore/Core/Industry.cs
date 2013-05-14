@@ -7,6 +7,13 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 {
     partial class Industry
     {
+        internal class GoodSelector
+        {
+            public Good good;
+            public double price;
+            public double surplus;
+        }
+
         internal virtual double? CalculateConsumerValue(Household h, Good g, Round r)
         {
             return null;
@@ -17,7 +24,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             return 0;
         }
 
-        internal virtual IEnumerable<Good> GetAvailableGoods(Household h)
+        internal virtual IEnumerable<Good> GetAvailableGoods(Household household)
         {
             return null;
         }
@@ -30,15 +37,11 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         {
         }
 
-        public virtual void AddPopulationSettings(string type, double[] settings)
+        internal virtual Good RecordSale(Household h, Round r, IEnumerable<GoodSelector> goods)
         {
-
+            return null;
         }
 
-        public virtual void AddProfileSettings(Profile p, string type, double[] settings)
-        {
-
-        }
 
         internal virtual void PreProcessRound(Round round)
         {

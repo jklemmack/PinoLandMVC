@@ -8,11 +8,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
     partial class Profile
     {
 
-        internal Profile()
-        {
-        }
-
-        internal void AddAgeWealth(Age age, Wealth wealth, double probability)
+        public void AddAgeWealth(Age age, Wealth wealth, double probability)
         {
             Profile_Age_Wealth p = new Profile_Age_Wealth();
             p.Age = age;

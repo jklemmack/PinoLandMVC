@@ -15,11 +15,13 @@
           <EntitySet Name="Food_Good_Round" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Good_Round" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Food_Household_Company_Round" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Household_Company_Round" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Food_Industry" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Food_Industry_Age_Wealth" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Food_Industry_Age_Wealth_Type" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth_Type" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Food_Industry_Company" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Food_Industry_Company_Location" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company_Location" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Food_Industry_Company_Round" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company_Round" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Food_Industry_Good_Type" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Good_Type" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Food_Industry_Household_Company_Round" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Household_Company_Round" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Food_Industry_Location" EntityType="Fuqua.CompetativeAnalysis.Store.Food_Industry_Location" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Good" EntityType="Fuqua.CompetativeAnalysis.Store.Good" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Household" EntityType="Fuqua.CompetativeAnalysis.Store.Household" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="IM_Role" EntityType="Fuqua.CompetativeAnalysis.Store.IM_Role" store:Type="Tables" Schema="dbo" />
@@ -32,14 +34,42 @@
           <EntitySet Name="Round" EntityType="Fuqua.CompetativeAnalysis.Store.Round" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Round_State" EntityType="Fuqua.CompetativeAnalysis.Store.Round_State" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Wealth" EntityType="Fuqua.CompetativeAnalysis.Store.Wealth" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="vw_LocationPoints" EntityType="Fuqua.CompetativeAnalysis.Store.vw_LocationPoints" store:Type="Views" store:Schema="dbo" store:Name="vw_LocationPoints">
+          <EntitySet Name="vw_FoodMapData" EntityType="Fuqua.CompetativeAnalysis.Store.vw_FoodMapData" store:Type="Views" store:Schema="dbo" store:Name="vw_FoodMapData">
             <DefiningQuery>SELECT 
-      [vw_LocationPoints].[EconomyId] AS [EconomyId], 
-      [vw_LocationPoints].[LocationId] AS [LocationId], 
-      [vw_LocationPoints].[sequence] AS [sequence], 
-      [vw_LocationPoints].[Lat] AS [Lat], 
-      [vw_LocationPoints].[Long] AS [Long]
-      FROM [dbo].[vw_LocationPoints] AS [vw_LocationPoints]</DefiningQuery>
+      [vw_FoodMapData].[EconomyId] AS [EconomyId], 
+      [vw_FoodMapData].[RoundId] AS [RoundId], 
+      [vw_FoodMapData].[LocationId] AS [LocationId], 
+      [vw_FoodMapData].[LocationIdentifier] AS [LocationIdentifier], 
+      [vw_FoodMapData].[CompanyId] AS [CompanyId], 
+      [vw_FoodMapData].[CompanyName] AS [CompanyName], 
+      [vw_FoodMapData].[Storename] AS [Storename], 
+      [vw_FoodMapData].[IndustryId] AS [IndustryId], 
+      [vw_FoodMapData].[FoodTypeId] AS [FoodTypeId], 
+      [vw_FoodMapData].[FoodTypeName] AS [FoodTypeName], 
+      [vw_FoodMapData].[CapacityStart] AS [CapacityStart], 
+      [vw_FoodMapData].[Price] AS [Price]
+      FROM [dbo].[vw_FoodMapData] AS [vw_FoodMapData]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_PopulationByLocation" EntityType="Fuqua.CompetativeAnalysis.Store.vw_PopulationByLocation" store:Type="Views" store:Schema="dbo" store:Name="vw_PopulationByLocation">
+            <DefiningQuery>SELECT 
+      [vw_PopulationByLocation].[EconomyId] AS [EconomyId], 
+      [vw_PopulationByLocation].[LocationId] AS [LocationId], 
+      [vw_PopulationByLocation].[AgeId] AS [AgeId], 
+      [vw_PopulationByLocation].[WealthId] AS [WealthId], 
+      [vw_PopulationByLocation].[Probability] AS [Probability], 
+      [vw_PopulationByLocation].[Population] AS [Population]
+      FROM [dbo].[vw_PopulationByLocation] AS [vw_PopulationByLocation]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_PublicDemandData" EntityType="Fuqua.CompetativeAnalysis.Store.vw_PublicDemandData" store:Type="Views" store:Schema="dbo" store:Name="vw_PublicDemandData">
+            <DefiningQuery>SELECT 
+      [vw_PublicDemandData].[EconomyId] AS [EconomyId], 
+      [vw_PublicDemandData].[IndustryId] AS [IndustryId], 
+      [vw_PublicDemandData].[LocationId] AS [LocationId], 
+      [vw_PublicDemandData].[Identifier] AS [Identifier], 
+      [vw_PublicDemandData].[AgeId] AS [AgeId], 
+      [vw_PublicDemandData].[TypeId] AS [TypeId], 
+      [vw_PublicDemandData].[sigma] AS [sigma]
+      FROM [dbo].[vw_PublicDemandData] AS [vw_PublicDemandData]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Age_Economy" Association="Fuqua.CompetativeAnalysis.Store.FK_Age_Economy">
             <End Role="Economy" EntitySet="Economy" />
@@ -65,22 +95,6 @@
             <End Role="IM_User" EntitySet="IM_User" />
             <End Role="Company_User" EntitySet="Company_User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Economy_Round" Association="Fuqua.CompetativeAnalysis.Store.FK_Economy_Round">
-            <End Role="Round" EntitySet="Round" />
-            <End Role="Economy" EntitySet="Economy" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Food_Age_Wealth_Age" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Age_Wealth_Age">
-            <End Role="Age" EntitySet="Age" />
-            <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Food_Age_Wealth_Economy" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Age_Wealth_Economy">
-            <End Role="Economy" EntitySet="Economy" />
-            <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Food_Age_Wealth_Wealth" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Age_Wealth_Wealth">
-            <End Role="Wealth" EntitySet="Wealth" />
-            <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
-          </AssociationSet>
           <AssociationSet Name="FK_Food_Good_Company" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Good_Company">
             <End Role="Company" EntitySet="Company" />
             <End Role="Food_Good" EntitySet="Food_Good" />
@@ -89,8 +103,20 @@
             <End Role="Food_Industry" EntitySet="Food_Industry" />
             <End Role="Food_Good" EntitySet="Food_Good" />
           </AssociationSet>
+          <AssociationSet Name="FK_Food_Good_Food_Industry_Company" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Good_Food_Industry_Company">
+            <End Role="Food_Industry_Company" EntitySet="Food_Industry_Company" />
+            <End Role="Food_Good" EntitySet="Food_Good" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Good_Food_Industry_Company_Location" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Good_Food_Industry_Company_Location">
+            <End Role="Food_Industry_Company_Location" EntitySet="Food_Industry_Company_Location" />
+            <End Role="Food_Good" EntitySet="Food_Good" />
+          </AssociationSet>
           <AssociationSet Name="FK_Food_Good_Food_Industry_Good_Type" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Good_Food_Industry_Good_Type">
             <End Role="Food_Industry_Good_Type" EntitySet="Food_Industry_Good_Type" />
+            <End Role="Food_Good" EntitySet="Food_Good" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Good_Food_Industry_Location" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Good_Food_Industry_Location">
+            <End Role="Food_Industry_Location" EntitySet="Food_Industry_Location" />
             <End Role="Food_Good" EntitySet="Food_Good" />
           </AssociationSet>
           <AssociationSet Name="FK_Food_Good_Good" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Good_Good">
@@ -99,6 +125,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Food_Good_Location" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Good_Location">
             <End Role="Location" EntitySet="Location" />
+            <End Role="Food_Good" EntitySet="Food_Good" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Good_Round" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Good_Round">
+            <End Role="Round" EntitySet="Round" />
             <End Role="Food_Good" EntitySet="Food_Good" />
           </AssociationSet>
           <AssociationSet Name="FK_Food_Good_Round_Company" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Good_Round_Company">
@@ -129,9 +159,21 @@
             <End Role="Round" EntitySet="Round" />
             <End Role="Food_Household_Company_Round" EntitySet="Food_Household_Company_Round" />
           </AssociationSet>
-          <AssociationSet Name="FK_Food_Industry_Age_Wealth_Food_Industry" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Age_Wealth_Food_Industry">
+          <AssociationSet Name="FK_Food_Industry_Age_Wealth_Type_Age" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Age_Wealth_Type_Age">
+            <End Role="Age" EntitySet="Age" />
+            <End Role="Food_Industry_Age_Wealth_Type" EntitySet="Food_Industry_Age_Wealth_Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Age_Wealth_Type_Food_Industry" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Age_Wealth_Type_Food_Industry">
             <End Role="Food_Industry" EntitySet="Food_Industry" />
-            <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
+            <End Role="Food_Industry_Age_Wealth_Type" EntitySet="Food_Industry_Age_Wealth_Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type">
+            <End Role="Food_Industry_Good_Type" EntitySet="Food_Industry_Good_Type" />
+            <End Role="Food_Industry_Age_Wealth_Type" EntitySet="Food_Industry_Age_Wealth_Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Age_Wealth_Type_Wealth" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Age_Wealth_Type_Wealth">
+            <End Role="Wealth" EntitySet="Wealth" />
+            <End Role="Food_Industry_Age_Wealth_Type" EntitySet="Food_Industry_Age_Wealth_Type" />
           </AssociationSet>
           <AssociationSet Name="FK_Food_Industry_Company_Company" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Company_Company">
             <End Role="Company" EntitySet="Company" />
@@ -141,9 +183,17 @@
             <End Role="Food_Industry" EntitySet="Food_Industry" />
             <End Role="Food_Industry_Company" EntitySet="Food_Industry_Company" />
           </AssociationSet>
-          <AssociationSet Name="FK_Food_Industry_Company_Round" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Company_Round">
-            <End Role="Round" EntitySet="Round" />
+          <AssociationSet Name="FK_Food_Industry_Company_Location_Food_Industry_Company" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Company_Location_Food_Industry_Company">
             <End Role="Food_Industry_Company" EntitySet="Food_Industry_Company" />
+            <End Role="Food_Industry_Company_Location" EntitySet="Food_Industry_Company_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Company_Location_Food_Industry_Location" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Company_Location_Food_Industry_Location">
+            <End Role="Food_Industry_Location" EntitySet="Food_Industry_Location" />
+            <End Role="Food_Industry_Company_Location" EntitySet="Food_Industry_Company_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Company_Location_Location" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Company_Location_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Food_Industry_Company_Location" EntitySet="Food_Industry_Company_Location" />
           </AssociationSet>
           <AssociationSet Name="FK_Food_Industry_Company_Round_Company_Round" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Company_Round_Company_Round">
             <End Role="Company_Round" EntitySet="Company_Round" />
@@ -181,12 +231,28 @@
             <End Role="Industry" EntitySet="Industry" />
             <End Role="Food_Industry" EntitySet="Food_Industry" />
           </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Location_Food_Industry" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Location_Food_Industry">
+            <End Role="Food_Industry" EntitySet="Food_Industry" />
+            <End Role="Food_Industry_Location" EntitySet="Food_Industry_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Location_Food_Industry_Good_Type" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Location_Food_Industry_Good_Type">
+            <End Role="Food_Industry_Good_Type" EntitySet="Food_Industry_Good_Type" />
+            <End Role="Food_Industry_Location" EntitySet="Food_Industry_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Location_Location" Association="Fuqua.CompetativeAnalysis.Store.FK_Food_Industry_Location_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Food_Industry_Location" EntitySet="Food_Industry_Location" />
+          </AssociationSet>
           <AssociationSet Name="FK_Good_Good" Association="Fuqua.CompetativeAnalysis.Store.FK_Good_Good">
             <End Role="Industry" EntitySet="Industry" />
             <End Role="Good" EntitySet="Good" />
           </AssociationSet>
           <AssociationSet Name="FK_Household_Age" Association="Fuqua.CompetativeAnalysis.Store.FK_Household_Age">
             <End Role="Age" EntitySet="Age" />
+            <End Role="Household" EntitySet="Household" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Household_Location" Association="Fuqua.CompetativeAnalysis.Store.FK_Household_Location">
+            <End Role="Location" EntitySet="Location" />
             <End Role="Household" EntitySet="Household" />
           </AssociationSet>
           <AssociationSet Name="FK_Household_Profile" Association="Fuqua.CompetativeAnalysis.Store.FK_Household_Profile">
@@ -236,6 +302,10 @@
           <AssociationSet Name="FK_Profile_Economy" Association="Fuqua.CompetativeAnalysis.Store.FK_Profile_Economy">
             <End Role="Economy" EntitySet="Economy" />
             <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Round_Economy" Association="Fuqua.CompetativeAnalysis.Store.FK_Round_Economy">
+            <End Role="Economy" EntitySet="Economy" />
+            <End Role="Round" EntitySet="Round" />
           </AssociationSet>
           <AssociationSet Name="FK_Round_Round_State" Association="Fuqua.CompetativeAnalysis.Store.FK_Round_Round_State">
             <End Role="Round_State" EntitySet="Round_State" />
@@ -302,7 +372,6 @@
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Reference" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
-          <Property Name="CurrentRoundId" Type="int" />
         </EntityType>
         <EntityType Name="Food_Good">
           <Key>
@@ -316,8 +385,8 @@
           <Property Name="CompanyId" Type="int" Nullable="false" />
           <Property Name="LocationId" Type="int" />
           <Property Name="TypeId" Type="int" Nullable="false" />
-          <Property Name="Latitude" Type="float" Nullable="false" />
-          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="CreatedRoundId" Type="int" Nullable="false" />
+          <Property Name="HasLicense" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Food_Good_Round">
           <Key>
@@ -338,6 +407,7 @@
           <Property Name="CapacityEnd" Type="float" Nullable="false" />
           <Property Name="Production" Type="float" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="MaxSales" Type="float" Nullable="false" />
           <Property Name="ActualSales" Type="float" Nullable="false" />
           <Property Name="CostOfProduction" Type="float" Nullable="false" />
           <Property Name="CostOfCapacity" Type="float" Nullable="false" />
@@ -345,7 +415,6 @@
           <Property Name="CostOfInventory" Type="float" Nullable="false" />
           <Property Name="InventoryStart" Type="float" Nullable="false" />
           <Property Name="InventoryEnd" Type="float" Nullable="false" />
-          <Property Name="IsRollover" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Food_Household_Company_Round">
           <Key>
@@ -367,35 +436,23 @@
           </Key>
           <Property Name="IndustryId" Type="int" Nullable="false" />
           <Property Name="EconomyId" Type="int" Nullable="false" />
-          <Property Name="EntryCostMean" Type="float" Nullable="false" />
-          <Property Name="EntryCostStdDev" Type="float" Nullable="false" />
-          <Property Name="CapacityCostMean" Type="float" Nullable="false" />
-          <Property Name="CapacityCostStdDev" Type="float" Nullable="false" />
-          <Property Name="MarginalCostMean" Type="float" Nullable="false" />
-          <Property Name="MarginalCostStdDev" Type="float" Nullable="false" />
-          <Property Name="CapacityDecayRate" Type="float" Nullable="false" />
-          <Property Name="CapacityResaleRate" Type="float" Nullable="false" />
-          <Property Name="MaintenanceCostMean" Type="float" Nullable="false" />
-          <Property Name="MaintenanceCostStdDev" Type="float" Nullable="false" />
-          <Property Name="CanHoldInventory" Type="bit" Nullable="false" />
-          <Property Name="InventoryCostMean" Type="float" Nullable="false" />
-          <Property Name="InventoryCostStdDev" Type="float" Nullable="false" />
-          <Property Name="Elasticity" Type="float" Nullable="false" />
         </EntityType>
-        <EntityType Name="Food_Industry_Age_Wealth">
+        <EntityType Name="Food_Industry_Age_Wealth_Type">
           <Key>
             <PropertyRef Name="IndustryId" />
             <PropertyRef Name="EconomyId" />
             <PropertyRef Name="AgeId" />
             <PropertyRef Name="WealthId" />
+            <PropertyRef Name="TypeId" />
           </Key>
           <Property Name="IndustryId" Type="int" Nullable="false" />
           <Property Name="EconomyId" Type="int" Nullable="false" />
           <Property Name="AgeId" Type="int" Nullable="false" />
           <Property Name="WealthId" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
           <Property Name="Sigma" Type="float" Nullable="false" />
-          <Property Name="SensitivityType" Type="float" Nullable="false" />
-          <Property Name="SensitivityDistance" Type="float" Nullable="false" />
+          <Property Name="TransportationCost" Type="float" Nullable="false" />
+          <Property Name="MaxDistance" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Food_Industry_Company">
           <Key>
@@ -406,12 +463,24 @@
           <Property Name="CompanyId" Type="int" Nullable="false" />
           <Property Name="IndustryId" Type="int" Nullable="false" />
           <Property Name="EconomyId" Type="int" Nullable="false" />
-          <Property Name="EntryCost" Type="float" Nullable="false" />
+          <Property Name="EntranceRoundId" Type="int" />
+        </EntityType>
+        <EntityType Name="Food_Industry_Company_Location">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="IndustryId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="TypeId" />
+            <PropertyRef Name="EconomyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="IndustryId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="EconomyId" Type="int" Nullable="false" />
           <Property Name="CapacityCost" Type="float" Nullable="false" />
           <Property Name="MarginalCost" Type="float" Nullable="false" />
-          <Property Name="MaintenanceCost" Type="float" Nullable="false" />
           <Property Name="InventoryCost" Type="float" Nullable="false" />
-          <Property Name="EntranceRoundId" Type="int" />
         </EntityType>
         <EntityType Name="Food_Industry_Company_Round">
           <Key>
@@ -461,6 +530,27 @@
           <Property Name="PriceBought" Type="float" Nullable="false" />
           <Property Name="Surplus" Type="float" Nullable="false" />
         </EntityType>
+        <EntityType Name="Food_Industry_Location">
+          <Key>
+            <PropertyRef Name="IndustryId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="EconomyId" />
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="IndustryId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="EconomyId" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="CapacityCostMean" Type="float" Nullable="false" />
+          <Property Name="CapacityCostStdDev" Type="float" Nullable="false" />
+          <Property Name="MarginalCostMean" Type="float" Nullable="false" />
+          <Property Name="MarginalCostStdDev" Type="float" Nullable="false" />
+          <Property Name="InventoryCostMean" Type="float" Nullable="false" />
+          <Property Name="InventoryCostStdDev" Type="float" Nullable="false" />
+          <Property Name="Elasticity" Type="float" Nullable="false" />
+          <Property Name="CapacityDecayRate" Type="float" Nullable="false" />
+          <Property Name="CapacityResaleRate" Type="float" Nullable="false" />
+        </EntityType>
         <EntityType Name="Good">
           <Key>
             <PropertyRef Name="IndustryId" />
@@ -483,8 +573,6 @@
           <Property Name="LocationId" Type="int" />
           <Property Name="AgeId" Type="int" Nullable="false" />
           <Property Name="WealthId" Type="int" Nullable="false" />
-          <Property Name="Latitude" Type="float" />
-          <Property Name="Longitude" Type="float" />
           <Property Name="ProfileId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="IM_Role">
@@ -532,10 +620,8 @@
           <Property Name="LocationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EconomyId" Type="int" Nullable="false" />
           <Property Name="Identifier" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="CenterX" Type="float" Nullable="false" />
-          <Property Name="CenterY" Type="float" Nullable="false" />
-          <Property Name="Shape" Type="geography" />
+          <Property Name="X" Type="int" Nullable="false" />
+          <Property Name="Y" Type="int" Nullable="false" />
           <Property Name="ProfileId" Type="int" Nullable="false" />
           <Property Name="TotalPopulation" Type="int" Nullable="false" />
           <Property Name="Interactive" Type="bit" Nullable="false" />
@@ -548,7 +634,6 @@
           <Property Name="ProfileId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EconomyId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="TotalPopulation" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Profile_Age_Wealth">
           <Key>
@@ -575,6 +660,7 @@
           <Property Name="Sequence" Type="int" Nullable="false" />
           <Property Name="RoundStateId" Type="int" />
           <Property Name="LastModified" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="IsCurrent" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Round_State">
           <Key>
@@ -595,22 +681,79 @@
           <Property Name="DisplayOrder" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'PinoLandMVC.dbo.vw_LocationPoints' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      warning 6002: The table/view 'PinoLandMVC.dbo.vw_FoodMapData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
-        <EntityType Name="vw_LocationPoints">
+        <EntityType Name="vw_FoodMapData">
+          <Key>
+            <PropertyRef Name="EconomyId" />
+            <PropertyRef Name="RoundId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="LocationIdentifier" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="Storename" />
+            <PropertyRef Name="IndustryId" />
+            <PropertyRef Name="FoodTypeId" />
+            <PropertyRef Name="FoodTypeName" />
+            <PropertyRef Name="CapacityStart" />
+            <PropertyRef Name="Price" />
+          </Key>
+          <Property Name="EconomyId" Type="int" Nullable="false" />
+          <Property Name="RoundId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="LocationIdentifier" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Storename" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="IndustryId" Type="int" Nullable="false" />
+          <Property Name="FoodTypeId" Type="int" Nullable="false" />
+          <Property Name="FoodTypeName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CapacityStart" Type="float" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PinoLandMVC.dbo.vw_PopulationByLocation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vw_PopulationByLocation">
           <Key>
             <PropertyRef Name="EconomyId" />
             <PropertyRef Name="LocationId" />
-            <PropertyRef Name="sequence" />
+            <PropertyRef Name="AgeId" />
+            <PropertyRef Name="WealthId" />
+            <PropertyRef Name="Probability" />
+            <PropertyRef Name="Population" />
           </Key>
           <Property Name="EconomyId" Type="int" Nullable="false" />
           <Property Name="LocationId" Type="int" Nullable="false" />
-          <Property Name="sequence" Type="bigint" Nullable="false" />
-          <Property Name="Lat" Type="float" />
-          <Property Name="Long" Type="float" />
+          <Property Name="AgeId" Type="int" Nullable="false" />
+          <Property Name="WealthId" Type="int" Nullable="false" />
+          <Property Name="Probability" Type="float" Nullable="false" />
+          <Property Name="Population" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'PinoLandMVC.dbo.vw_PublicDemandData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vw_PublicDemandData">
+          <Key>
+            <PropertyRef Name="EconomyId" />
+            <PropertyRef Name="IndustryId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="Identifier" />
+            <PropertyRef Name="AgeId" />
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="EconomyId" Type="int" Nullable="false" />
+          <Property Name="IndustryId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="Identifier" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="AgeId" Type="int" Nullable="false" />
+          <Property Name="TypeId" Type="int" Nullable="false" />
+          <Property Name="sigma" Type="float" />
         </EntityType>
         <Association Name="FK_Age_Economy">
-          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
+          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Age" Type="Fuqua.CompetativeAnalysis.Store.Age" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Economy">
@@ -622,7 +765,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Company_Economy">
-          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
+          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Company" Type="Fuqua.CompetativeAnalysis.Store.Company" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Economy">
@@ -687,60 +832,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Economy_Round">
-          <End Role="Round" Type="Fuqua.CompetativeAnalysis.Store.Round" Multiplicity="0..1" />
-          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Round">
-              <PropertyRef Name="RoundId" />
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Economy">
-              <PropertyRef Name="CurrentRoundId" />
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Food_Age_Wealth_Age">
-          <End Role="Age" Type="Fuqua.CompetativeAnalysis.Store.Age" Multiplicity="1" />
-          <End Role="Food_Industry_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Age">
-              <PropertyRef Name="AgeId" />
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Food_Industry_Age_Wealth">
-              <PropertyRef Name="AgeId" />
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Food_Age_Wealth_Economy">
-          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
-          <End Role="Food_Industry_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Economy">
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Food_Industry_Age_Wealth">
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Food_Age_Wealth_Wealth">
-          <End Role="Wealth" Type="Fuqua.CompetativeAnalysis.Store.Wealth" Multiplicity="1" />
-          <End Role="Food_Industry_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Wealth">
-              <PropertyRef Name="WealthId" />
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Food_Industry_Age_Wealth">
-              <PropertyRef Name="WealthId" />
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Food_Good_Company">
           <End Role="Company" Type="Fuqua.CompetativeAnalysis.Store.Company" Multiplicity="1" />
           <End Role="Food_Good" Type="Fuqua.CompetativeAnalysis.Store.Food_Good" Multiplicity="*" />
@@ -769,6 +860,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Food_Good_Food_Industry_Company">
+          <End Role="Food_Industry_Company" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company" Multiplicity="1" />
+          <End Role="Food_Good" Type="Fuqua.CompetativeAnalysis.Store.Food_Good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Company">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Good">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Good_Food_Industry_Company_Location">
+          <End Role="Food_Industry_Company_Location" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company_Location" Multiplicity="0..1" />
+          <End Role="Food_Good" Type="Fuqua.CompetativeAnalysis.Store.Food_Good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Company_Location">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Good">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Food_Good_Food_Industry_Good_Type">
           <End Role="Food_Industry_Good_Type" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Good_Type" Multiplicity="1" />
           <End Role="Food_Good" Type="Fuqua.CompetativeAnalysis.Store.Food_Good" Multiplicity="*" />
@@ -782,6 +909,24 @@
               <PropertyRef Name="TypeId" />
               <PropertyRef Name="IndustryId" />
               <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Good_Food_Industry_Location">
+          <End Role="Food_Industry_Location" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Location" Multiplicity="0..1" />
+          <End Role="Food_Good" Type="Fuqua.CompetativeAnalysis.Store.Food_Good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Location">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="Food_Good">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+              <PropertyRef Name="TypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -811,6 +956,20 @@
             </Principal>
             <Dependent Role="Food_Good">
               <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Good_Round">
+          <End Role="Round" Type="Fuqua.CompetativeAnalysis.Store.Round" Multiplicity="1" />
+          <End Role="Food_Good" Type="Fuqua.CompetativeAnalysis.Store.Food_Good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Round">
+              <PropertyRef Name="RoundId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Good">
+              <PropertyRef Name="CreatedRoundId" />
               <PropertyRef Name="EconomyId" />
             </Dependent>
           </ReferentialConstraint>
@@ -919,16 +1078,60 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Food_Industry_Age_Wealth_Food_Industry">
+        <Association Name="FK_Food_Industry_Age_Wealth_Type_Age">
+          <End Role="Age" Type="Fuqua.CompetativeAnalysis.Store.Age" Multiplicity="1" />
+          <End Role="Food_Industry_Age_Wealth_Type" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Age">
+              <PropertyRef Name="AgeId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Age_Wealth_Type">
+              <PropertyRef Name="AgeId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Age_Wealth_Type_Food_Industry">
           <End Role="Food_Industry" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry" Multiplicity="1" />
-          <End Role="Food_Industry_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth" Multiplicity="*" />
+          <End Role="Food_Industry_Age_Wealth_Type" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth_Type" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Food_Industry">
               <PropertyRef Name="IndustryId" />
               <PropertyRef Name="EconomyId" />
             </Principal>
-            <Dependent Role="Food_Industry_Age_Wealth">
+            <Dependent Role="Food_Industry_Age_Wealth_Type">
               <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type">
+          <End Role="Food_Industry_Good_Type" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Good_Type" Multiplicity="1" />
+          <End Role="Food_Industry_Age_Wealth_Type" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Good_Type">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Age_Wealth_Type">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Age_Wealth_Type_Wealth">
+          <End Role="Wealth" Type="Fuqua.CompetativeAnalysis.Store.Wealth" Multiplicity="1" />
+          <End Role="Food_Industry_Age_Wealth_Type" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Age_Wealth_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wealth">
+              <PropertyRef Name="WealthId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Age_Wealth_Type">
+              <PropertyRef Name="WealthId" />
               <PropertyRef Name="EconomyId" />
             </Dependent>
           </ReferentialConstraint>
@@ -961,16 +1164,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Food_Industry_Company_Round">
-          <End Role="Round" Type="Fuqua.CompetativeAnalysis.Store.Round" Multiplicity="0..1" />
-          <End Role="Food_Industry_Company" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company" Multiplicity="*" />
+        <Association Name="FK_Food_Industry_Company_Location_Food_Industry_Company">
+          <End Role="Food_Industry_Company" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company" Multiplicity="1" />
+          <End Role="Food_Industry_Company_Location" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company_Location" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Round">
-              <PropertyRef Name="RoundId" />
+            <Principal Role="Food_Industry_Company">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
               <PropertyRef Name="EconomyId" />
             </Principal>
-            <Dependent Role="Food_Industry_Company">
-              <PropertyRef Name="EntranceRoundId" />
+            <Dependent Role="Food_Industry_Company_Location">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Company_Location_Food_Industry_Location">
+          <End Role="Food_Industry_Location" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Location" Multiplicity="1" />
+          <End Role="Food_Industry_Company_Location" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Location">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Company_Location">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Company_Location_Location">
+          <End Role="Location" Type="Fuqua.CompetativeAnalysis.Store.Location" Multiplicity="1" />
+          <End Role="Food_Industry_Company_Location" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Company_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Company_Location">
+              <PropertyRef Name="LocationId" />
               <PropertyRef Name="EconomyId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1022,7 +1259,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Food_Industry_Economy">
-          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
+          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Food_Industry" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Economy">
@@ -1105,6 +1344,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Food_Industry_Location_Food_Industry">
+          <End Role="Food_Industry" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry" Multiplicity="1" />
+          <End Role="Food_Industry_Location" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Location">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Location_Food_Industry_Good_Type">
+          <End Role="Food_Industry_Good_Type" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Good_Type" Multiplicity="1" />
+          <End Role="Food_Industry_Location" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Good_Type">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Location">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Location_Location">
+          <End Role="Location" Type="Fuqua.CompetativeAnalysis.Store.Location" Multiplicity="1" />
+          <End Role="Food_Industry_Location" Type="Fuqua.CompetativeAnalysis.Store.Food_Industry_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Location">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Good_Good">
           <End Role="Industry" Type="Fuqua.CompetativeAnalysis.Store.Industry" Multiplicity="1" />
           <End Role="Good" Type="Fuqua.CompetativeAnalysis.Store.Good" Multiplicity="*" />
@@ -1129,6 +1412,20 @@
             </Principal>
             <Dependent Role="Household">
               <PropertyRef Name="AgeId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Household_Location">
+          <End Role="Location" Type="Fuqua.CompetativeAnalysis.Store.Location" Multiplicity="0..1" />
+          <End Role="Household" Type="Fuqua.CompetativeAnalysis.Store.Household" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Household">
+              <PropertyRef Name="LocationId" />
               <PropertyRef Name="EconomyId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1186,7 +1483,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Industry_Economy">
-          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
+          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Industry" Type="Fuqua.CompetativeAnalysis.Store.Industry" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Economy">
@@ -1238,7 +1537,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Profile_Age_Wealth_Economy">
-          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
+          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Profile_Age_Wealth" Type="Fuqua.CompetativeAnalysis.Store.Profile_Age_Wealth" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Economy">
@@ -1285,6 +1586,18 @@
               <PropertyRef Name="EconomyId" />
             </Principal>
             <Dependent Role="Profile">
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Round_Economy">
+          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.Store.Economy" Multiplicity="1" />
+          <End Role="Round" Type="Fuqua.CompetativeAnalysis.Store.Round" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Economy">
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Round">
               <PropertyRef Name="EconomyId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1361,10 +1674,6 @@
           <AssociationSet Name="FK_Company_Round_Round" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Round_Round">
             <End Role="Round" EntitySet="Rounds" />
             <End Role="Company_Round" EntitySet="Company_Round" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Economy_Round" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round">
-            <End Role="CurrentRound" EntitySet="Rounds" />
-            <End Role="Economy" EntitySet="Economies" />
           </AssociationSet>
           <AssociationSet Name="FK_Household_Household" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household">
             <End Role="Economy" EntitySet="Economies" />
@@ -1480,10 +1789,6 @@
             <End Role="Round" EntitySet="Rounds" />
             <End Role="Food_Industry_Company_Round" EntitySet="Food_Industry_Company_Round" />
           </AssociationSet>
-          <AssociationSet Name="FK_Food_Industry_Company_Round" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round">
-            <End Role="Round" EntitySet="Rounds" />
-            <End Role="Food_Industry_Company" EntitySet="Food_Industry_Company" />
-          </AssociationSet>
           <AssociationSet Name="FK_Food_Good_Round_Food_Industry_Company_Round" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Food_Industry_Company_Round">
             <End Role="Food_Industry_Company_Round" EntitySet="Food_Industry_Company_Round" />
             <End Role="Food_Good_Round" EntitySet="Food_Good_Round" />
@@ -1522,28 +1827,6 @@
             <Parameter Name="lng4" Mode="In" Type="Double" />
             <Parameter Name="lat4" Mode="In" Type="Double" />
           </FunctionImport>
-          <EntitySet Name="vw_LocationPoints" EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPoints" />
-          <AssociationSet Name="vw_LocationPointsLocation" Association="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation">
-            <End Role="vw_LocationPoints" EntitySet="vw_LocationPoints" />
-            <End Role="Location" EntitySet="Locations" />
-          </AssociationSet>
-          <EntitySet Name="Food_Industry_Age_Wealth" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth" />
-          <AssociationSet Name="FK_Food_Age_Wealth_Age" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age">
-            <End Role="Age" EntitySet="Ages" />
-            <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Food_Age_Wealth_Economy" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy">
-            <End Role="Economy" EntitySet="Economies" />
-            <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Food_Age_Wealth_Wealth" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth">
-            <End Role="Wealth" EntitySet="Wealths" />
-            <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Food_Industry_Age_Wealth_Food_Industry" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry">
-            <End Role="Food_Industry" EntitySet="Industries" />
-            <End Role="Food_Industry_Age_Wealth" EntitySet="Food_Industry_Age_Wealth" />
-          </AssociationSet>
           <EntitySet Name="Profiles" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Profile" />
           <AssociationSet Name="FK_Profile_Economy" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy">
             <End Role="Economy" EntitySet="Economies" />
@@ -1573,6 +1856,104 @@
           <FunctionImport Name="GetCurrentActions" ReturnType="Collection(Fuqua.CompetativeAnalysis.MarketGame.GetCurrentActions_Result)">
           <Parameter Name="EconomyId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <AssociationSet Name="FK_Household_Household1" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1">
+            <End Role="Household" EntitySet="Households" />
+            <End Role="Household1" EntitySet="Households" />
+          </AssociationSet>
+          <EntitySet Name="Food_Industry_Company_Location" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location" />
+          <AssociationSet Name="FK_Food_Industry_Company_Location_Food_Industry_Company" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company">
+            <End Role="Food_Industry_Company" EntitySet="Food_Industry_Company" />
+            <End Role="Food_Industry_Company_Location" EntitySet="Food_Industry_Company_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Company_Location_Location" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Food_Industry_Company_Location" EntitySet="Food_Industry_Company_Location" />
+          </AssociationSet>
+          <EntitySet Name="Food_Industry_Location" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location" />
+          <AssociationSet Name="FK_Food_Industry_Location_Food_Industry" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry">
+            <End Role="Food_Industry" EntitySet="Industries" />
+            <End Role="Food_Industry_Location" EntitySet="Food_Industry_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Location_Location" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Food_Industry_Location" EntitySet="Food_Industry_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Location_Food_Industry_Good_Type" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type">
+            <End Role="Food_Industry_Good_Type" EntitySet="Food_Industry_Good_Type" />
+            <End Role="Food_Industry_Location" EntitySet="Food_Industry_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Good_Food_Industry_Location" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location">
+            <End Role="Food_Industry_Location" EntitySet="Food_Industry_Location" />
+            <End Role="Food_Good" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Company_Location_Food_Industry_Location" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location">
+            <End Role="Food_Industry_Location" EntitySet="Food_Industry_Location" />
+            <End Role="Food_Industry_Company_Location" EntitySet="Food_Industry_Company_Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Good_Food_Industry_Company" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company">
+            <End Role="Food_Industry_Company" EntitySet="Food_Industry_Company" />
+            <End Role="Food_Good" EntitySet="Goods" />
+          </AssociationSet>
+          <EntitySet Name="Food_Industry_Age_Wealth_Type" EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type" />
+          <AssociationSet Name="FK_Food_Industry_Age_Wealth_Type_Food_Industry" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry">
+            <End Role="Food_Industry" EntitySet="Industries" />
+            <End Role="Food_Industry_Age_Wealth_Type" EntitySet="Food_Industry_Age_Wealth_Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type">
+            <End Role="Food_Industry_Good_Type" EntitySet="Food_Industry_Good_Type" />
+            <End Role="Food_Industry_Age_Wealth_Type" EntitySet="Food_Industry_Age_Wealth_Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Age_Wealth_Type_Age" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Age">
+            <End Role="Age" EntitySet="Ages" />
+            <End Role="Food_Industry_Age_Wealth_Type" EntitySet="Food_Industry_Age_Wealth_Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Industry_Age_Wealth_Type_Wealth" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Wealth">
+            <End Role="Wealth" EntitySet="Wealths" />
+            <End Role="Food_Industry_Age_Wealth_Type" EntitySet="Food_Industry_Age_Wealth_Type" />
+          </AssociationSet>
+          <EntitySet Name="vw_PublicDemandData" EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandData" />
+          <AssociationSet Name="vw_PublicDemandDataEconomy" Association="Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandDataEconomy">
+            <End Role="vw_PublicDemandData" EntitySet="vw_PublicDemandData" />
+            <End Role="Economy" EntitySet="Economies" />
+          </AssociationSet>
+          <EntitySet Name="vw_PopulationByLocation" EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocation" />
+          <AssociationSet Name="vw_PopulationByLocationLocation" Association="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationLocation">
+            <End Role="vw_PopulationByLocation" EntitySet="vw_PopulationByLocation" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="vw_PopulationByLocationAge" Association="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationAge">
+            <End Role="vw_PopulationByLocation" EntitySet="vw_PopulationByLocation" />
+            <End Role="Age" EntitySet="Ages" />
+          </AssociationSet>
+          <AssociationSet Name="vw_PopulationByLocationWealth" Association="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationWealth">
+            <End Role="vw_PopulationByLocation" EntitySet="vw_PopulationByLocation" />
+            <End Role="Wealth" EntitySet="Wealths" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Good_Food_Industry_Company_Location" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location">
+            <End Role="Food_Industry_Company_Location" EntitySet="Food_Industry_Company_Location" />
+            <End Role="Food_Good" EntitySet="Goods" />
+          </AssociationSet>
+          <EntitySet Name="vw_FoodMapData" EntityType="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapData" />
+          <AssociationSet Name="vw_FoodMapDataLocation" Association="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataLocation">
+            <End Role="vw_FoodMapData" EntitySet="vw_FoodMapData" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="vw_FoodMapDataRound" Association="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataRound">
+            <End Role="vw_FoodMapData" EntitySet="vw_FoodMapData" />
+            <End Role="Round" EntitySet="Rounds" />
+          </AssociationSet>
+          <AssociationSet Name="vw_FoodMapDataFood_Industry_Good_Type" Association="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataFood_Industry_Good_Type">
+            <End Role="vw_FoodMapData" EntitySet="vw_FoodMapData" />
+            <End Role="Food_Industry_Good_Type" EntitySet="Food_Industry_Good_Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Good_Round" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round">
+            <End Role="Round" EntitySet="Rounds" />
+            <End Role="Food_Good" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Round_Economy" Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy">
+            <End Role="Economy" EntitySet="Economies" />
+            <End Role="Round" EntitySet="Rounds" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Age">
           <Key>
@@ -1587,7 +1968,8 @@
           <NavigationProperty Name="Profile_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Age" FromRole="Age" ToRole="Profile_Age_Wealth" />
           <Property Type="Double" Name="Probability" Nullable="false" />
           <Property Type="Int32" Name="DisplayOrder" Nullable="false" />
-          <NavigationProperty Name="Food_Industry_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age" FromRole="Age" ToRole="Food_Industry_Age_Wealth" />
+          <NavigationProperty Name="Food_Industry_Age_Wealth_Type" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Age" FromRole="Age" ToRole="Food_Industry_Age_Wealth_Type" />
+          <NavigationProperty Name="vw_PopulationByLocation" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationAge" FromRole="Age" ToRole="vw_PopulationByLocation" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -1633,23 +2015,19 @@
           <Property Name="EconomyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CurrentRoundId" Type="Int32">
-            <Documentation>
-              <Summary>Current Round</Summary>
-            </Documentation>
-          </Property>
           <NavigationProperty Name="Ages" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Age_Economy" FromRole="Economy" ToRole="Age" />
           <NavigationProperty Name="Companies" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Economy" FromRole="Economy" ToRole="Company" />
-          <NavigationProperty Name="CurrentRound" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round" FromRole="Economy" ToRole="CurrentRound" />
           <NavigationProperty Name="Households" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household" FromRole="Economy" ToRole="Household" />
           <NavigationProperty Name="Industries" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Industry_Economy" FromRole="Economy" ToRole="Industry" />
           <NavigationProperty Name="Locations" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Economy" FromRole="Economy" ToRole="Location" />
           <NavigationProperty Name="Wealths" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Wealth_Economy" FromRole="Economy" ToRole="Wealth" />
           <NavigationProperty Name="Food_Industry" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Economy" FromRole="Economy" ToRole="Food_Industry" />
           <Property Name="Reference" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" Type="String" />
-          <NavigationProperty Name="Food_Industry_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy" FromRole="Economy" ToRole="Food_Industry_Age_Wealth" />
           <NavigationProperty Name="Profiles" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy" FromRole="Economy" ToRole="Profile" />
           <NavigationProperty Name="Profile_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Economy" FromRole="Economy" ToRole="Profile_Age_Wealth" />
+          <NavigationProperty Name="vw_PublicDemandData" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandDataEconomy" FromRole="Economy" ToRole="vw_PublicDemandData" />
+          <NavigationProperty Name="Rounds" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy" FromRole="Economy" ToRole="Round" />
+          
         </EntityType>
         <EntityType Name="Good">
           <Key>
@@ -1680,10 +2058,10 @@
           <NavigationProperty Name="Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Wealth" FromRole="Household" ToRole="Wealth" />
           <NavigationProperty Name="Food_Household_Company_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Household" FromRole="Household" ToRole="Food_Household_Company_Round" />
           <NavigationProperty Name="Food_Industry_Household_Company_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Household" FromRole="Household" ToRole="Food_Industry_Household_Company_Round" />
-          <Property Type="Double" Name="Latitude" />
-          <Property Type="Double" Name="Longitude" />
           <Property Type="Int32" Name="ProfileId" Nullable="false" />
           <NavigationProperty Name="Profile" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Profile" FromRole="Household" ToRole="Profile" />
+          <NavigationProperty Name="Household1" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1" FromRole="Household" ToRole="Household1" />
+          <NavigationProperty Name="Household2" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Household1" FromRole="Household1" ToRole="Household" />
         </EntityType>
         <EntityType Name="Industry">
           <Key>
@@ -1705,18 +2083,19 @@
           <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="EconomyId" Type="Int32" Nullable="false" />
           <Property Name="Identifier" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="CenterX" Type="Double" Nullable="false" />
-          <Property Name="CenterY" Type="Double" Nullable="false" />
           <Property Name="ProfileId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Economy" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Economy" FromRole="Location" ToRole="Economy" />
           <NavigationProperty Name="Households" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Household_Location" FromRole="Location" ToRole="Household" />
           <Property Type="Int32" Name="TotalPopulation" Nullable="false" />
           <NavigationProperty Name="Food_Good" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Location" FromRole="Location" ToRole="Food_Good" />
-          <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="Interactive" Nullable="false" />
-          <NavigationProperty Name="vw_LocationPoints" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation" FromRole="Location" ToRole="vw_LocationPoints" />
           <NavigationProperty Name="Profile" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile" FromRole="Location" ToRole="Profile" />
-          <Property Type="Geography" Name="Shape" />
+          <Property Type="Int32" Name="X" Nullable="false" />
+          <Property Type="Int32" Name="Y" Nullable="false" />
+          <NavigationProperty Name="Food_Industry_Company_Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Location" FromRole="Location" ToRole="Food_Industry_Company_Location" />
+          <NavigationProperty Name="Food_Industry_Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Location" FromRole="Location" ToRole="Food_Industry_Location" />
+          <NavigationProperty Name="vw_PopulationByLocation" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationLocation" FromRole="Location" ToRole="vw_PopulationByLocation" />
+          <NavigationProperty Name="vw_FoodMapData" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataLocation" FromRole="Location" ToRole="vw_FoodMapData" />
         </EntityType>
         <EntityType Name="Round">
           <Key>
@@ -1728,18 +2107,21 @@
           <Property Name="Identifier" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="PreviousRoundId" Type="Int32" />
           <NavigationProperty Name="Company_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Company_Round_Round" FromRole="Round" ToRole="Company_Round" />
-          <NavigationProperty Name="Economies" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Economy_Round" FromRole="CurrentRound" ToRole="Economy" />
           <NavigationProperty Name="CurrentRound" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round" FromRole="CurrentRound" ToRole="PreviousRound" />
           <NavigationProperty Name="PreviousRound" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round" FromRole="PreviousRound" ToRole="CurrentRound" />
           <NavigationProperty Name="Food_Household_Company_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Household_Company_Round_Round" FromRole="Round" ToRole="Food_Household_Company_Round" />
           <NavigationProperty Name="Food_Good_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Round" FromRole="Round" ToRole="Food_Good_Round" />
           <Property Type="Int32" Name="Sequence" Nullable="false" />
           <NavigationProperty Name="Food_Industry_Company_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round_Round" FromRole="Round" ToRole="Food_Industry_Company_Round" />
-          <NavigationProperty Name="Food_Industry_Company" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round" FromRole="Round" ToRole="Food_Industry_Company" />
           <NavigationProperty Name="Food_Industry_Household_Company_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Round" FromRole="Round" ToRole="Food_Industry_Household_Company_Round" />
           <Property Type="Int32" Name="RoundStateId" />
           <Property Type="DateTime" Name="LastModified" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Round_State" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Round_State" FromRole="Round" ToRole="Round_State" />
+          <NavigationProperty Name="vw_FoodMapData" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataRound" FromRole="Round" ToRole="vw_FoodMapData" />
+          
+          <NavigationProperty Name="Food_Good" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round" FromRole="Round" ToRole="Food_Good" />
+          <NavigationProperty Name="Economy" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Round_Economy" FromRole="Round" ToRole="Economy" />
+          <Property Type="Boolean" Name="IsCurrent" Nullable="false" />
         </EntityType>
         <EntityType Name="Wealth">
           <Key>
@@ -1754,7 +2136,8 @@
           <NavigationProperty Name="Profile_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Wealth" FromRole="Wealth" ToRole="Profile_Age_Wealth" />
           <Property Type="Double" Name="Probability" Nullable="false" />
           <Property Type="Int32" Name="DisplayOrder" Nullable="false" />
-          <NavigationProperty Name="Food_Industry_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth" FromRole="Wealth" ToRole="Food_Industry_Age_Wealth" />
+          <NavigationProperty Name="Food_Industry_Age_Wealth_Type" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Wealth" FromRole="Wealth" ToRole="Food_Industry_Age_Wealth_Type" />
+          <NavigationProperty Name="vw_PopulationByLocation" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationWealth" FromRole="Wealth" ToRole="vw_PopulationByLocation" />
         </EntityType>
         <Association Name="FK_Age_Economy">
           <End Role="Economy" Type="Fuqua.CompetativeAnalysis.MarketGame.Economy" Multiplicity="1" />
@@ -1818,20 +2201,6 @@
             </Principal>
             <Dependent Role="Company_Round">
               <PropertyRef Name="RoundId" />
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Economy_Round">
-          <End Role="CurrentRound" Type="Fuqua.CompetativeAnalysis.MarketGame.Round" Multiplicity="0..1" />
-          <End Role="Economy" Type="Fuqua.CompetativeAnalysis.MarketGame.Economy" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CurrentRound">
-              <PropertyRef Name="RoundId" />
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Economy">
-              <PropertyRef Name="CurrentRoundId" />
               <PropertyRef Name="EconomyId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1951,33 +2320,19 @@
           <NavigationProperty Name="Food_Good_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round_Food_Good" FromRole="Food_Good" ToRole="Food_Good_Round" />
           <NavigationProperty Name="Food_Industry" Relationship="Fuqua.CompetativeAnalysis.MarketGame.Food_GoodFood_Industry" FromRole="Food_Good" ToRole="Food_Industry" />
           <NavigationProperty Name="Food_Industry_Household_Company_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Food_Good" FromRole="Food_Good" ToRole="Food_Industry_Household_Company_Round" />
-          <Property Type="Double" Name="Latitude" Nullable="false" />
-          <Property Type="Double" Name="Longitude" Nullable="false" />
+          <Property Type="Boolean" Name="HasLicense" Nullable="false" />
+          <NavigationProperty Name="Food_Industry_Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location" FromRole="Food_Good" ToRole="Food_Industry_Location" />
+          <NavigationProperty Name="Food_Industry_Company" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company" FromRole="Food_Good" ToRole="Food_Industry_Company" />
+          <NavigationProperty Name="Food_Industry_Company_Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location" FromRole="Food_Good" ToRole="Food_Industry_Company_Location" />
+          <Property Type="Int32" Name="CreatedRoundId" Nullable="false" />
+          <NavigationProperty Name="CreatedRound" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Round" FromRole="Food_Good" ToRole="Round" />
         </EntityType>
         <EntityType Name="Food_Industry" BaseType="Fuqua.CompetativeAnalysis.MarketGame.Industry">
           <NavigationProperty Name="Food_Industry_Good_Type" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Good_Type_Food_Industry" FromRole="Food_Industry" ToRole="Food_Industry_Good_Type" />
           <NavigationProperty Name="Food_Good" Relationship="Fuqua.CompetativeAnalysis.MarketGame.Food_GoodFood_Industry" FromRole="Food_Industry" ToRole="Food_Good" />
-          <Property Type="Double" Name="EntryCostMean" Nullable="false">
-            <Documentation>
-              <Summary>Entry Cost Mean</Summary>
-              <LongDescription>The mean value for the distribution for entry cost for teams when generating a company's settings for this industry.</LongDescription>
-            </Documentation>
-          </Property>
-          <Property Type="Double" Name="EntryCostStdDev" Nullable="false" />
-          <Property Type="Double" Name="CapacityCostMean" Nullable="false" />
-          <Property Type="Double" Name="CapacityCostStdDev" Nullable="false" />
           <NavigationProperty Name="Food_Industry_Company" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Food_Industry" FromRole="Food_Industry" ToRole="Food_Industry_Company" />
-          <Property Type="Double" Name="MarginalCostMean" Nullable="false" />
-          <Property Type="Double" Name="MarginalCostStdDev" Nullable="false" />
-          <Property Type="Double" Name="CapacityDecayRate" Nullable="false" />
-          <Property Type="Double" Name="CapacityResaleRate" Nullable="false" />
-          <Property Type="Boolean" Name="CanHoldInventory" Nullable="false" />
-          <Property Type="Double" Name="Elasticity" Nullable="false" />
-          <Property Type="Double" Name="MaintenanceCostMean" Nullable="false" />
-          <Property Type="Double" Name="MaintenanceCostStdDev" Nullable="false" />
-          <Property Type="Double" Name="InventoryCostMean" Nullable="false" />
-          <Property Type="Double" Name="InventoryCostStdDev" Nullable="false" />
-          <NavigationProperty Name="Food_Industry_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry" FromRole="Food_Industry" ToRole="Food_Industry_Age_Wealth" />
+          <NavigationProperty Name="Food_Industry_Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry" FromRole="Food_Industry" ToRole="Food_Industry_Location" />
+          <NavigationProperty Name="Food_Industry_Age_Wealth_Type" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry" FromRole="Food_Industry" ToRole="Food_Industry_Age_Wealth_Type" />
         </EntityType>
         <EntityType Name="Food_Industry_Good_Type">
           <Key>
@@ -1991,6 +2346,9 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Food_Good" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Good_Type" FromRole="Food_Industry_Good_Type" ToRole="Food_Good" />
           <NavigationProperty Name="Food_Industry" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Good_Type_Food_Industry" FromRole="Food_Industry_Good_Type" ToRole="Food_Industry" />
+          <NavigationProperty Name="Food_Industry_Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type" FromRole="Food_Industry_Good_Type" ToRole="Food_Industry_Location" />
+          <NavigationProperty Name="Food_Industry_Age_Wealth_Type" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type" FromRole="Food_Industry_Good_Type" ToRole="Food_Industry_Age_Wealth_Type" />
+          <NavigationProperty Name="vw_FoodMapData" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataFood_Industry_Good_Type" FromRole="Food_Industry_Good_Type" ToRole="vw_FoodMapData" />
         </EntityType>
         <Association Name="FK_Food_Good_Company">
           <End Type="Fuqua.CompetativeAnalysis.MarketGame.Company" Role="Company" Multiplicity="1" />
@@ -2150,7 +2508,7 @@
           <Property Type="Double" Name="InventoryEnd" Nullable="false" />
           <Property Type="Double" Name="CostOfMaintenance" Nullable="false" />
           <Property Type="Double" Name="CostOfInventory" Nullable="false" />
-          <Property Type="Boolean" Name="IsRollover" Nullable="false" />
+          <Property Type="Double" Name="MaxSales" Nullable="false" />
         </EntityType>
         <Association Name="FK_Food_Good_Round_Company">
           <End Type="Fuqua.CompetativeAnalysis.MarketGame.Company" Role="Company" Multiplicity="1" />
@@ -2264,16 +2622,12 @@
           <Property Type="Int32" Name="CompanyId" Nullable="false" />
           <Property Type="Int32" Name="IndustryId" Nullable="false" />
           <Property Type="Int32" Name="EconomyId" Nullable="false" />
-          <Property Type="Double" Name="EntryCost" Nullable="false" />
-          <Property Type="Double" Name="CapacityCost" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Company" FromRole="Food_Industry_Company" ToRole="Company" />
           <NavigationProperty Name="Food_Industry" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Food_Industry" FromRole="Food_Industry_Company" ToRole="Food_Industry" />
-          <Property Type="Double" Name="MarginalCost" Nullable="false" />
           <NavigationProperty Name="Food_Industry_Company_Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round_Food_Industry_Company" FromRole="Food_Industry_Company" ToRole="Food_Industry_Company_Round" />
+          <NavigationProperty Name="Food_Industry_Company_Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company" FromRole="Food_Industry_Company" ToRole="Food_Industry_Company_Location" />
           <Property Type="Int32" Name="EntranceRoundId" />
-          <NavigationProperty Name="Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Round" FromRole="Food_Industry_Company" ToRole="Round" />
-          <Property Type="Double" Name="MaintenanceCost" Nullable="false" />
-          <Property Type="Double" Name="InventoryCost" Nullable="false" />
+          <NavigationProperty Name="Food_Good" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company" FromRole="Food_Industry_Company" ToRole="Food_Good" />
         </EntityType>
         <Association Name="FK_Food_Industry_Company_Company">
           <End Type="Fuqua.CompetativeAnalysis.MarketGame.Company" Role="Company" Multiplicity="1" />
@@ -2367,20 +2721,6 @@
             </Principal>
             <Dependent Role="Food_Industry_Company_Round">
               <PropertyRef Name="RoundId" />
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Food_Industry_Company_Round">
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Round" Role="Round" Multiplicity="0..1" />
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company" Role="Food_Industry_Company" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Round">
-              <PropertyRef Name="RoundId" />
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Food_Industry_Company">
-              <PropertyRef Name="EntranceRoundId" />
               <PropertyRef Name="EconomyId" />
             </Dependent>
           </ReferentialConstraint>
@@ -2499,106 +2839,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vw_LocationPoints">
-          <Key>
-            <PropertyRef Name="EconomyId" />
-            <PropertyRef Name="LocationId" />
-            <PropertyRef Name="sequence" />
-          </Key>
-          <Property Type="Int32" Name="EconomyId" Nullable="false" />
-          <Property Type="Int32" Name="LocationId" Nullable="false" />
-          <Property Type="Int64" Name="sequence" Nullable="false" />
-          <Property Type="Double" Name="Lat" />
-          <Property Type="Double" Name="Long" />
-          <NavigationProperty Name="Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPointsLocation" FromRole="vw_LocationPoints" ToRole="Location" />
-        </EntityType>
-        <Association Name="vw_LocationPointsLocation">
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPoints" Role="vw_LocationPoints" Multiplicity="*" />
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Location" Role="Location" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="Location">
-              <PropertyRef Name="LocationId" />
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="vw_LocationPoints">
-              <PropertyRef Name="LocationId" />
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Food_Industry_Age_Wealth">
-          <Key>
-            <PropertyRef Name="EconomyId" />
-            <PropertyRef Name="AgeId" />
-            <PropertyRef Name="WealthId" />
-            <PropertyRef Name="IndustryId" />
-          </Key>
-          <Property Type="Int32" Name="EconomyId" Nullable="false" />
-          <Property Type="Int32" Name="AgeId" Nullable="false" />
-          <Property Type="Int32" Name="WealthId" Nullable="false" />
-          <Property Type="Double" Name="Sigma" Nullable="false" />
-          <Property Type="Double" Name="SensitivityType" Nullable="false" />
-          <Property Type="Double" Name="SensitivityDistance" Nullable="false" />
-          <NavigationProperty Name="Age" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Age" FromRole="Food_Industry_Age_Wealth" ToRole="Age" />
-          <NavigationProperty Name="Economy" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Economy" FromRole="Food_Industry_Age_Wealth" ToRole="Economy" />
-          <NavigationProperty Name="Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Age_Wealth_Wealth" FromRole="Food_Industry_Age_Wealth" ToRole="Wealth" />
-          <Property Type="Int32" Name="IndustryId" Nullable="false" />
-          <NavigationProperty Name="Food_Industry" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Food_Industry" FromRole="Food_Industry_Age_Wealth" ToRole="Food_Industry" />
-        </EntityType>
-        <Association Name="FK_Food_Age_Wealth_Age">
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Age" Role="Age" Multiplicity="1" />
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth" Role="Food_Industry_Age_Wealth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Age">
-              <PropertyRef Name="AgeId" />
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Food_Industry_Age_Wealth">
-              <PropertyRef Name="AgeId" />
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Food_Age_Wealth_Economy">
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Economy" Role="Economy" Multiplicity="1" />
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth" Role="Food_Industry_Age_Wealth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Economy">
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Food_Industry_Age_Wealth">
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Food_Age_Wealth_Wealth">
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Wealth" Role="Wealth" Multiplicity="1" />
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth" Role="Food_Industry_Age_Wealth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Wealth">
-              <PropertyRef Name="WealthId" />
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Food_Industry_Age_Wealth">
-              <PropertyRef Name="WealthId" />
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Food_Industry_Age_Wealth_Food_Industry">
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" Role="Food_Industry" Multiplicity="1" />
-          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth" Role="Food_Industry_Age_Wealth" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Food_Industry">
-              <PropertyRef Name="IndustryId" />
-              <PropertyRef Name="EconomyId" />
-            </Principal>
-            <Dependent Role="Food_Industry_Age_Wealth">
-              <PropertyRef Name="IndustryId" />
-              <PropertyRef Name="EconomyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Profile">
           <Key>
             <PropertyRef Name="ProfileId" />
@@ -2607,11 +2847,6 @@
           <Property Type="Int32" Name="ProfileId" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Type="Int32" Name="EconomyId" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="TotalPopulation" Nullable="false">
-            <Documentation>
-              <Summary>The total number of households that will use this profile.</Summary>
-            </Documentation>
-          </Property>
           <NavigationProperty Name="Economy" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Economy" FromRole="Profile" ToRole="Economy" />
           <NavigationProperty Name="Locations" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Location_Profile" FromRole="Profile" ToRole="Location" />
           <NavigationProperty Name="Profile_Age_Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Profile_Age_Wealth_Profile" FromRole="Profile" ToRole="Profile_Age_Wealth" />
@@ -2720,6 +2955,485 @@
           <Property Type="Double" Name="CapacityChange" Nullable="false" />
           <Property Type="Int32" Name="GoodId" Nullable="false" />
         </ComplexType>
+        <Association Name="FK_Household_Household1">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Household" Role="Household" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Household" Role="Household1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Household">
+              <PropertyRef Name="HouseholdId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Household1">
+              <PropertyRef Name="HouseholdId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Food_Industry_Company_Location">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="IndustryId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="EconomyId" />
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Type="Int32" Name="CompanyId" Nullable="false" />
+          <Property Type="Int32" Name="IndustryId" Nullable="false" />
+          <Property Type="Int32" Name="LocationId" Nullable="false" />
+          <Property Type="Int32" Name="EconomyId" Nullable="false" />
+          <Property Type="Int32" Name="TypeId" Nullable="false" />
+          <Property Type="Double" Name="CapacityCost" Nullable="false" />
+          <Property Type="Double" Name="MarginalCost" Nullable="false" />
+          <Property Type="Double" Name="InventoryCost" Nullable="false" />
+          <NavigationProperty Name="Food_Industry_Company" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Company" FromRole="Food_Industry_Company_Location" ToRole="Food_Industry_Company" />
+          <NavigationProperty Name="Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Location" FromRole="Food_Industry_Company_Location" ToRole="Location" />
+          <NavigationProperty Name="Food_Industry_Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location" FromRole="Food_Industry_Company_Location" ToRole="Food_Industry_Location" />
+          <NavigationProperty Name="Food_Good" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Company_Location" FromRole="Food_Industry_Company_Location" ToRole="Food_Good" />
+        </EntityType>
+        <Association Name="FK_Food_Industry_Company_Location_Food_Industry_Company">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company" Role="Food_Industry_Company" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location" Role="Food_Industry_Company_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Company">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Company_Location">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Company_Location_Location">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Location" Role="Location" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location" Role="Food_Industry_Company_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Company_Location">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Food_Industry_Location">
+          <Key>
+            <PropertyRef Name="IndustryId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="EconomyId" />
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Type="Int32" Name="IndustryId" Nullable="false" />
+          <Property Type="Int32" Name="LocationId" Nullable="false" />
+          <Property Type="Int32" Name="EconomyId" Nullable="false" />
+          <Property Type="Int32" Name="TypeId" Nullable="false" />
+          <Property Type="Double" Name="CapacityCostMean" Nullable="false" />
+          <Property Type="Double" Name="CapacityCostStdDev" Nullable="false" />
+          <Property Type="Double" Name="MarginalCostMean" Nullable="false" />
+          <Property Type="Double" Name="MarginalCostStdDev" Nullable="false" />
+          <Property Type="Double" Name="InventoryCostMean" Nullable="false" />
+          <Property Type="Double" Name="InventoryCostStdDev" Nullable="false" />
+          <NavigationProperty Name="Food_Industry" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry" FromRole="Food_Industry_Location" ToRole="Food_Industry" />
+          <NavigationProperty Name="Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Location" FromRole="Food_Industry_Location" ToRole="Location" />
+          <Property Type="Double" Name="Elasticity" Nullable="false" />
+          <NavigationProperty Name="Food_Industry_Good_Type" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Location_Food_Industry_Good_Type" FromRole="Food_Industry_Location" ToRole="Food_Industry_Good_Type" />
+          <NavigationProperty Name="Food_Good" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Location" FromRole="Food_Industry_Location" ToRole="Food_Good" />
+          <NavigationProperty Name="Food_Industry_Company_Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Company_Location_Food_Industry_Location" FromRole="Food_Industry_Location" ToRole="Food_Industry_Company_Location" />
+          <Property Type="Double" Name="CapacityDecayRate" Nullable="false" />
+          <Property Type="Double" Name="CapacityResaleRate" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Food_Industry_Location_Food_Industry">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" Role="Food_Industry" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location" Role="Food_Industry_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Location">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Location_Location">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Location" Role="Location" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location" Role="Food_Industry_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Location">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Location_Food_Industry_Good_Type">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" Role="Food_Industry_Good_Type" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location" Role="Food_Industry_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Good_Type">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Location">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Good_Food_Industry_Location">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location" Role="Food_Industry_Location" Multiplicity="0..1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" Role="Food_Good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Location">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="Food_Good">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Company_Location_Food_Industry_Location">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location" Role="Food_Industry_Location" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location" Role="Food_Industry_Company_Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Location">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Company_Location">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Good_Food_Industry_Company">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company" Role="Food_Industry_Company" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" Role="Food_Good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Company">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Good">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Food_Industry_Age_Wealth_Type">
+          <Key>
+            <PropertyRef Name="IndustryId" />
+            <PropertyRef Name="EconomyId" />
+            <PropertyRef Name="AgeId" />
+            <PropertyRef Name="WealthId" />
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Type="Int32" Name="IndustryId" Nullable="false" />
+          <Property Type="Int32" Name="EconomyId" Nullable="false" />
+          <Property Type="Int32" Name="AgeId" Nullable="false" />
+          <Property Type="Int32" Name="WealthId" Nullable="false" />
+          <Property Type="Int32" Name="TypeId" Nullable="false" />
+          <Property Type="Double" Name="Sigma" Nullable="false" />
+          <NavigationProperty Name="Food_Industry" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry" FromRole="Food_Industry_Age_Wealth_Type" ToRole="Food_Industry" />
+          <NavigationProperty Name="Food_Industry_Good_Type" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type" FromRole="Food_Industry_Age_Wealth_Type" ToRole="Food_Industry_Good_Type" />
+          <NavigationProperty Name="Age" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Age" FromRole="Food_Industry_Age_Wealth_Type" ToRole="Age" />
+          <NavigationProperty Name="Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Age_Wealth_Type_Wealth" FromRole="Food_Industry_Age_Wealth_Type" ToRole="Wealth" />
+          <Property Type="Double" Name="TransportationCost" Nullable="false" />
+          <Property Type="Double" Name="MaxDistance" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Food_Industry_Age_Wealth_Type_Food_Industry">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry" Role="Food_Industry" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type" Role="Food_Industry_Age_Wealth_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Age_Wealth_Type">
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Age_Wealth_Type_Food_Industry_Good_Type">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" Role="Food_Industry_Good_Type" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type" Role="Food_Industry_Age_Wealth_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Good_Type">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Age_Wealth_Type">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Age_Wealth_Type_Age">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Age" Role="Age" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type" Role="Food_Industry_Age_Wealth_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Age">
+              <PropertyRef Name="AgeId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Age_Wealth_Type">
+              <PropertyRef Name="AgeId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Industry_Age_Wealth_Type_Wealth">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Wealth" Role="Wealth" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type" Role="Food_Industry_Age_Wealth_Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wealth">
+              <PropertyRef Name="WealthId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Industry_Age_Wealth_Type">
+              <PropertyRef Name="WealthId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_PublicDemandData">
+          <Key>
+            <PropertyRef Name="EconomyId" />
+            <PropertyRef Name="IndustryId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="TypeId" />
+            <PropertyRef Name="AgeId" />
+            <PropertyRef Name="Identifier" />
+          </Key>
+          <Property Type="Int32" Name="EconomyId" Nullable="false" />
+          <Property Type="Int32" Name="IndustryId" Nullable="false" />
+          <NavigationProperty Name="Economy" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandDataEconomy" FromRole="vw_PublicDemandData" ToRole="Economy" />
+          <Property Type="Int32" Name="LocationId" Nullable="false" />
+          <Property Type="Int32" Name="TypeId" Nullable="false" />
+          <Property Type="Int32" Name="AgeId" Nullable="false" />
+          <Property Type="String" Name="Identifier" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="Sigma" />
+        </EntityType>
+        <Association Name="vw_PublicDemandDataEconomy">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandData" Role="vw_PublicDemandData" Multiplicity="*" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Economy" Role="Economy" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Economy">
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="vw_PublicDemandData">
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_PopulationByLocation">
+          <Key>
+            <PropertyRef Name="EconomyId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="AgeId" />
+            <PropertyRef Name="WealthId" />
+            <PropertyRef Name="Probability" />
+            <PropertyRef Name="Population" />
+          </Key>
+          <Property Type="Int32" Name="EconomyId" Nullable="false" />
+          <Property Type="Int32" Name="LocationId" Nullable="false" />
+          <Property Type="Int32" Name="AgeId" Nullable="false" />
+          <Property Type="Int32" Name="WealthId" Nullable="false" />
+          <Property Type="Double" Name="Probability" Nullable="false" />
+          <Property Type="Double" Name="Population" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationLocation" FromRole="vw_PopulationByLocation" ToRole="Location" />
+          <NavigationProperty Name="Age" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationAge" FromRole="vw_PopulationByLocation" ToRole="Age" />
+          <NavigationProperty Name="Wealth" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocationWealth" FromRole="vw_PopulationByLocation" ToRole="Wealth" />
+        </EntityType>
+        <Association Name="vw_PopulationByLocationLocation">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocation" Role="vw_PopulationByLocation" Multiplicity="*" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Location" Role="Location" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="vw_PopulationByLocation">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vw_PopulationByLocationAge">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocation" Role="vw_PopulationByLocation" Multiplicity="*" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Age" Role="Age" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Age">
+              <PropertyRef Name="AgeId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="vw_PopulationByLocation">
+              <PropertyRef Name="AgeId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vw_PopulationByLocationWealth">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocation" Role="vw_PopulationByLocation" Multiplicity="*" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Wealth" Role="Wealth" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Wealth">
+              <PropertyRef Name="WealthId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="vw_PopulationByLocation">
+              <PropertyRef Name="WealthId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Good_Food_Industry_Company_Location">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location" Role="Food_Industry_Company_Location" Multiplicity="0..1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" Role="Food_Good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Company_Location">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Good">
+              <PropertyRef Name="CompanyId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_FoodMapData">
+          <Key>
+            <PropertyRef Name="EconomyId" />
+            <PropertyRef Name="RoundId" />
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="LocationIdentifier" />
+            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="CompanyName" />
+            <PropertyRef Name="Storename" />
+            <PropertyRef Name="FoodTypeId" />
+            <PropertyRef Name="FoodTypeName" />
+            <PropertyRef Name="CapacityStart" />
+            <PropertyRef Name="Price" />
+            <PropertyRef Name="IndustryId" />
+          </Key>
+          <Property Type="Int32" Name="EconomyId" Nullable="false" />
+          <Property Type="Int32" Name="RoundId" Nullable="false" />
+          <Property Type="Int32" Name="LocationId" Nullable="false" />
+          <Property Type="String" Name="LocationIdentifier" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CompanyId" Nullable="false" />
+          <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Storename" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="FoodTypeId" Nullable="false" />
+          <Property Type="String" Name="FoodTypeName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="CapacityStart" Nullable="false" />
+          <Property Type="Double" Name="Price" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataLocation" FromRole="vw_FoodMapData" ToRole="Location" />
+          <NavigationProperty Name="Round" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataRound" FromRole="vw_FoodMapData" ToRole="Round" />
+          <NavigationProperty Name="Food_Industry_Good_Type" Relationship="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapDataFood_Industry_Good_Type" FromRole="vw_FoodMapData" ToRole="Food_Industry_Good_Type" />
+          <Property Type="Int32" Name="IndustryId" Nullable="false" />
+        </EntityType>
+        <Association Name="vw_FoodMapDataLocation">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapData" Role="vw_FoodMapData" Multiplicity="*" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Location" Role="Location" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="vw_FoodMapData">
+              <PropertyRef Name="LocationId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vw_FoodMapDataRound">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapData" Role="vw_FoodMapData" Multiplicity="*" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Round" Role="Round" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Round">
+              <PropertyRef Name="RoundId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="vw_FoodMapData">
+              <PropertyRef Name="RoundId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vw_FoodMapDataFood_Industry_Good_Type">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapData" Role="vw_FoodMapData" Multiplicity="*" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" Role="Food_Industry_Good_Type" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Industry_Good_Type">
+              <PropertyRef Name="TypeId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="vw_FoodMapData">
+              <PropertyRef Name="FoodTypeId" />
+              <PropertyRef Name="IndustryId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+
+        <Association Name="FK_Food_Good_Round">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Round" Role="Round" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" Role="Food_Good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Round">
+              <PropertyRef Name="RoundId" />
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Food_Good">
+              <PropertyRef Name="CreatedRoundId" />
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Round_Economy">
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Economy" Role="Economy" Multiplicity="1" />
+          <End Type="Fuqua.CompetativeAnalysis.MarketGame.Round" Role="Round" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Economy">
+              <PropertyRef Name="EconomyId" />
+            </Principal>
+            <Dependent Role="Round">
+              <PropertyRef Name="EconomyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2770,7 +3484,6 @@
                 <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="CurrentRoundId" ColumnName="CurrentRoundId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2785,8 +3498,8 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(Fuqua.CompetativeAnalysis.MarketGame.Food_Good)">
               <MappingFragment StoreEntitySet="Food_Good">
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="CreatedRoundId" ColumnName="CreatedRoundId" />
+                <ScalarProperty Name="HasLicense" ColumnName="HasLicense" />
                 <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
                 <ScalarProperty Name="GoodId" ColumnName="GoodId" />
                 <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
@@ -2801,8 +3514,6 @@
             <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Household">
               <MappingFragment StoreEntitySet="Household">
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="HouseholdId" ColumnName="HouseholdId" />
                 <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
@@ -2823,44 +3534,29 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="IsTypeOf(Fuqua.CompetativeAnalysis.MarketGame.Food_Industry)">
               <MappingFragment StoreEntitySet="Food_Industry">
-                <ScalarProperty Name="InventoryCostStdDev" ColumnName="InventoryCostStdDev" />
-                <ScalarProperty Name="InventoryCostMean" ColumnName="InventoryCostMean" />
-                <ScalarProperty Name="MaintenanceCostStdDev" ColumnName="MaintenanceCostStdDev" />
-                <ScalarProperty Name="MaintenanceCostMean" ColumnName="MaintenanceCostMean" />
-                <ScalarProperty Name="Elasticity" ColumnName="Elasticity" />
-                <ScalarProperty Name="CanHoldInventory" ColumnName="CanHoldInventory" />
-                <ScalarProperty Name="CapacityResaleRate" ColumnName="CapacityResaleRate" />
-                <ScalarProperty Name="CapacityDecayRate" ColumnName="CapacityDecayRate" />
-                <ScalarProperty Name="MarginalCostStdDev" ColumnName="MarginalCostStdDev" />
-                <ScalarProperty Name="MarginalCostMean" ColumnName="MarginalCostMean" />
-                <ScalarProperty Name="CapacityCostStdDev" ColumnName="CapacityCostStdDev" />
-                <ScalarProperty Name="CapacityCostMean" ColumnName="CapacityCostMean" />
-                <ScalarProperty Name="EntryCostStdDev" ColumnName="EntryCostStdDev" />
-                <ScalarProperty Name="EntryCostMean" ColumnName="EntryCostMean" />
                 <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
                 <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Locations">
-            <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Location">
+            <EntityTypeMapping TypeName="IsTypeOf(Fuqua.CompetativeAnalysis.MarketGame.Location)">
               <MappingFragment StoreEntitySet="Location">
-                <ScalarProperty Name="Shape" ColumnName="Shape" />
-                <ScalarProperty Name="Interactive" ColumnName="Interactive" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="TotalPopulation" ColumnName="TotalPopulation" />
-                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
-                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
-                <ScalarProperty Name="CenterX" ColumnName="CenterX" />
-                <ScalarProperty Name="CenterY" ColumnName="CenterY" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="TotalPopulation" ColumnName="TotalPopulation" />
+                <ScalarProperty Name="Interactive" ColumnName="Interactive" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rounds">
             <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Round">
               <MappingFragment StoreEntitySet="Round">
+                <ScalarProperty Name="IsCurrent" ColumnName="IsCurrent" />
                 <ScalarProperty Name="LastModified" ColumnName="LastModified" />
                 <ScalarProperty Name="RoundStateId" ColumnName="RoundStateId" />
                 <ScalarProperty Name="Sequence" ColumnName="Sequence" />
@@ -2906,7 +3602,7 @@
           <EntitySetMapping Name="Food_Good_Round">
             <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Good_Round">
               <MappingFragment StoreEntitySet="Food_Good_Round">
-                <ScalarProperty Name="IsRollover" ColumnName="IsRollover" />
+                <ScalarProperty Name="MaxSales" ColumnName="MaxSales" />
                 <ScalarProperty Name="CostOfInventory" ColumnName="CostOfInventory" />
                 <ScalarProperty Name="CostOfMaintenance" ColumnName="CostOfMaintenance" />
                 <ScalarProperty Name="InventoryEnd" ColumnName="InventoryEnd" />
@@ -2943,12 +3639,7 @@
           <EntitySetMapping Name="Food_Industry_Company">
             <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company">
               <MappingFragment StoreEntitySet="Food_Industry_Company">
-                <ScalarProperty Name="InventoryCost" ColumnName="InventoryCost" />
-                <ScalarProperty Name="MaintenanceCost" ColumnName="MaintenanceCost" />
                 <ScalarProperty Name="EntranceRoundId" ColumnName="EntranceRoundId" />
-                <ScalarProperty Name="MarginalCost" ColumnName="MarginalCost" />
-                <ScalarProperty Name="CapacityCost" ColumnName="CapacityCost" />
-                <ScalarProperty Name="EntryCost" ColumnName="EntryCost" />
                 <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
                 <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
@@ -3025,34 +3716,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SetLocationShape" FunctionName="Fuqua.CompetativeAnalysis.Store.sp_SetLocationShape" />
-          <EntitySetMapping Name="vw_LocationPoints">
-            <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.vw_LocationPoints">
-              <MappingFragment StoreEntitySet="vw_LocationPoints">
-                <ScalarProperty Name="Long" ColumnName="Long" />
-                <ScalarProperty Name="Lat" ColumnName="Lat" />
-                <ScalarProperty Name="sequence" ColumnName="sequence" />
-                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
-                <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Food_Industry_Age_Wealth">
-            <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth">
-              <MappingFragment StoreEntitySet="Food_Industry_Age_Wealth">
-                <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
-                <ScalarProperty Name="SensitivityDistance" ColumnName="SensitivityDistance" />
-                <ScalarProperty Name="SensitivityType" ColumnName="SensitivityType" />
-                <ScalarProperty Name="Sigma" ColumnName="Sigma" />
-                <ScalarProperty Name="WealthId" ColumnName="WealthId" />
-                <ScalarProperty Name="AgeId" ColumnName="AgeId" />
-                <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Profiles">
             <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Profile">
               <MappingFragment StoreEntitySet="Profile">
-                <ScalarProperty Name="TotalPopulation" ColumnName="TotalPopulation" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
                 <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
@@ -3088,6 +3754,96 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Food_Industry_Company_Location">
+            <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Company_Location">
+              <MappingFragment StoreEntitySet="Food_Industry_Company_Location">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="InventoryCost" ColumnName="InventoryCost" />
+                <ScalarProperty Name="MarginalCost" ColumnName="MarginalCost" />
+                <ScalarProperty Name="CapacityCost" ColumnName="CapacityCost" />
+                <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Food_Industry_Location">
+            <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Location">
+              <MappingFragment StoreEntitySet="Food_Industry_Location">
+                <ScalarProperty Name="CapacityResaleRate" ColumnName="CapacityResaleRate" />
+                <ScalarProperty Name="CapacityDecayRate" ColumnName="CapacityDecayRate" />
+                <ScalarProperty Name="Elasticity" ColumnName="Elasticity" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="InventoryCostStdDev" ColumnName="InventoryCostStdDev" />
+                <ScalarProperty Name="InventoryCostMean" ColumnName="InventoryCostMean" />
+                <ScalarProperty Name="MarginalCostStdDev" ColumnName="MarginalCostStdDev" />
+                <ScalarProperty Name="MarginalCostMean" ColumnName="MarginalCostMean" />
+                <ScalarProperty Name="CapacityCostStdDev" ColumnName="CapacityCostStdDev" />
+                <ScalarProperty Name="CapacityCostMean" ColumnName="CapacityCostMean" />
+                <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Food_Industry_Age_Wealth_Type">
+            <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Age_Wealth_Type">
+              <MappingFragment StoreEntitySet="Food_Industry_Age_Wealth_Type">
+                <ScalarProperty Name="MaxDistance" ColumnName="MaxDistance" />
+                <ScalarProperty Name="TransportationCost" ColumnName="TransportationCost" />
+                <ScalarProperty Name="Sigma" ColumnName="Sigma" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="WealthId" ColumnName="WealthId" />
+                <ScalarProperty Name="AgeId" ColumnName="AgeId" />
+                <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+                <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_PublicDemandData">
+            <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.vw_PublicDemandData">
+              <MappingFragment StoreEntitySet="vw_PublicDemandData">
+                <ScalarProperty Name="Sigma" ColumnName="sigma" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="AgeId" ColumnName="AgeId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+                <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_PopulationByLocation">
+            <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.vw_PopulationByLocation">
+              <MappingFragment StoreEntitySet="vw_PopulationByLocation">
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="Probability" ColumnName="Probability" />
+                <ScalarProperty Name="WealthId" ColumnName="WealthId" />
+                <ScalarProperty Name="AgeId" ColumnName="AgeId" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_FoodMapData">
+            <EntityTypeMapping TypeName="Fuqua.CompetativeAnalysis.MarketGame.vw_FoodMapData">
+              <MappingFragment StoreEntitySet="vw_FoodMapData">
+                <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CapacityStart" ColumnName="CapacityStart" />
+                <ScalarProperty Name="FoodTypeName" ColumnName="FoodTypeName" />
+                <ScalarProperty Name="FoodTypeId" ColumnName="FoodTypeId" />
+                <ScalarProperty Name="Storename" ColumnName="Storename" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="LocationIdentifier" ColumnName="LocationIdentifier" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="RoundId" ColumnName="RoundId" />
+                <ScalarProperty Name="EconomyId" ColumnName="EconomyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

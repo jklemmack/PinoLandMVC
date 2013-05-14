@@ -9,19 +9,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
     partial class Economy
     {
         private static object _lock = new object();
-        private List<Profile_Age_Wealth> profileBins = null;
-        internal InitializeCallbacks _callbacks;
-
-        public struct GeoPosition
-        {
-            public float Latitude;
-            public float Longitude;
-        }
-
-        public class InitializeCallbacks
-        {
-            public Func<Household, Dictionary<Color, Profile>, GeoPosition> PositionHousehold;
-        }
+        private Dictionary<Profile, List<Profile_Age_Wealth>> profileBins = new Dictionary<Profile, List<Profile_Age_Wealth>>();
 
 
         public static Economy CreateEconomy(string name)
@@ -37,22 +25,22 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         /// Create a new population profile that can be assigned to a location
         /// </summary>
         /// <param name="economy"></param>
-        /// <param name="weights">An array of weights for each age and wealth.  
+        /// <param name="weights">An array of weights for each age and wealth. These weights will be re-scaled to sum to 1. 
         /// The weights are ordered by the Age first, then each Wealth for that Age.  All sequences are in alphabetical order.  </param>
-        public Profile CreateProfile(string name, int totalPopulation, double[] weights)
+        public Profile CreateProfile(string name, double[] weights)
         {
             Profile profile = new Profile();
             profile.Name = name;
             profile.Economy = this;
-            profile.TotalPopulation = totalPopulation;
 
             if (weights.Length != this.Ages.Count * this.Wealths.Count)
                 throw new ArgumentOutOfRangeException("weights", string.Format("\"weights\" array must have {0} elements; it has {1}.", this.Ages.Count * this.Wealths.Count, weights.Length));
 
             int i = 0;
+            double scale = weights.Sum();   //rescale
             foreach (Age age in this.Ages.OrderBy(o => o.DisplayOrder))
                 foreach (Wealth wealth in this.Wealths.OrderBy(o => o.DisplayOrder))
-                    profile.AddAgeWealth(age, wealth, weights[i++]);
+                    profile.AddAgeWealth(age, wealth, weights[i++] / scale);
 
             return profile;
         }
@@ -72,56 +60,23 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             this.Industries.Add(industry);
         }
 
-        public void Initialize(InitializeCallbacks callbacks)
+        public void Initialize()
         {
-            this._callbacks = callbacks;
             //Create the first round
             this.CurrentRound = Round.CreateRound(this, null);
 
             //Setup each industry
             foreach (Industry industry in this.Industries)
             {
-                Dictionary<Color, Profile> mapping = new Dictionary<Color, Profile>();
-                //mapping.Add(Color.Blue, this.Profiles.Single(p => string.Compare(p.Name, "Rural", true) == 0));
-                mapping.Add(Color.Red, this.Profiles.Single(p => string.Compare(p.Name, "Urban", true) == 0));
-                mapping.Add(Color.Yellow, this.Profiles.Single(p => string.Compare(p.Name, "Suburban", true) == 0));
-                mapping.Add(Color.FromArgb(0, 255, 0), this.Profiles.Single(p => string.Compare(p.Name, "Rural", true) == 0));
-
                 industry.InitializeIndustry();
-                foreach (Profile profile in this.Profiles)
-                {
-                    for (int i = 0; i < profile.TotalPopulation; i++)
-                    {
-                        Household h = new Household();
-                        h.Profile = profile;
-                        h.Identifier = string.Format("{0}:{1:D5}", profile.Name, i + 1);
-
-                        Profile_Age_Wealth paw = this.GetProfileAgeWealth(profile, Statistics.Instance.Sample());
-                        h.Age = paw.Age;
-                        h.Wealth = paw.Wealth;
-
-                        if (this._callbacks != null && this._callbacks.PositionHousehold != null)
-                        {
-                            Economy.GeoPosition pos = this._callbacks.PositionHousehold(h, mapping);
-                            h.Latitude = pos.Latitude;
-                            h.Longitude = pos.Longitude;
-
-                        }
-
-                    }
-                }
-
-                // Spin over the locations & make households
-                //foreach (Location location in this.Locations)
-                //{
-                //    //Create base households
-                //    location.InitializeHouseholds();
-
-                //    //Now set industry-specific parameters for each household, as required.
-                //    //foreach (Household household in location.Households)
-                //    //    industry.GenerateHouseholdIndustryData(household);
-                //}
             }
+
+            // Spin over the locations & make households
+            foreach (Location location in this.Locations)
+            {
+                location.InitializeHouseholds();
+            }
+
 
         }
 
@@ -140,9 +95,19 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
                 //Let's randomize the household sequence.  This prevents clustering in the top & left of the map as we process each industry
                 Random rnd = new Random();
+                int total = this.Households.Count();
+                int count = 0;
+                DateTime start = DateTime.Now;
                 foreach (Household household in this.Households.OrderBy(h => rnd.NextDouble()))
                 {
                     ProcessHouseholdInIndustry(household, industry, round);
+                    count++;
+                    if (count % 1000 == 0)
+                    {
+                        DateTime now = DateTime.Now;
+                        Console.WriteLine(" * {0:mm\\:ss\\.fff}: to process 1000.  Now at {1:000000}", now.Subtract(start), count);
+                        start = DateTime.Now;
+                    }
                 }
 
                 industry.PostProcessRound(round);
@@ -207,6 +172,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             //If we have a winning good, record the sale
             // Possible parallelism optimization - single mutex here to check the winner & 
             // record the sale.
+            /// industry.RecordSale(household, round, goods
             if (winningGood != null)
                 industry.RecordSale(household, winningGood, round, winningCost, maxSurplus);
 
@@ -214,19 +180,19 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         internal Profile_Age_Wealth GetProfileAgeWealth(Profile profile, double draw)
         {
-            //Create a List<> of age bins if one does not exist.  This is a common "singleton" pattern in C#.
-            if (profileBins == null)    //Test if null
+            //Create a List<> of age-wealth bins if one does not exist.  
+            if (!profileBins.ContainsKey(profile))
             {
-                lock (_lock)        //Obtain a lock.
+                lock (_lock)
                 {
-                    if (profileBins == null)    //Because there could be a race condition between the first "if" and "lock", we check again (so as to not initialize twice)
-                        profileBins = new List<Profile_Age_Wealth>(profile.Profile_Age_Wealth);
+                    if (!profileBins.ContainsKey(profile))
+                        profileBins.Add(profile, profile.Profile_Age_Wealth.ToList());
                 }
             }
 
             //Match the probability with one of the bins.  Basically we walk down the 
             // list of bins until we find the one our draw value belongs to.
-            foreach (Profile_Age_Wealth bin in profileBins)
+            foreach (Profile_Age_Wealth bin in profileBins[profile])
             {
                 if (draw < bin.Probability)
                     return bin;
@@ -262,6 +228,22 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             //Negative because we're paying interest on a loan
             return -1 * charges;
 
+        }
+
+        public Round CurrentRound
+        {
+            get
+            {
+                return this.Rounds.SingleOrDefault(r => r.IsCurrent == true);
+            }
+            set
+            {
+                foreach (Round r in this.Rounds) r.IsCurrent = false;
+                //this.Rounds.Select(r => { r.IsCurrent = false; return r; });
+                value.IsCurrent = true;
+                this.Rounds.Add(value);
+
+            }
         }
     }
 }
