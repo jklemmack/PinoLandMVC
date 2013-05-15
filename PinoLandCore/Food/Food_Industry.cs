@@ -9,6 +9,8 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
     partial class Food_Industry : Industry
     {
         object _lock = new object();
+        object _lock2 = new object();
+        List<Food_Industry_Household_Company_Round> houseActions;
 
         #region Setup methods
 
@@ -119,6 +121,9 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 UpdateTeamCosts(currentAction);
             }
 
+            // setup a list of recorded house actions
+            houseActions = new List<Food_Industry_Household_Company_Round>();
+            int dummy = this.Food_Industry_Age_Wealth_Type.Count();
         }
 
         internal override void PostProcessRound(Round round)
@@ -193,32 +198,12 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
         {
             //Find all restaurants within the household's max travel distance 
             //  and where there is some quantity on hand (beginning inventory + production - sales so far)
-            //  -- Possible parallelism optimization - don't check qty here 
-            //  -- check it when we consume later in the algorithm
-            //double maxDistance = this.Food_Industry_Age_Wealth_Type
+
             var x = from goods in this.Food_Good
-                    where goods.Location.DistanceTo(household.Location) <= 5
-                    from rounds in goods.Food_Good_Round
-                    where (rounds.InventoryStart + rounds.Production - rounds.ActualSales) > 0
+                    where goods.Distances[household.LocationId.Value] <= 5
+                    //from rounds in goods.Food_Good_Round
+                    //where (rounds.InventoryStart + rounds.Production - rounds.ActualSales) > 0
                     select goods;
-
-            //return x.AsEnumerable();
-
-            //var x = from fg in this.Food_Good
-            //        join fiawt in this.Food_Industry_Age_Wealth_Type on fg.TypeId equals fiawt.TypeId
-            //        join h in this.Economy.Households
-            //              on new { fiawt.AgeId, fiawt.WealthId, fiawt.EconomyId }
-            //          equals new { h.AgeId, h.WealthId, h.EconomyId }
-            //        join fgr in this.Economy.CurrentRound.Food_Good_Round
-            //              on new { fg.GoodId, fg.EconomyId }
-            //          equals new { fgr.GoodId, fgr.EconomyId }
-
-            //        where
-            //          fg.Industry == this &&
-            //          fg.EconomyId == this.EconomyId &&
-            //            // fgr.InventoryStart + fgr.Production - fgr.ActualSales > 0 &&
-            //          fg.Location.DistanceTo(h.Location) <= fiawt.MaxDistance
-            //        select fg;
 
             return x.AsEnumerable<Good>();
         }
@@ -236,14 +221,16 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             // First check if we have any quantity left 
             Food_Good good = (Food_Good)g;
             Food_Good_Round action = good.Food_Good_Round.FirstOrDefault(x => x.Round == r);
-            if (action == null || action.ActualSales >= action.Production)
+            if (action == null || action.ActualSales >= action.Production + action.InventoryStart)
                 return null;
 
-            Food_Industry_Age_Wealth_Type profile = this.Food_Industry_Age_Wealth_Type.SingleOrDefault(x =>
-                x.Age == h.Age && x.Wealth == h.Wealth && x.Food_Industry_Good_Type == good.Food_Industry_Good_Type);
+            Food_Industry_Age_Wealth_Type profile;
+            lock (_lock2)
+                profile = this.Food_Industry_Age_Wealth_Type.Single(x =>
+                   x.Age == h.Age && x.Wealth == h.Wealth && x.Food_Industry_Good_Type == good.Food_Industry_Good_Type);
 
-            if (profile == null)
-                return null;
+            //if (profile == null)
+            //    return null;
 
             if (profile.MaxDistance > h.Location.DistanceTo(good.Location))
                 return null;
@@ -254,31 +241,58 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             double distance = h.Location.DistanceTo(good.Location);
             double value = theta - distance * profile.TransportationCost;
 
+            if (value < 0) return null;
             return value;
         }
 
-        internal override void RecordSale(Household h, Good g, Round r, double price, double surplus)
-        {
-            Food_Good good = (Food_Good)g;
-            Food_Good_Round sale = good.Food_Good_Round.First(x => x.Round == r);
+        //internal override void RecordSale(Household h, Good g, Round r, double price, double surplus)
+        //{
+        //    Food_Good good = (Food_Good)g;
+        //    Food_Good_Round sale = good.Food_Good_Round.First(x => x.Round == r);
 
-            //Food_Household_Company_Round 
-            sale.ActualSales++;
+        //    //Food_Household_Company_Round 
+        //    sale.ActualSales++;
 
-            //And record the actual sale for the household
-            Food_Industry_Household_Company_Round fihcr = new Food_Industry_Household_Company_Round();
-            fihcr.Household = h;
-            fihcr.Food_Good = good;
-            fihcr.CompanyId = good.CompanyId;
-            fihcr.Round = r;
-            fihcr.QuantityBought = 1;
-            fihcr.PriceBought = price;
-            fihcr.Surplus = surplus;
-        }
+        //    //And record the actual sale for the household
+        //    //Food_Industry_Household_Company_Round fihcr = new Food_Industry_Household_Company_Round();
+        //    //fihcr.Household = h;
+        //    //fihcr.Food_Good = good;
+        //    //fihcr.CompanyId = good.CompanyId;
+        //    //fihcr.Round = r;
+        //    //fihcr.QuantityBought = 1;
+        //    //fihcr.PriceBought = price;
+        //    //fihcr.Surplus = surplus;
+        //}
 
         internal override Good RecordSale(Household h, Round r, IEnumerable<GoodSelector> goods)
         {
-            return null;
+            GoodSelector winner = null;
+            List<GoodSelector> sortedGoods = goods.OrderByDescending(g => g.surplus).ToList();
+            foreach (GoodSelector option in sortedGoods)
+            {
+                Food_Good good = (Food_Good)option.good;
+                Food_Good_Round sale = good.Food_Good_Round.First(x => x.Round == r);
+                lock (_lock)
+                {
+                    if (sale.ActualSales < sale.InventoryStart + sale.Production)
+                    {
+                        sale.ActualSales++;
+                        winner = option;
+                    }
+                }
+            }
+
+            if (winner == null) return null;
+            ////And record the actual sale for the household
+            //Food_Industry_Household_Company_Round fihcr = new Food_Industry_Household_Company_Round();
+            //fihcr.Household = h;
+            //fihcr.Food_Good = (Food_Good)returnValue;
+            //fihcr.CompanyId = ((Food_Good)returnValue).CompanyId;
+            //fihcr.Round = r;
+            //fihcr.QuantityBought = 1;
+            //fihcr.PriceBought = price;
+            //fihcr.Surplus = surplus;
+            return winner.good;
         }
 
         internal override double CalculateExpenses(Company company, Round round)

@@ -30,7 +30,7 @@
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Good_Type" Width="2.5" PointX="22.25" PointY="133.125" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Good_Food_Industry_Good_Type" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Good_Type_Food_Industry" />
-        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round" Width="2.625" PointX="35.75" PointY="135.5" />
+        <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Industry_Household_Company_Round" Width="3.25" PointX="36.25" PointY="136.625" />
         <edmx:AssociationConnector Association="Fuqua.CompetativeAnalysis.MarketGame.FK_Food_Industry_Household_Company_Round_Food_Good" />
         <edmx:EntityTypeShape EntityType="Fuqua.CompetativeAnalysis.MarketGame.Good" Width="1.5" PointX="6.25" PointY="142.625" />
         <edmx:InheritanceConnector EntityType="Fuqua.CompetativeAnalysis.MarketGame.Food_Good" />

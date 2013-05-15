@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Fuqua.CompetativeAnalysis.MarketGame
 {
@@ -20,46 +22,6 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             return economy;
         }
 
-
-        /// <summary>
-        /// Create a new population profile that can be assigned to a location
-        /// </summary>
-        /// <param name="economy"></param>
-        /// <param name="weights">An array of weights for each age and wealth. These weights will be re-scaled to sum to 1. 
-        /// The weights are ordered by the Age first, then each Wealth for that Age.  All sequences are in alphabetical order.  </param>
-        public Profile CreateProfile(string name, double[] weights)
-        {
-            Profile profile = new Profile();
-            profile.Name = name;
-            profile.Economy = this;
-
-            if (weights.Length != this.Ages.Count * this.Wealths.Count)
-                throw new ArgumentOutOfRangeException("weights", string.Format("\"weights\" array must have {0} elements; it has {1}.", this.Ages.Count * this.Wealths.Count, weights.Length));
-
-            int i = 0;
-            double scale = weights.Sum();   //rescale
-            foreach (Age age in this.Ages.OrderBy(o => o.DisplayOrder))
-                foreach (Wealth wealth in this.Wealths.OrderBy(o => o.DisplayOrder))
-                    profile.AddAgeWealth(age, wealth, weights[i++] / scale);
-
-            return profile;
-        }
-
-        public void AddLocations(IEnumerable<Location> locations)
-        {
-            foreach (Location location in locations)
-            {
-                location.Economy = this;
-                this.Locations.Add(location);
-            }
-        }
-
-        public void AddIndustry(Industry industry)
-        {
-            industry.Economy = this;
-            this.Industries.Add(industry);
-        }
-
         public void Initialize()
         {
             //Create the first round
@@ -71,12 +33,16 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 industry.InitializeIndustry();
             }
 
+
             // Spin over the locations & make households
             foreach (Location location in this.Locations)
             {
                 location.InitializeHouseholds();
             }
-
+            //Parallel.ForEach(this.Locations, location =>
+            //{
+            //    location.InitializeHouseholds();
+            //});
 
         }
 
@@ -100,7 +66,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
                 DateTime start = DateTime.Now;
                 foreach (Household household in this.Households.OrderBy(h => rnd.NextDouble()))
                 {
-                    ProcessHouseholdInIndustry(household, industry, round);
+                    ProcessHouseholdInIndustry2(household, industry, round);
                     count++;
                     if (count % 1000 == 0)
                     {
@@ -175,6 +141,29 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
             /// industry.RecordSale(household, round, goods
             if (winningGood != null)
                 industry.RecordSale(household, winningGood, round, winningCost, maxSurplus);
+
+        }
+
+        private void ProcessHouseholdInIndustry2(Household household, Industry industry, Round round)
+        {
+            //Find all goods available to this household.
+            IEnumerable<Good> goods = industry.GetAvailableGoods(household);
+            List<Industry.GoodSelector> options = new List<Industry.GoodSelector>();
+
+            //Loop through each good, calculate the consumer surplus, and keep track of which one is ahead
+            foreach (Good good in goods)
+            {
+                double? value = industry.CalculateConsumerValue(household, good, round);
+                if (value != null && value.Value > 0)   //Has a value & its positive
+                {
+                    double cost = industry.CalculateConsumerCost(household, good, round);
+                    double surplus = value.Value - cost;
+                    if (surplus > 0)
+                        options.Add(new Industry.GoodSelector() { good = good, price = cost, surplus = surplus });
+                }
+            }
+
+            if (options.Count > 0) industry.RecordSale(household, round, options);
 
         }
 

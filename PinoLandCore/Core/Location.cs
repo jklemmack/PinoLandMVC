@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
         public void InitializeHouseholds()
         {
-
+            //ConcurrentStack<Household> households = new ConcurrentStack<Household>();
             //Parallel.For(0, this.TotalPopulation, i =>
             for (int i = 0; i < this.TotalPopulation; i++)
             {
@@ -27,16 +28,28 @@ namespace Fuqua.CompetativeAnalysis.MarketGame
 
                 //lock (_lock)
                 //{
-                Household h = new Household();
-                h.Age = profile.Age;
-                h.Wealth = profile.Wealth;
+                //Household h = new Household();
+                //h.Age = profile.Age;
+                //h.Wealth = profile.Wealth;
 
-                h.Location = this;
-                h.Identifier = string.Format("{0}:{1:D5}", this.Identifier, i + 1);
-                h.Profile = this.Profile;
+                //h.Location = this;
+                //h.Identifier = string.Format("{0}:{1:D5}", this.Identifier, i + 1);
+                //h.Profile = this.Profile;
                 //}
-            }
-            //);
+                Household h = new Household();
+                h.EconomyId = this.EconomyId;
+                h.Identifier = string.Format("{0}:{1:D5}", this.Identifier, i + 1);
+                h.AgeId = profile.AgeId;
+                h.WealthId = profile.WealthId;
+                h.LocationId = this.LocationId;
+                h.ProfileId = profile.ProfileId;
+                //households.Add(h);
+                lock (_lock)
+                    this.Economy.Households.Add(h);
+            }//);
+
+            //foreach (Household h in households)
+            //    this.Economy.Households.Add(h);
         }
 
     }

@@ -63,6 +63,7 @@
     <Compile Include="Core\Profile.cs" />
     <Compile Include="Core\Round.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="Food\Food_Good.cs" />
     <Compile Include="Food\Food_Industry.cs" />
     <Compile Include="Model.Designer.cs">
       <AutoGen>True</AutoGen>
